@@ -92,5 +92,6 @@ alias gcf='git commit -F- <<EOF'  # use heredocs for commit message
 alias gap='git add --patch'       # commit individual hunks
 alias  gw='watch -d --color git diff --color' # watch for changes, pass colours
 
+# Used to synch/repro configurations between systems
 alias skel='git --work-tree=$HOME --git-dir=$HOME/.skel'
 
