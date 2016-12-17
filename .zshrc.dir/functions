@@ -1,0 +1,163 @@
+#!/bin/zsh
+
+# reference to dir containing source files
+zshdir=${0:h}
+
+# reference to dir containing completion function files
+fpath+="`dirname $0`/completions"
+
+### shortcut functions to edit zsh configurations
+function zedit () {
+    file=$1
+    case "$file" in
+        aliases|functions|zshrc|completions)
+            vi ${zshdir}/${file}
+            ;;
+        *)
+            exit 0
+            ;;
+    esac
+}
+
+function md() {
+    if [[ ! -z "/usr/local/bin/mdless" ]]; then
+        mdless --no-pager $1
+    else
+        echo "mdless not installed - run 'gem install mdless'"
+    fi
+}
+
+# TODO check if screen session of <fruit> name already exists
+# before creating a same-named session.
+function scn() {
+
+    fruits=(
+        banana      mango       orange
+        peach       cherry      pineapple
+        watermelon  rasberry    strawberry
+        grape       grapefruit  pomegranate)
+
+    numFruits=${#fruits}
+
+    if (( $# > 0 )) {
+        screen $@
+    } else {
+        name=$fruits[$[RANDOM % numFruits + 1]]
+
+        screen -S "$name"
+    }
+}
+
+### convenience functions
+function dump() {
+    if [[ -d $HOME/bups/$1 ]]; then
+        mv -i $1 $HOME/bups/$1
+    else
+        mkdir -p $HOME/bups/$1 && mv -i $1 $HOME/bups/$1
+    fi
+}
+function dump-empty() {
+    mv $HOME/bups/* $HOME/.bups/
+}
+function dump-ls() {
+    ls -la $HOME/bups/
+}
+function notes() {
+    if [[ -z $1 ]]; then
+        echo 'Usage:\n\t notes [OPTION] [FILE] [PATTERN]'
+    elif [[ $1 =~ "-h" ]] || [[ $1 =~ "--help" ]]; then
+        cat << EOF
+Usage: notes [OPTION] [FILE] [PATTERN]
+    [OPTION]
+        -h, --help
+            Show this help text.
+        -l, --list
+            Show the list of viewable, searchable, and editable files.
+        -e, --edit
+            Edit the file in place, using default editor.  Depending on the
+            set by 'update-alternatives --config editor' in /usr/bin/editor
+            (Debian specific), this action may also create a blank help file
+            of this name, if none exists.
+        -f, --find
+            Usage: \`notes -f <pattern>'.  Views all files containing <pattern>
+            in less.  Use \`n' and \`N' to jump back and forth between matches
+            within a file, \`:n' and \`:p' to navigate back and forth between
+            files with matches, and \`q' to exit.
+        -s, --subject
+            Look into subject directory for topic, specific to that subject.
+            Example usage: 'notes --subject linux cmds'
+
+    [FILE]
+        Any file directly within the '$HOME/notes' directory.
+
+    [PATTERN]
+        Any single word pattern, or if enclosed in single quotes, any standard
+        regex expression accepted by the system's version of grep.
+EOF
+    elif [[ $1 =~ "-l" ]] || [[ $1 =~ "--list" ]]; then
+        echo 'List of Help Files:\n------------------'
+        for n in `\ls ${HOME}/notes`; do
+            note=${HOME}/notes/${n}
+
+            if [[ -d $note ]]; then
+                echo $note | awk -F '.*/' '
+                    /[/]/ { print "\033[34m"$2"\033[0m" }
+                '
+                for nn in `\ls $note`; do
+                    nn=`basename $(\ls -p ${note}/${nn})`
+                    echo $nn | awk -F '.mkd' '
+                        /.mkd/ { print "`-"$1 }
+                    '
+                done
+            elif [[ -e $note ]]; then
+                note=`basename $(\ls -p $note)`
+                echo $note | awk -F '.mkd' '
+                    /.mkd/ { print $1 }
+                '
+            fi
+        done
+    elif [[ $1 =~ "-f" ]] || [[ $1 =~ "--find" ]]; then
+        if [[ $# -lt 2 ]]; then
+            echo 'Usage:  notes -f <pattern>'
+        else
+            echo grepping...
+            grep -rl $HOME/notes/ --exclude-dir=".git" -e "$2" | xargs less -R --LONG-PROMPT --pattern="$2"
+        fi
+    elif [[ -z $2 ]]; then
+        less ${HOME}/notes/${1}.mkd
+    else
+        if [[ $1 =~ "-e" ]] || [[ $1 =~ "--edit" ]]; then
+            /usr/bin/editor ${HOME}/notes/${2}.mkd
+        elif [[ $1 =~ "-s" ]] || [[ $1 =~ "--subject" ]]; then
+            less ${HOME}/notes/${2}/${3}.mkd
+        fi
+    fi
+}
+
+#
+# A completely useless function, that just does what the name implies
+#
+function look-busy() {
+    while (true) {
+        for i in $(find . -name \*); do
+            \ls $i
+            for j in $i; do
+                if [[ -d $j ]]; then
+                    \ls -a $j
+                else
+                    od $j --width=40  -A x -t x1z -v | awk -F=' ' '{ print $0 }' | grep --color -e '>.\+'
+                    sleep $[RANDOM % 3]
+                fi
+            done
+        done
+    }
+}
+
+function calc() {
+    echo "$@" | bc
+}
+
+function grade() {
+    print "scale=2; $1 / $2 * 100" | bc
+}
+

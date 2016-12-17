@@ -1,0 +1,8 @@
+#compdef zedit
+
+A=( aliases functions zshrc completions )
+
+_arguments \
+    - options \
+    ":arguments:($A)"
+

@@ -1,0 +1,16 @@
+# Set proper timezone
+TZ='America/Toronto'; export TZ
+
+# Use `st' as default terminal emulator
+TERM='st-256color'; export TERM
+
+EDITOR='vim'; export EDITOR
+
+# Use caps for ctrl
+setxkbmap -option ctrl:swapcaps
+
+# disable screen dimming, blanking
+#xset s off
+#xset s noblank
+#xset -dpms
+
