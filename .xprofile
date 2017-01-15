@@ -14,3 +14,6 @@ setxkbmap -option ctrl:swapcaps
 #xset s noblank
 #xset -dpms
 
+# Launch i3 wm and log output
+#exec i3 -V >> ~/i3log-$(date +'%F-%k-%M-%S') 2>&1
+
