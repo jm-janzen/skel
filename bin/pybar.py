@@ -40,10 +40,17 @@ class Bar():
         sys_info["os"]              = plat.uname()[2]
         sys_info["arch"]            = plat.uname()[4]
 
-        # Build and return string
-        return sys_info["kernel_name"]      \
-                + ' ' +  sys_info["os"]     \
+        # Build string
+        sys_info_str = sys_info["kernel_name"]  \
+                + ' ' +  sys_info["os"]         \
                 + ' ' +  sys_info["arch"]
+
+        # Conditionally colour
+        if "ARCH" in sys_info_str.upper():
+            sys_info_str = Colo.blue(sys_info_str)
+
+        return f"{sys_info_label}{sys_info_str}"
+
 
     def build_cpu_str(self):
         # Set label(s)
@@ -180,17 +187,28 @@ class Bar():
 class Colo():
     """ rgb colour helper """
 
-    RED     = "%{F#FF0000}"
-    YELLOW  = "%{F#FFFF00}"
-    GREEN   = "%{F#00FF00}"
-    END     = "%{F-}"
+    RED         = "%{F#FF0000}"
+    RED_DARK    = "%{F#800000}"
+    YELLOW      = "%{F#FFFF00}"
+    YELLOW_DARK = "%{F#808000}"
+    GREEN       = "%{F#00FF00}"
+    GREEN_DARK  = "%{F#008000}"
+    BLUE        = "%{F#00FFFF}"
+    BLUE_DARK   = "%{F#008080}"
+    ORANGE      = "%{F#FF4500}"
+    ORANGE_DARK = "%{F#FF8C00}"
+    END         = "%{F-}"
 
     def yellow(s):
-        return Colo.YELLOW + s + Colo.END
+        return Colo.YELLOW  + s + Colo.END
     def red(s):
-        return Colo.RED + s + Colo.END
+        return Colo.RED     + s + Colo.END
     def green(s):
-        return Colo.GREEN + s + Colo.END
+        return Colo.GREEN   + s + Colo.END
+    def blue(s):
+        return Colo.BLUE    + s + Colo.END
+    def orange(s):
+        return Colo.ORANGE  + s + Colo.END
 
 def main():
 
