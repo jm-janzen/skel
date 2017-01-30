@@ -2,8 +2,8 @@
 set nocompatible
 filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
-let g:python_host_prog='/usr/bin/python2'
-call vundle#begin()
+let g:python3_host_prog='/usr/bin/python'
+call vundle#begin('~/.config/nvim/bundle')
 Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'scrooloose/nerdtree'
@@ -11,11 +11,13 @@ Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'mbbill/undotree'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'easymotion/vim-easymotion'
-"Plugin 'Valloric/YouCompleteMe'
-"Plugin 'Rip-Rip/clang_complete'
+Plugin 'Rip-Rip/clang_complete'
 Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plugin 'zchee/deoplete-jedi'
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'zchee/libclang-python3'
+"Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'Valloric/YouCompleteMe'
+"Plugin 'rdnetto/YCM-Generator'
 
 call vundle#end()
 filetype plugin indent on
@@ -91,8 +93,7 @@ endfunction
 set t_Co=256
 
 " default colorscheme
-"colorscheme maroloccio
-colorscheme bink
+colorscheme bink-arvo
 
 " show training whitespace as `-', and tabs as `>---'
 set list lcs=trail:-,tab:>-
