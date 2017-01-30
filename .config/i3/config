@@ -17,13 +17,18 @@ set $mod Mod1
 
 # Run my arch startup script
 # execute on refresh (exec_always) as well as startup (exec)
-exec_always --no-startup-id /home/jm/bin/i3_arch_startup.sh -f -s PRIMARY
+#exec_always --no-startup-id /home/jm/bin/i3_arch_startup.sh -f -s PRIMARY
+exec_always --no-startup-id /home/${USER}/bin/i3_arch_startup.sh -f -s PRIMARY
 
 workspace 2 output HDMI-0
 workspace 1 output DVI-0
 
 # start a terminal
 bindsym $mod+Return exec konsole
+
+bindsym $mod+minus move scratchpad
+
+bindsym $mod+Shift+minus scratchpad show
 
 ###
 ### /My Configurations
@@ -169,13 +174,4 @@ bindsym $mod+r mode "resize"
 
 # lemon bar script (execute on refresh as well, for now)
 exec_always python -u ${HOME}/bin/pybar.py | lemonbar -p -b
-
-bar {
-    # i3bar config
-    #status_command i3status -c ~/.config/i3status/config
-    status_command i3status -c ~/.config/i3status/mybar
-
-    # default
-    #status_command i3status -c /etc/i3status.conf
-}
 
