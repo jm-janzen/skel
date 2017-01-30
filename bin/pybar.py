@@ -6,6 +6,8 @@ import time
 import psutil
 import math
 import platform as plat
+from datetime import datetime
+from datetime import time as dtime
 from termcolor import colored as colo
 
 class Bar():
@@ -54,14 +56,14 @@ class Bar():
 
         # Conditionally colour, build string
         if temp_cpu_num > 80:
-            built_str = Colo.red(f"{cpu_label}"    + f"{temp_cpu_num}".zfill(2) + '%')
+            built_str = Colo.red(f"{temp_cpu_num}".zfill(2) + '%')
         elif temp_cpu_num > 50:
-            built_str = Colo.yellow(f"{cpu_label}" + f"{temp_cpu_num}".zfill(2) + '%')
+            built_str = Colo.yellow(f"{temp_cpu_num}".zfill(2) + '%')
         else:
-            built_str = Colo.green(f"{cpu_label}"  + f"{temp_cpu_num}".zfill(2) + '%')
+            built_str = Colo.green(f"{temp_cpu_num}".zfill(2) + '%')
 
         # Return built string
-        return built_str
+        return f"{cpu_label}{built_str}"
 
     def build_mem_str(self):
 
@@ -81,19 +83,70 @@ class Bar():
         mem_info["free"]        = mem_obj[4]
 
         # Perform calculation
-        #mem_percent_used = "{0:.2f}".format(mem_info["percent"])
         mem_percent_used = math.floor(mem_info["percent"])
 
         # TODO all colos
-        # Conditionally colour
+        # Conditionally colour and build string
         if float(mem_percent_used) > 80:
-            built_str = Colo.red(f"{mem_label}{mem_percent_used}%")
+            built_str = Colo.red(f"{mem_percent_used}%")
         if float(mem_percent_used) > 50:
-            built_str = Colo.yellow(f"{mem_label}{mem_percent_used}%")
+            built_str = Colo.yellow(f"{mem_percent_used}%")
         else:
-            built_str = Colo.green(f"{mem_label}{mem_percent_used}%")
+            built_str = Colo.green(f"{mem_percent_used}%")
 
-        return built_str
+        return f"{mem_label}{built_str}"
+
+    def build_datetime_str(self):
+
+        # Get date
+        today = datetime.today()
+
+        # Conditionally colour and label
+        # TODO account for weekends
+        now = today.time()
+        if self.labels:
+            if now > dtime(12) and now < dtime(13):
+                datetime_label = "LNCH: "
+            elif now > dtime(9) and now < dtime(17):
+                datetime_label = "WORK: "
+            elif now > dtime(17) and now < dtime(18):
+                datetime_label = "DONE: "
+            else:
+                datetime_label = ""
+
+
+        # Build string
+        datetime_str = datetime_label + today.strftime("%Y-%m-%d %H:%M:%S")
+
+        return datetime_str
+
+    def build_disk_str(self):
+        """ Returns used over available GB for user """
+        # Set label
+        disk_label = "DSK: "
+        if not self.labels:
+            disk_label = ""
+
+        st = os.statvfs(os.path.expanduser('~'))
+
+        # Get numbers
+        used  = (st.f_blocks - st.f_bfree) * st.f_frsize / 1.073741824e9
+        total = st.f_blocks * st.f_frsize / 1.073741824e9
+
+        # Conditionally colour and build string
+        # TODO get % and add colo
+        used_str = "{:.1f}".format(used)
+        total_str = "{:.1f}".format(total)
+        percent_used = used / total * 100
+
+        if percent_used > 50:
+            built_str = Colo.yellow(f"{used_str}/{total_str}")
+        elif percent_used > 80:
+            built_str = Colo.red(f"{used_str}/{total_str}")
+        else:
+            built_str = Colo.green(f"{used_str}/{total_str}")
+
+        return f"{disk_label}{built_str}"
 
     def wrap(self, s):
         """ Returns given string, wrapped in separators """
@@ -146,7 +199,7 @@ def main():
 
     while True:
         bar_left  = bar.wrap(bar.build_sys_info_str())
-        bar_right = bar.wrap([ bar.build_cpu_str(), bar.build_mem_str() ])
+        bar_right = bar.wrap([ bar.build_cpu_str(), bar.build_mem_str(), bar.build_disk_str(), bar.build_datetime_str() ])
         bar_full  = bar.left(bar_left) + bar.right(bar_right)
 
         print(bar_full)
