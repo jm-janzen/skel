@@ -147,11 +147,11 @@ class Bar():
         percent_used = used / total * 100
 
         if percent_used > 50:
-            built_str = Colo.yellow(f"{used_str}/{total_str}")
+            built_str = Colo.yellow(f"{round(percent_used,2)}%")
         elif percent_used > 80:
-            built_str = Colo.red(f"{used_str}/{total_str}")
+            built_str = Colo.red(f"{round(percent_used,2)}%")
         else:
-            built_str = Colo.green(f"{used_str}/{total_str}")
+            built_str = Colo.green(f"{round(percent_used,2)}%")
 
         return f"{disk_label}{built_str}"
 
