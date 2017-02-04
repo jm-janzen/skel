@@ -1,22 +1,18 @@
 #!/usr/bin/python -u
 
-import os
-import sys
-import time
-import psutil
-import math
-import platform as plat
-from datetime import datetime
-from datetime import time as dtime
-from termcolor import colored as colo
+import os  # For user id, home dir
+import pwd  # For user name
+import time  # For refresh interval
+import psutil  # For memory, cpu usage
+import platform  # For system info
+from datetime import datetime  # For datetime
+from datetime import time as dtime  # For time comparison
 
 class Bar():
 
-    # Define defaults
-    sep = " | "
-    def __init__(self, sep=" | ", labels=False):
+    def __init__(self, sep=" | ", use_labels=False):
         self.sep = sep
-        self.labels = labels
+        self.use_labels = use_labels
 
     """ template
     def build_subsystem_str(self):
@@ -28,22 +24,35 @@ class Bar():
         # return built string
     """
 
+    def build_user_str(self):
+
+        # Get user info
+        user_id   = os.getuid()
+        user_name = pwd.getpwuid(user_id).pw_name
+
+        # Build conditionally coloured string
+        if "work" in user_name:
+            built_str = Colo.magenta(user_name)
+        else:
+            built_str = Colo.blue(user_name)
+
+        return built_str
+
     def build_sys_info_str(self):
         # Set label(s)
         sys_info_label = "OS: "
-        if not self.labels:
+        if not self.use_labels:
             sys_info_label = ""
 
-        # Get numbers/strings
-        sys_info = {}
-        sys_info["kernel_name"]     = plat.uname()[0]
-        sys_info["os"]              = plat.uname()[2]
-        sys_info["arch"]            = plat.uname()[4]
+        # Get system info
+        os_str      = platform.system()
+        version_str = platform.release()
+        arch_str    = platform.machine()
 
         # Build string
-        sys_info_str = sys_info["kernel_name"]  \
-                + ' ' +  sys_info["os"]         \
-                + ' ' +  sys_info["arch"]
+        sys_info_str = os_str        \
+                + ' ' +  version_str \
+                + ' ' +  arch_str
 
         # Conditionally colour
         if "ARCH" in sys_info_str.upper():
@@ -55,11 +64,11 @@ class Bar():
     def build_cpu_str(self):
         # Set label(s)
         cpu_label = "CPU: "
-        if not self.labels:
+        if not self.use_labels:
             cpu_label = ""
 
         # Get number value
-        temp_cpu_num = math.floor(psutil.cpu_percent())
+        temp_cpu_num = int(psutil.cpu_percent())
 
         # Conditionally colour, build string
         if temp_cpu_num > 80:
@@ -76,7 +85,7 @@ class Bar():
 
         # Set label
         mem_label = "MEM: "
-        if not self.labels:
+        if not self.use_labels:
             mem_label = ""
 
         # Get numbers
@@ -90,7 +99,7 @@ class Bar():
         mem_info["free"]        = mem_obj[4]
 
         # Perform calculation
-        mem_percent_used = math.floor(mem_info["percent"])
+        mem_percent_used = int(mem_info["percent"])
 
         # TODO all colos
         # Conditionally colour and build string
@@ -114,7 +123,7 @@ class Bar():
         day   = today.strftime("%a").upper()  # Day of week, short
 
         # Conditionally colour and label
-        if self.labels:
+        if self.use_labels:
             if day in weekend_days:
                 datetime_label = "WKND: "
             elif now > dtime(12) and now < dtime(13):
@@ -126,6 +135,9 @@ class Bar():
             else:
                 datetime_label = ""
 
+        else:
+            datetime_label = ""
+
         # Build string
         datetime_str = datetime_label + today.strftime("%Y-%m-%d %H:%M:%S")
 
@@ -135,7 +147,7 @@ class Bar():
         """ Returns used over available GB for user """
         # Set label
         disk_label = "DSK: "
-        if not self.labels:
+        if not self.use_labels:
             disk_label = ""
 
         st = os.statvfs(os.path.expanduser('~'))
@@ -202,10 +214,12 @@ class Colo():
     BLUE_DARK   = "%{F#008080}"
     ORANGE      = "%{F#FF4500}"
     ORANGE_DARK = "%{F#FF8C00}"
+    MAGENTA     = "%{F#FF00FF}"
     END         = "%{F-}"
 
     # Background
     BLUE_DARK_BG    = "%{B#000010}"
+    MAGENTA_BG      = "%{B#FF00FF}"
     END_BG          = "%{B-}"
 
     def yellow(s):
@@ -218,14 +232,18 @@ class Colo():
         return Colo.BLUE    + s + Colo.END
     def orange(s):
         return Colo.ORANGE  + s + Colo.END
+    def magenta(s):
+        return Colo.MAGENTA + s + Colo.END
+    def bg_magenta(s):
+        return Colo.MAGENTA_BG + s + Colo.END_BG
 
 def main():
 
     interval = 1
-    bar = Bar(labels=True)
+    bar = Bar(use_labels=True)
 
     while True:
-        bar_left  = bar.wrap(bar.build_sys_info_str())
+        bar_left  = bar.wrap([ bar.build_user_str(), bar.build_sys_info_str() ])
         bar_right = bar.wrap([ bar.build_cpu_str(), bar.build_mem_str(), bar.build_disk_str(), bar.build_datetime_str() ])
         bar_full  = bar.left(bar_left) + bar.right(bar_right)
 
