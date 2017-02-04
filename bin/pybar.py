@@ -141,17 +141,14 @@ class Bar():
         total = st.f_blocks * st.f_frsize / 1.073741824e9
 
         # Conditionally colour and build string
-        # TODO get % and add colo
-        used_str = "{:.1f}".format(used)
-        total_str = "{:.1f}".format(total)
         percent_used = used / total * 100
 
         if percent_used > 50:
-            built_str = Colo.yellow(f"{round(percent_used,2)}%")
+            built_str = Colo.yellow("{:.0f}".format(percent_used) + '%')
         elif percent_used > 80:
-            built_str = Colo.red(f"{round(percent_used,2)}%")
+            built_str = Colo.red("{:.0f}".format(percent_used) + '%')
         else:
-            built_str = Colo.green(f"{round(percent_used,2)}%")
+            built_str = Colo.green("{:.0f}".format(percent_used) + '%')
 
         return f"{disk_label}{built_str}"
 
