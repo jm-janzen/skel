@@ -139,10 +139,9 @@ class Bar():
         # Get numbers
         used  = (st.f_blocks - st.f_bfree) * st.f_frsize / 1.073741824e9
         total = st.f_blocks * st.f_frsize / 1.073741824e9
-
-        # Conditionally colour and build string
         percent_used = used / total * 100
 
+        # Conditionally colour and build string
         if percent_used > 50:
             built_str = Colo.yellow("{:.0f}".format(percent_used) + '%')
         elif percent_used > 80:
