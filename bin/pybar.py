@@ -105,14 +105,19 @@ class Bar():
 
     def build_datetime_str(self):
 
+        # Declare special days
+        weekend_days = [ "SAT", "SUN" ]
+
         # Get date
         today = datetime.today()
+        now   = today.time()
+        day   = today.strftime("%a").upper()  # Day of week, short
 
         # Conditionally colour and label
-        # TODO account for weekends
-        now = today.time()
         if self.labels:
-            if now > dtime(12) and now < dtime(13):
+            if day in weekend_days:
+                datetime_label = "WKND: "
+            elif now > dtime(12) and now < dtime(13):
                 datetime_label = "LNCH: "
             elif now > dtime(9) and now < dtime(17):
                 datetime_label = "WORK: "
@@ -120,7 +125,6 @@ class Bar():
                 datetime_label = "DONE: "
             else:
                 datetime_label = ""
-
 
         # Build string
         datetime_str = datetime_label + today.strftime("%Y-%m-%d %H:%M:%S")
