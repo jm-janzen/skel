@@ -155,6 +155,10 @@ class Bar():
 
         return f"{disk_label}{built_str}"
 
+    def spacer(self, space_char=' '):
+        """ Returns a filler string composed of given space char """
+        return space_char * 1024
+
     def wrap(self, s):
         """ Returns given string, wrapped in separators """
         wrapped = ""
@@ -187,6 +191,7 @@ class Bar():
 class Colo():
     """ rgb colour helper """
 
+    # Foreground
     RED         = "%{F#FF0000}"
     RED_DARK    = "%{F#800000}"
     YELLOW      = "%{F#FFFF00}"
@@ -198,6 +203,10 @@ class Colo():
     ORANGE      = "%{F#FF4500}"
     ORANGE_DARK = "%{F#FF8C00}"
     END         = "%{F-}"
+
+    # Background
+    BLUE_DARK_BG    = "%{B#000010}"
+    END_BG          = "%{B-}"
 
     def yellow(s):
         return Colo.YELLOW  + s + Colo.END
