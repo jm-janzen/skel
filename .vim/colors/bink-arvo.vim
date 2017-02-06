@@ -29,7 +29,7 @@ if 0
 elseif has("gui_running") || &t_Co == 256
 
     CSAHi Normal term=NONE cterm=NONE ctermbg=none ctermfg=249
-    CSAHi Comment term=NONE cterm=NONE ctermbg=none ctermfg=239
+    CSAHi Comment term=NONE cterm=NONE ctermbg=none ctermfg=242
     CSAHi Constant term=NONE cterm=NONE ctermbg=none ctermfg=244
     CSAHi Special term=NONE cterm=NONE ctermbg=none ctermfg=51
 
