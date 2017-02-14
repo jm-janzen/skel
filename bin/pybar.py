@@ -101,14 +101,13 @@ class Bar():
         # Perform calculation
         mem_percent_used = int(mem_info["percent"])
 
-        # TODO all colos
         # Conditionally colour and build string
         if float(mem_percent_used) > 80:
-            built_str = Colo.red(f"{mem_percent_used}%")
+            built_str = Colo.red(f"{mem_percent_used}".zfill(2) + '%')
         if float(mem_percent_used) > 50:
-            built_str = Colo.yellow(f"{mem_percent_used}%")
+            built_str = Colo.yellow(f"{mem_percent_used}".zfill(2) + '%')
         else:
-            built_str = Colo.green(f"{mem_percent_used}%")
+            built_str = Colo.green(f"{mem_percent_used}".zfill(2) + '%')
 
         return f"{mem_label}{built_str}"
 
