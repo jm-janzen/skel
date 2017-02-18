@@ -8,8 +8,8 @@ TERM='st-256color'; export TERM
 EDITOR='vim'; export EDITOR
 
 # Set golang paths
-GOPATH=$HOME/trees/go       # source files
-PATH=$PATH:$GOPATH/bin      # binaries
+export GOPATH=$HOME/trees/go          # source files
+export PATH=$PATH:$GOPATH:$GOPATH/bin # binaries
 
 # Use caps for ctrl
 setxkbmap -option ctrl:swapcaps
