@@ -5,24 +5,39 @@ import pwd  # For user name
 import time  # For refresh interval
 import psutil  # For memory, cpu usage
 import platform  # For system info
+
+# For journalctl log
+import sys
+import re
+from subprocess import PIPE, Popen
+from threading import Thread
+from queue import Queue, Empty
+
 from datetime import datetime  # For datetime
 from datetime import time as dtime  # For time comparison
 
 class Bar():
 
     def __init__(self, sep=" | ", use_labels=False):
-        self.sep = sep
+        self.sep        = sep
         self.use_labels = use_labels
 
-    """ template
-    def build_subsystem_str(self):
-        # Set label(s)
-        # Get numbers/strings
-        # Perform calculations
-        # Conditionally colour
-        # Build string
-        # return built string
-    """
+        # Build journalctl non-blocking queue
+        ON_POSIX   = "posix" in sys.builtin_module_names
+
+        # NOTE Relies on systemd, package journalctl
+        self.pipe  = Popen(['journalctl', '--lines', '0', '--follow'],
+                          stdout=PIPE,
+                          bufsize=1,
+                          close_fds=ON_POSIX)
+        self.queue       = Queue()
+        self.stale_queue = ""
+        t                = Thread(target=self._unqueue_output,
+                                  args=(self.pipe.stdout,
+                                        self.queue))
+        t.daemon         = True
+        t.start()
+        # End of build journalctl non-blocking queue
 
     def build_user_str(self):
 
@@ -171,6 +186,26 @@ class Bar():
 
         return f"{disk_label}{built_str}"
 
+    def build_sys_log_str(self):
+        """ Returns last line of journalctl in a non-blocking manner """
+        try:
+            log = self.queue.get_nowait()
+            self.stale_queue = log
+        except Empty:
+            log = self.stale_queue
+        return self._rm_datetime_str(log) + self.spacer()
+
+    def _unqueue_output(self, out, dump):
+        """ Push last line of journalctl log to own queue """
+        for line in iter(out.readline, b''):
+            self.queue.put(line.decode("UTF-8").strip('\n'))
+        out.close()
+
+    def _rm_datetime_str(self, s):
+        """ Remove datetime prefix from given string (for journalctl log) """
+        date_pat = re.compile(datetime.today().strftime("%b %d %H:%M")).pattern
+        return re.sub(date_pat + ":\d{2}", "", s).strip()
+
     def spacer(self, space_char=' '):
         """ Returns a filler string composed of given space char """
         return space_char * 1024
@@ -247,7 +282,7 @@ def main():
     bar = Bar(use_labels=True)
 
     while True:
-        bar_left  = bar.wrap([ bar.build_user_str(), bar.build_sys_info_str() ])
+        bar_left  = bar.wrap([ bar.build_user_str(), bar.build_sys_info_str(), bar.build_sys_log_str() ])
         bar_right = bar.wrap([ bar.build_cpu_str(), bar.build_mem_str(), bar.build_disk_str(), bar.build_datetime_str() ])
         bar_full  = bar.left(bar_left) + bar.right(bar_right)
 
