@@ -4,6 +4,9 @@ TZ='America/Toronto'; export TZ
 # Set default editor to vim
 EDITOR='vim'; export EDITOR
 
+# Add user bin to path
+export PATH=$PATH:$HOME/bin
+
 # Set golang paths
 export GOPATH=$HOME/trees/go        # source files
 export GOBIN=$GOPATH/bin            # binaries

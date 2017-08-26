@@ -122,6 +122,7 @@ EOF
         else
             echo grepping...
             grep -rl $HOME/notes/ --exclude-dir=".git" -e "$2" | xargs less -R --LONG-PROMPT --pattern="$2"
+            #echo "grep -rl $HOME/notes/ --exclude-dir=.git -e $2 |xargs less -R --LONG-PROMPT --pattern=$2"
         fi
     elif [[ -z $2 ]]; then
         less ${HOME}/notes/${1}.mkd

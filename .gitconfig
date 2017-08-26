@@ -1,5 +1,8 @@
 [user]
 	email = jmjanzen@gmail.com
 	name = JM
+	signingkey = EA76631495CCB598
 [push]
 	default = current
+[http "https://gopkg.in"]
+	followRedirects = true

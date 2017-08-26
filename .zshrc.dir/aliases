@@ -19,7 +19,7 @@ alias   vim="nvim"
 alias     p="pandoc -t plain $1"
 #alias  tmux="tmux2.3 -2"
 alias  tmux="tmux -u"
-alias    py="python -u"
+alias    py="python -Bu"
 
 ### convenience (more specific)
 alias   mem='ps ax -o %mem=--MEM--,user=---USER---,pid=---PID--,cmd | grep -v root | sort -Vr'

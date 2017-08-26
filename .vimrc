@@ -1,27 +1,33 @@
 " the following are required to use vundle plugin manager
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
 let g:python3_host_prog='/usr/bin/python'
-call vundle#begin('~/.config/nvim/bundle')
-Plugin 'VundleVim/Vundle.vim'
+let g:python_host_prog='/usr/bin/python2'
+"set rtp+=~/.vim/bundle/Vundle.vim
+"call vundle#begin('~/.config/nvim/bundle')
+"Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
-Plugin 'scrooloose/nerdtree'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'mbbill/undotree'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'Rip-Rip/clang_complete'
-Plugin 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plugin 'zchee/deoplete-jedi'
-Plugin 'zchee/libclang-python3'
-"Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plugin 'Valloric/YouCompleteMe'
-"Plugin 'rdnetto/YCM-Generator'
+Plug 'scrooloose/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'mbbill/undotree'
+Plug 'airblade/vim-gitgutter'
+Plug 'fatih/vim-go'
+"Plug 'zchee/deoplete.nvim'  " Generic completions based on buffers
+"Plug 'zchee/deoplete-go', { 'do': 'make' }
+"Plug 'yosssi/vim-ace'
+"Plug 'davidhalter/jedi-vim'  " Great completion for python class methods, etc
+Plug 'davidhalter/jedi'  " Great completion for python class methods, etc
 
-call vundle#end()
+"call vundle#end()
+call plug#end()
+
 filetype plugin indent on
 " end of vundle section
+
+" vim-go opts
+" automatically insert import paths on fmt
+let g:go_fmt_command = "goimports"
 
 " map leader to most prominent key
 let mapleader = "\<Space>"
@@ -41,26 +47,23 @@ filetype plugin indent on
 " enable JSX syntax in *.js files, too
 let g:jsx_ext_required = 0
 
-" for C-family semantic completion, syntax, compilation flags linting
-"let g:ycm_global_ycm_extra_conf = '/home/jm/.vim/.ycm_extra_conf.py'
-" use clang_complete instead
-"let g:clang_library_path='/usr/lib/llvm-3.8/lib/libclang-3.8.so.1'
 " enable deoplete completion
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 
-" add fzf to run-time-path (enable fuzzy finder)
-set rtp+=~/.fzf
+" YCM, close preview window after accept
+au CompleteDone * pclose
 
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+" TODO rm ?
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+"let g:syntastic_always_populate_loc_list = 1
+"let g:syntastic_auto_loc_list = 1
+"let g:syntastic_check_on_open = 1
+"let g:syntastic_check_on_wq = 0
 
 " enable XML tag matching
-runtime macros/matchit.vim
+"runtime macros/matchit.vim
 
 " force no background color on loading colo schemes (for transparent term emus)
 au ColorScheme * call NoBackground()
@@ -97,11 +100,12 @@ colorscheme bink-arvo
 
 " show training whitespace as `-', and tabs as `>---'
 set list lcs=trail:-,tab:>-
+" default to not show
+set list!
 
 set hlsearch    " highlight search results
 set shiftround  " shift to set columns rather than relative
 set si          " use smartindent on new lines (see ':help smartindent')
-"set cindent
 set cinkeys-=0#
 set indentkeys-=0#
 set ai          " use autoindent (copy indent from prev line on new line)
@@ -138,8 +142,14 @@ function! NumberToggle()
 endfunc
 nnoremap <C-n> :call NumberToggle()<cr> " toggle nu/rnu
 
+" toggle highlight on search
 nnoremap <silent> <C-l> :set hls!<CR><C-l>
+
+" refresh .vimrc
 nnoremap <C-s> :source $MYVIMRC<CR>
+
+" (insert) bind omnifunc to Ctrl+Space
+inoremap <C-Space> <C-x><C-o>
 
 " make debugging python scripts a little less painful
 nnoremap <silent> <F5> :!python -u %<CR>
@@ -155,7 +165,7 @@ inoremap # X#
 map <silent> <C-t> :NERDTreeToggle<CR>
 
 " shortcut to activate FZF (<C-c> quits)
-map <C-f> :FZF<CR>
+"map <C-f> :FZF<CR>
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -185,9 +195,6 @@ if has ("persistent_undo")
     set undodir=$HOME/.vim/undo  " where to save (REQ: `mkdir ~/.vim/undo`!)
 endif
 
-" YCM, close preview window after accept
-au CompleteDone * pclose
-
 """
 """ source per language settings, macros
 """
@@ -216,6 +223,7 @@ autocmd BufNewFile,BufRead,FileType *.sh call Bash_conf()
     endfunction
 autocmd BufNewFile,BufRead,FileType *.go call Go_conf()
     function! Go_conf()
+        set syn=go
         source ${HOME}/.vimrc.dir/lang_configs/go/settings_go.vim
     endfunction
 
@@ -227,10 +235,6 @@ au BufNewFile,BufRead *.ejs set filetype=html
 "au BufNewFile,BufRead *.iim set syntax=iim filetype=iMacros
 
 " set explicit tab character for .at files
-au BufNewFile,BufRead *.a[tm], set noic cin noexpandtab list filetype=autotest
-au Filetype autotest setlocal noexpandtab list
-
-" set syntax for golang source files
-au BufNewFile,BufRead *.go set syn=go
-
+"au BufNewFile,BufRead *.a[tm], set noic cin noexpandtab list filetype=autotest
+"au Filetype autotest setlocal noexpandtab list
 
