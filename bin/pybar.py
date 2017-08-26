@@ -5,6 +5,9 @@ import pwd  # For user name
 import time  # For refresh interval
 import psutil  # For memory, cpu usage
 import platform  # For system info
+import sys
+import subprocess
+import select
 from datetime import datetime  # For datetime
 from datetime import time as dtime  # For time comparison
 
@@ -13,6 +16,12 @@ class Bar():
     def __init__(self, sep=" | ", use_labels=False):
         self.sep = sep
         self.use_labels = use_labels
+
+        # TODO Check if we have journalctl on this OS
+        self.pipe = subprocess.Popen(['journalctl', '--lines', '0', '--follow'],
+                                     stdout=subprocess.PIPE)
+        p = select.poll()
+        p.register(self.pipe.stdout)
 
     """ template
     def build_subsystem_str(self):
@@ -171,6 +180,15 @@ class Bar():
 
         return f"{disk_label}{built_str}"
 
+    # TODO Insert this log, rather than spacer
+    def build_sys_log(self):
+        """ TODO implement in non-blocking way
+        try: line = self.pipe.stdout.readline().decode("UTF-8")[:50]
+        except: line = "nada"
+        """
+        line = "..."
+        return line
+
     def spacer(self, space_char=' '):
         """ Returns a filler string composed of given space char """
         return space_char * 1024
@@ -247,7 +265,7 @@ def main():
     bar = Bar(use_labels=True)
 
     while True:
-        bar_left  = bar.wrap([ bar.build_user_str(), bar.build_sys_info_str() ])
+        bar_left  = bar.wrap([ bar.build_user_str(), bar.build_sys_info_str(), bar.build_sys_log() ])
         bar_right = bar.wrap([ bar.build_cpu_str(), bar.build_mem_str(), bar.build_disk_str(), bar.build_datetime_str() ])
         bar_full  = bar.left(bar_left) + bar.right(bar_right)
 
