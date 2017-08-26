@@ -120,6 +120,7 @@ class Bar():
         today = datetime.today()
         now   = today.time()
         day   = today.strftime("%a").upper()  # Day of week, short
+        weekday_label = day + " : "
 
         # Conditionally colour and label
         if self.use_labels:
@@ -132,7 +133,11 @@ class Bar():
             elif now > dtime(17) and now < dtime(18):
                 datetime_label = "DONE: "
             else:
-                datetime_label = ""
+                datetime_label = weekday_label
+
+            # Flit back and forth between label and weekday label
+            if int(now.strftime("%s")) % 10 > 5:
+                datetime_label = weekday_label
 
         else:
             datetime_label = ""
