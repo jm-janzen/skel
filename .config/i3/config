@@ -22,6 +22,9 @@ exec_always --no-startup-id /home/${USER}/bin/i3_arch_startup.sh -f -s PRIMARY
 workspace 2 output HDMI-1
 workspace 1 output DVI-I-1
 
+# Set default container layout for all workspaces
+workspace_layout tabbed
+
 # start a terminal
 bindsym $mod+Return exec konsole
 
