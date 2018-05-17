@@ -31,9 +31,9 @@ disk "/" {
 }
 
 volume master {
-    format = " Vol: %volume "
-    device = "default"
-    mixer = "Master"
-    mixer_idx = 0
+	format = " %volume"
+		format_muted = " %volume"
+		device = "default"
+		mixer = "Master"
+		mixer_idx = 0
 }
-
