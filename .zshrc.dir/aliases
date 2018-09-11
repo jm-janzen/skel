@@ -80,5 +80,6 @@ alias gtr='git ls-tree -r HEAD --name-only --full-name | xargs file | egrep ".*:
 alias  gw='watch -d --color git diff --color' # watch for changes, pass colours
 
 # Used to synch/repro configurations between systems
-alias skel='git --work-tree=$HOME --git-dir=$HOME/.skel'
+# NOTE You're gonna want this: `echo '*' > ~/.gitignore`
+alias skel='git --work-tree=$HOME --git-dir=$HOME/.skel/.git'
 
