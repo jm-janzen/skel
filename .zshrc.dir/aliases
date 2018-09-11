@@ -6,18 +6,10 @@ alias    ll='\ls -halp -F'
 alias     l='\ls -p'
 alias    la='\ls -pa'
 alias    l.='\ls -halpd .*'
-alias    li='file *' # not a good alias, does not take args
 alias     j='jobs -l'
 alias     h='history'
 alias     t='\tree -Fn --dirsfirst -I node_modules'
-alias    td='\tree -Fn --dirsfirst -I node_modules -d' # same, but dirs only
-alias  scns='scn -ls'
 alias zshrf="source ${HOME}/.zshrc"
-alias    nv="nvim" # let's try out this whole neovim thing ...
-alias    vi="nvim"
-alias   vim="nvim"
-alias     p="pandoc -t plain $1"
-#alias  tmux="tmux2.3 -2"
 alias  tmux="tmux -u"
 alias    py="python -Bu"
 
@@ -39,25 +31,21 @@ alias    du='du -ch --summarize'          # print estimated disk usage
 alias uptime='uptime --pretty'            # show uptime output in 'pretty' time format
 
 ### safety aliases
-alias    mv='mv -i'                       # prompts for safety
-alias    rm='rm -I'                       # "
-alias    cp='cp -i'                       # "
-alias    ln='ln -i'                       # "
+alias    mv='mv -vi'                      # verbose + prompts for safety
+alias    rm='rm -vI'                      # "
+alias    cp='cp -vi'                      # "
+alias    ln='ln -vi'                      # "
 
 ### scripts 
 alias  f='~/scripts/superfind.sh'   # Usage: f  <dir> <filename>
-alias fr='~/scripts/repofind.sh'    # Usage: f  <dir> <reponame>
-alias  r='~/scripts/superrm.sh'     # Usage: rm <dir> (with tree output + prompt)
 alias  s='~/scripts/supergrep.sh'   # Usage: s  <dir> <pattern>
 alias  d='~/scripts/difffiles.sh'   # Usage: d  <dir1> <dir2>
 alias  c='~/scripts/ipinfo.sh'      # Usage: c  <ip>
 alias  e='~/scripts/penv.sh'        # Usage: e
 alias gm='~/scripts/gd-sum.sh'      # Usage: gm
-alias al='~/scripts/aliases.sh'     # Usage: al
 alias todo='~/scripts/todo.sh'      # Usage: todo
 
 alias crawl='~/scripts/crawl.sh'    # Usage: crawl [OPTIONS]... [FILE]
-alias zshdf='diff -r ~/.zshrc.dir ~/env/zsh/.zshrc.dir' # TEMP - recursive diff of active and vc zsh env files
 
 ### git aliases
 alias   g='git'                     #
@@ -76,8 +64,6 @@ function gg() { git grep "$*"; }  # simpler git-grep (concatenates params)
 
 alias gp='git pull \
     --recurse-submodules'         # update submodules
-alias "git clone"='git clone \
-    --resursive'                  # update submodule(s) when cloning
 alias gpu='git push'              #
 alias  ga='git add'               #
 alias  gc='git checkout'          # shortcuts
