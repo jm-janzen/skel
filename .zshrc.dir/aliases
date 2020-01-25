@@ -12,9 +12,16 @@ alias     t='\tree -Fn --dirsfirst -I node_modules'
 alias zshrf="source ${HOME}/.zshrc"
 alias  tmux="tmux -u"
 alias    py="python -Bu"
+alias    dc="docker-compose"
+alias   vim='nvim'
+alias    vi='nvim'
+alias     v='nvim'
 
 ### convenience (more specific)
 alias   mem='ps ax -o %mem=--MEM--,user=---USER---,pid=---PID--,cmd | grep -v root | sort -Vr'
+alias ginit='tmux new-session -s$( echo $PWD | rev | cut -d/ -f1 | rev ) \; rename-window -t0 git \; new-window -nsrc \; new-window -nrun \; next-window \; send-keys "clear;git status -bs" Enter'
+alias npm-ls="cat package.json|jq -r '.scripts |to_entries|map(\"\(.key)___\(.value)\")|.[]' | column -nts'___'"
+alias  vbuff='vim "+normal G" <(tmux capture-pane \; show-buffer | cat -s -)'  # Pipe tmux buffer to vim, squeezing lines, and placing cursor at EOL
 
 ### convenience pipes (global)
 alias -g      G='| grep --color'
@@ -82,4 +89,12 @@ alias  gw='watch -d --color git diff --color' # watch for changes, pass colours
 # Used to synch/repro configurations between systems
 # NOTE You're gonna want this: `echo '*' > ~/.gitignore`
 alias skel='git --work-tree=$HOME --git-dir=$HOME/.skel/.git'
+
+# Ratehub
+alias p='rh-psql-conn'
+
+# Fun
+alias hackerman='~/trees/hackerman/bin/hackerman'
+alias notes='~/trees/notes-cli/bin/notes'
+alias hack='~/trees/hackerman/bin/hackerman -s10 -q fbi'
 

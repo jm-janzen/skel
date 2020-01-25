@@ -1,25 +1,32 @@
 general {
-    colors = true
-    interval = 1
-    output_format = "i3bar"
-    color_good =     "#2267a5"
+    colors         = true
+    interval       = 1
+    output_format  = "i3bar"
+    color_good     = "#2267a5"
     color_degraded = "#8c7f22"
-    color_bad =      "#be2422"
+    color_bad      = "#be2422"
 }
 
-order += "disk /"
-order += "ethernet enp9s0"
-order += "cpu_usage"
 order += "volume master"
+order += "battery all"
+order += "disk /"
+order += "cpu_usage"
+order += "wireless wlp1s0"
+order += "ethernet enx106530085b27"
 order += "tztime local"
 
-ethernet enp4s0 {
-    format_up = " LAN: %ip %speed "
-    format_down = " LAN: (/) "
+wireless wlp1s0 {
+    format_up = " W '%essid': %ip %bitrate%quality "
+    format_down = " W --- "
+}
+
+ethernet enx106530085b27 {
+    format_up = " E %ip (%speed)"
+    format_down = " E --- "
 }
 
 tztime local {
-    format = " %Y-%m-%d %H:%M:%S "
+    format = " %Y-%m-%d %H:%M:%S %Z"
 }
 
 cpu_usage {
@@ -31,9 +38,22 @@ disk "/" {
 }
 
 volume master {
-	format = " %volume"
-		format_muted = " %volume"
-		device = "default"
-		mixer = "Master"
-		mixer_idx = 0
+    format = " Vol: %volume "
+        device = "default"
+        mixer = "Master"
+        mixer_idx = 0
 }
+
+battery all {
+    format = "%status %percentage %remaining "
+    format_down = "No battery"
+    status_chr = "⚡ CHR"
+    status_bat = "🔋 BAT"
+    status_unk = "? UNK"
+    status_full = "☻ FULL"
+    path = "/sys/class/power_supply/BAT%d/uevent"
+    low_threshold = 10
+    hide_seconds = true
+    last_full_capacity = true
+}
+

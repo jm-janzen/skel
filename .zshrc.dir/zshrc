@@ -1,12 +1,17 @@
 . $HOME/.profile
 export TERM=xterm-256color # setenv TERM 256color
-autoload -Uz promptinit
-promptinit
+autoload -Uz promptinit; promptinit
+
+# Checking this out ...
+fpath+=("$HOME/.zsh/pure")
+autoload -Uz promptinit; promptinit
+zstyle :prompt:pure:path color cyan
+prompt pure
 
 # Enable bash-like comments on the CLI
 setopt interactivecomments
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+# Keep 10000000 lines of history within the shell and save it to ~/.zsh_history:
 setopt histignorealldups sharehistory
 
 HISTSIZE=10000000
@@ -77,8 +82,8 @@ zle -N zle-keymap-select
 export KEYTIMEOUT=1
 
 setopt transient_rprompt
-#PS1="%(1j.[%j]"$'\n'".)%{$fg[cyan]%}%~ %{$fg_bold[cyan]%}>%{$reset_color%} "
+
 at_blink=%{$'\e[5m'%}
-PS1="%(1j.[%j]"$' '".)%{$fg[cyan]%}%~ ${at_blink}%{$fg_bold[cyan]%}>%{$reset_color%} "
+#PS1="%(1j.[%j]"$' '".)%{$fg[cyan]%}%~ ${at_blink}%{$fg_bold[cyan]%}>%{$reset_color%} "
 RPROMPT="${VIM_INST}"
 

@@ -1,9 +1,6 @@
 #!/bin/zsh
 # source every rc file in like named .dir
 
-# support multiple python versions (req: pyenv package)
-eval "$(pyenv init -)"
-
 file=${HOME}/.${${(%):-%1N}#.}.dir
 
 if [ -d $file ]; then
@@ -12,3 +9,5 @@ if [ -d $file ]; then
         source $f
 done
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

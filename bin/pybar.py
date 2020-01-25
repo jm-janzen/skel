@@ -1,4 +1,4 @@
-#!/usr/bin/python -u
+#!/usr/bin/python3.6 -u
 
 import os  # For user id, home dir
 import pwd  # For user name
@@ -287,5 +287,6 @@ def main():
         bar_full  = bar.left(bar_left) + bar.right(bar_right)
 
         print(bar_full)
+
         time.sleep(interval)
 main()

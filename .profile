@@ -1,22 +1,26 @@
-# Set proper timezone
-TZ='America/Toronto'; export TZ
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
 
-# Set default editor to vim
-EDITOR='vim'; export EDITOR
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
 
-# Add user bin to path
-export PATH=$PATH:$HOME/bin
-
-# Set golang paths
-export GOPATH=$HOME/trees/go        # source files
-export GOBIN=$GOPATH/bin            # binaries
-export PATH=$PATH:$GOPATH:$GOBIN    # add to path
-
-# If ~/scripts exists, add it to path.
-SCRIPTS_REPO="$HOME/scripts"
-if [ -d $SCRIPTS_REPO ]; then
-    export PATH="$PATH:$SCRIPTS_REPO"
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
 fi
 
-# Use caps for ctrl
-setxkbmap -option ctrl:swapcaps
+# set PATH so it includes user's private bin directories
+PATH="$HOME/bin:$HOME/.local/bin:$HOME/.gem/ruby/2.5.0/bin:$PATH"
+
+# Just some niceties
+#feh --bg-scale ${HOME}/Pictures/boom.png
+#feh --bg-scale ${HOME}/Pictures/wiz.png
+feh --bg-scale --image-bg white ${HOME}/Pictures/starkness-mono.jpg
+setxkbmap -option ctrl:nocaps

@@ -11,13 +11,34 @@ function zedit () {
     file=$1
     case "$file" in
         aliases|functions|zshrc|completions)
-            vi ${zshdir}/${file}
+            vim ${zshdir}/${file}
             ;;
         *)
-            exit 0
+            echo "No argument given"
             ;;
     esac
 }
+
+### shortcut functions to edit vim configurations
+function vedit () {
+    file=$1
+    case "$file" in
+        plugins|colorscheme|options|functions|mappings|autocommands)
+            echo vim "${HOME}/.vimrc.dir/init/${file}.vim"
+            vim "${HOME}/.vimrc.dir/init/${file}.vim"
+            ;;
+        vimrc)
+            vim "${HOME}/.${file}"
+            ;;
+        colorschemes)
+            vim "${HOME}/.vim/colors/"
+            ;;
+        *)
+            echo "No argument given"
+            ;;
+    esac
+}
+
 
 function md() {
     if [[ ! -z "/usr/local/bin/mdless" ]]; then
@@ -160,5 +181,17 @@ function calc() {
 
 function grade() {
     print "scale=2; $1 / $2 * 100" | bc
+}
+
+function hgrep() {
+    grep "$*" $HISTFILE --colo=always
+}
+
+function hless() {
+    less -JMSR --pattern="$*" $HISTFILE
+}
+
+function highlight() {
+    grep -Pe "$1|$" --color=always
 }
 

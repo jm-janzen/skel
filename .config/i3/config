@@ -17,26 +17,31 @@ set $mod Mod1
 
 # Run my arch startup script
 # execute on refresh (exec_always) as well as startup (exec)
-exec_always --no-startup-id /home/${USER}/bin/i3_arch_startup.sh -f -s PRIMARY
-
-workspace 2 output HDMI-1
-workspace 1 output DVI-I-1
+#exec_always --no-startup-id /home/${USER}/bin/i3_arch_startup.sh -f -s PRIMARY
 
 # start a terminal
-bindsym $mod+Return exec konsole
+bindsym $mod+Return exec i3-sensible-terminal
 
 bindsym $mod+minus move scratchpad
 
 bindsym $mod+Shift+minus scratchpad show
 
+bindsym $mod+Shift+x exec i3lock -f -c 000000
+
 ###
 ### /My Configurations
 ###
 
+# Volume controls
+# FIXME Only mutes, nothing else
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +10%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -10%
+bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute 0 toggle
+
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:monospace 8
+font pango:monospace 9
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -54,11 +59,6 @@ floating_modifier $mod
 
 # kill focused window
 bindsym $mod+Shift+q kill
-
-#sound
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 3%+
-bindsym XF86AudioLowerVolume exec amixer -q set Master 3%-
-bindsym XF86AudioMute exec amixer -q set Master toggle
 
 # start dmenu (a program launcher)
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -178,9 +178,6 @@ client.focused          #9cff00 #436d00 #dbffa3 #2e9ef4   #1a3300
 
 # lemon bar script, other
 bar {
-    mode hide # Hide default status message spacer
-    strip_workspace_numbers yes
-    workspace_buttons no
-    status_command exec python -u ${HOME}/bin/pybar.py | lemonbar -p -b
+	#status_command exec python3 -Bu ${HOME}/bin/pybar.py | lemonbar -p -b -n0 -u0 -B'#000000'
+	status_command i3status
 }
-
