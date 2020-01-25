@@ -37,9 +37,10 @@ elseif has("gui_running") || &t_Co == 256
     CSAHi Type term=NONE cterm=NONE ctermbg=none ctermfg=249
     CSAHi String term=NONE cterm=NONE ctermbg=none ctermfg=30
     CSAHi Number term=NONE cterm=NONE ctermbg=none ctermfg=33
+    CSAHi javaScriptValue term=NONE cterm=NONE ctermbg=none ctermfg=33
     CSAHi Boolean term=NONE cterm=NONE ctermbg=none ctermfg=14
 
-    CSAHi IncSearch term=NONE cterm=NONE ctermbg=236 ctermfg=fg
+    CSAHi IncSearch term=NONE cterm=NONE ctermbg=236 ctermfg=255
     CSAHi Search term=NONE cterm=NONE ctermbg=235 ctermfg=fg
 
     CSAHi StatusLine term=NONE cterm=NONE ctermbg=244 ctermfg=232
@@ -50,7 +51,7 @@ elseif has("gui_running") || &t_Co == 256
     CSAHi Underlined term=NONE cterm=NONE ctermbg=none ctermfg=fg
     CSAHi Ignore term=NONE cterm=NONE ctermbg=none ctermfg=fg
     CSAHi Error term=NONE cterm=NONE ctermbg=none ctermfg=fg
-    CSAHi Todo term=NONE cterm=NONE ctermbg=none ctermfg=fg
+    CSAHi Todo term=NONE cterm=NONE ctermbg=none ctermfg=252
 
     CSAHi DiffAdd term=NONE cterm=NONE ctermbg=none ctermfg=10
     CSAHi DiffChange term=NONE cterm=NONE ctermbg=none ctermfg=11
@@ -85,7 +86,7 @@ elseif has("gui_running") || &t_Co == 256
     CSAHi GitGutterAddDefault term=NONE cterm=NONE ctermbg=none ctermfg=28
     CSAHi GitGutterChangeDefault term=NONE cterm=NONE ctermbg=none ctermfg=142
     CSAHi GitGutterDeleteDefault term=NONE cterm=NONE ctermbg=none ctermfg=196
-    CSAHi SpellBad term=undercurl cterm=undercurl ctermbg=none ctermfg=fg
+    CSAHi SpellBad term=undercurl cterm=undercurl ctermbg=none ctermfg=Red
     CSAHi SpellCap term=undercurl cterm=undercurl ctermbg=none ctermfg=fg
     CSAHi SpellRare term=undercurl cterm=undercurl ctermbg=none ctermfg=fg
     CSAHi SpellLocal term=undercurl cterm=undercurl ctermbg=none ctermfg=fg
@@ -134,7 +135,7 @@ elseif has("gui_running") || &t_Co == 256
 
     CSAHi VertSplit term=NONE cterm=NONE ctermbg=none ctermfg=236
     CSAHi Title term=NONE cterm=NONE ctermbg=none ctermfg=244
-    CSAHi Visual term=NONE cterm=NONE ctermbg=232 ctermfg=fg
+    CSAHi Visual term=bold cterm=NONE ctermbg=14 ctermfg=0
     CSAHi vimSynMtchCchar term=NONE cterm=NONE ctermbg=none ctermfg=fg
     CSAHi vimAugroupSyncA term=NONE cterm=NONE ctermbg=none ctermfg=fg
     CSAHi vimSyncMatch term=NONE cterm=NONE ctermbg=none ctermfg=fg
@@ -156,7 +157,7 @@ elseif has("gui_running") || &t_Co == 256
 
     CSAHi ColorColumn term=NONE cterm=NONE ctermbg=none ctermfg=fg
     CSAHi MatchParen term=NONE cterm=NONE ctermbg=none ctermfg=255
-    CSAHi Identifier term=NONE cterm=NONE ctermbg=none ctermfg=fg
+    CSAHi Identifier term=NONE cterm=NONE ctermbg=none ctermfg=244
     CSAHi Statement term=bold cterm=bold ctermbg=none ctermfg=250
     CSAHi vimSyncLinebreak term=NONE cterm=NONE ctermbg=none ctermfg=fg
     CSAHi vimSyncLinecont term=NONE cterm=NONE ctermbg=none ctermfg=fg

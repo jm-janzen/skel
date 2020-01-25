@@ -2,6 +2,6 @@
 """ dash/bash configuration
 """
 
-let @l = 'oecho "OINK"'
+set expandtab
 
-let @d = 'I#XXX#$'
+let @l = 'oecho "OINK"'
