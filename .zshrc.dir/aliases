@@ -8,7 +8,7 @@ alias    la='\ls -pa'
 alias    l.='\ls -halpd .*'
 alias     j='jobs -l'
 alias     h='history'
-alias     t='\tree -Fn --dirsfirst -I node_modules'
+alias     t='\tree -Fn --dirsfirst -I node_modules --charset=ASCII --noreport'
 alias zshrf="source ${HOME}/.zshrc"
 alias  tmux="tmux -u"
 alias    py="python -Bu"
@@ -16,6 +16,8 @@ alias    dc="docker-compose"
 alias   vim='nvim'
 alias    vi='nvim'
 alias     v='nvim'
+alias    vt='nvim -c":NERDTree"'
+alias    tm='tmux'
 
 ### convenience (more specific)
 alias   mem='ps ax -o %mem=--MEM--,user=---USER---,pid=---PID--,cmd | grep -v root | sort -Vr'
@@ -23,13 +25,17 @@ alias ginit='tmux new-session -s$( echo $PWD | rev | cut -d/ -f1 | rev ) \; rena
 alias npm-ls="cat package.json|jq -r '.scripts |to_entries|map(\"\(.key)___\(.value)\")|.[]' | column -nts'___'"
 alias  vbuff='vim "+normal G" <(tmux capture-pane \; show-buffer | cat -s -)'  # Pipe tmux buffer to vim, squeezing lines, and placing cursor at EOL
 
+# TODO slice -N : show top and bottom of output plus N lines context below and above
+
 ### convenience pipes (global)
 alias -g      G='| grep --color'
 alias -g   grev='| grep --color -v'
 alias -g      L='| less -R'
 alias -g      H='| head'
+alias -g      T='| tail'
 alias -g  quiet='2> /dev/null'
 alias -g silent='&> /dev/null'
+alias -g      C='| column -nts,'
 
 ### info aliases
 alias ports='sudo netstat -uplant'        # list all TCP/UDP ports on the server

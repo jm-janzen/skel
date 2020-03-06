@@ -2,6 +2,13 @@
 """ Javascript configuration
 """
 
+set softtabstop=2
+set shiftwidth=2
+set tabstop=2
+set expandtab
+
+let b:ale_linters = {'javascript': ['eslint']}
+
 let @l = "o/*XXX*/console.log('OINK',);hh"
 
 """ ReactJS configuration (TODO split off)

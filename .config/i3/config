@@ -26,7 +26,7 @@ bindsym $mod+minus move scratchpad
 
 bindsym $mod+Shift+minus scratchpad show
 
-bindsym $mod+Shift+x exec i3lock -f -c 000000
+bindsym $mod+Shift+x exec i3lock-fancy -p -t ''
 
 ###
 ### /My Configurations

@@ -1,53 +1,64 @@
 [core]
     name = JM
     email = jmjanzen@gmail.com
-	editor = /usr/bin/nvim
-	pager = diff-so-fancy | less --tabs=4 -RFX
+    editor = /usr/bin/nvim
+    pager = diff-so-fancy | less --tabs=4 -RFX
 [user]
     email = jmjanzen@gmail.com
     name = JM
 [push]
     default = simple
 [alias]
-    co = checkout
-    l = log --date=short --pretty=format:' \
-%C(bold blue)%cd %Creset \
-%C(red)%h%Creset \
-%C(auto)%d %Creset \
-%C(normal)%s %Creset \
-%C(bold blue)(%Creset \
-%C(yellow)%an %Creset \
-%C(bold blue)%cr)%Creset \
-' --color --graph --decorate
-
+    h    = help
+    a    = add
+    ap   = add --patch
+    co   = checkout
+    cop  = checkout --patch
+    cob  = checkout -b
+    cm   = commit
+    cam  = commit --amend
+    camo = commit --amend --no-edit
+    cf   = commit -F- <<EOF
+    b    = branch
+    d    = diff
+    ds   = diff --stat
+    dc   = diff --cached
+    s    = show
+    sb   = show-branch
+    p    = pull --ff-only
+    pu   = push
+    m    = merge --ff-only
+    g    = grep
+    f    = fetch
+    reb  = rebase
+    folo = log --patch --stat --follow
+    l    = log
+    lo   = log --oneline
+    ll   = log --date=short --pretty=format:' %C(bold blue)%cd %Creset %C(red)%h%Creset %C(auto)%d %Creset %C(normal)%s %Creset %C(bold blue)(%Creset %C(yellow)%an %Creset %C(bold blue)%cr)%Creset ' --color --graph --decorate
     tags = log --tags --simplify-by-decoration --pretty='format:%ai %d'
-    recents = for-each-ref --sort=-committerdate refs/ --count=25 --format=' \
-\n \
-%(color:yellow)%(refname:short)%(color:reset) \
-%(color:red)%(objectname:short)%(color:reset):  \
-(%(color:green)%(committerdate:relative)%(color:reset), %(authorname)) \
-\n\t \
-%(contents:subject) \
-'
+    recents = for-each-ref --sort=-committerdate refs/ --count=25 --format=' \n %(color:yellow)%(refname:short)%(color:reset) %(color:red)%(objectname:short)%(color:reset):  (%(color:green)%(committerdate:relative)%(color:reset), %(authorname)) \n\t %(contents:subject) '
     recent = "!git for-each-ref --count=25 --sort=-committerdate refs/remotes --format='%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)'|column -nts'|'"
-	yesterday = "!find ~ -type d -name \\.git -execdir git log --all --author=$(git config user.name) --pretty=short --since=yesterday \\; 2>/dev/null"
+    yesterday = "!find ~ -type d -name \\.git -execdir git log --all --author=$(git config user.name) --pretty=short --since=yesterday \\; 2>/dev/null"
     dangling = "!for h in $(git fsck --no-reflog | awk '/dangling commit/ {print $3}') ; do git show --color=always --stat --patch $h ; done | less -RX"
+    sbum = "!git show-branch --colo=always $(git branch --no-merged=master) | less -RX"
+    ipatch = "!f() { git apply $1 --reject ; git add -p; }; f"
+
 [gpg]
     program = gpg2
     gru = !git reset @{u} --hard
 [log]
     date = iso
 [color]
-	ui = true
+    ui = true
 [color "diff-highlight"]
-	oldNormal = red bold
-	oldHighlight = red bold 52
-	newNormal = green bold
-	newHighlight = green bold 22
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
 [color "diff"]
-	meta = 11
-	frag = magenta bold
-	commit = yellow bold
-	old = red bold
-	new = green bold
-	whitespace = red reverse
+    meta = 11
+    frag = magenta bold
+    commit = yellow bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse

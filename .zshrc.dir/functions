@@ -23,7 +23,7 @@ function zedit () {
 function vedit () {
     file=$1
     case "$file" in
-        plugins|colorscheme|options|functions|mappings|autocommands)
+        plugins|options|functions|mappings|autocommands)
             echo vim "${HOME}/.vimrc.dir/init/${file}.vim"
             vim "${HOME}/.vimrc.dir/init/${file}.vim"
             ;;
@@ -191,7 +191,31 @@ function hless() {
     less -JMSR --pattern="$*" $HISTFILE
 }
 
+# Highlight pattern, but don't suppress other lines
 function highlight() {
     grep -Pe "$1|$" --color=always
 }
 
+# Show highlighted pattern with some context.
+#
+# Examples:
+#   <cmd> | snip f0\+       # 1 line  around matches (default)
+#   <cmd> | snip f0\+ 2     # 2 lines around matches
+#   <cmd> | snip f0\+ 1 1   # 1 line around match (like default)
+#   <cmd> | snip f0\+ 0 1   # 1 line below  match
+#   <cmd> | snip f0\+ 1 0   # 1 line above  match
+#   <cmd> | snip f0\+ 0     # only matching lines (just like grep)
+#   <cmd> | snip f0\+ 0 0   # only matching lines (just like grep)
+function snip() {
+    if [[ $# -eq 2 ]]
+    then
+        flags="-C$2"
+    elif [[ $# -eq 3 ]]
+    then
+        flags="-B$2 -A$3"
+    else
+        flags="-C1"
+    fi
+
+    grep -Pe "$1" $( echo "${flags}" ) | grep -Pe "$1|$" --colo=always | less -RFX
+}
