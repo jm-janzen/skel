@@ -9,13 +9,18 @@
 [push]
     default = simple
 [alias]
+    conf = "!vim ~/.gitconfig"
     h    = help
+    st   = status -bs
     a    = add
     ap   = add --patch
+    cp   = cherry-pick
     co   = checkout
     cop  = checkout --patch
     cob  = checkout -b
+    sl   = stash list
     cm   = commit
+    cmm  = commit -m
     cam  = commit --amend
     camo = commit --amend --no-edit
     cf   = commit -F- <<EOF
@@ -27,13 +32,15 @@
     sb   = show-branch
     p    = pull --ff-only
     pu   = push
+    puu  = push -u origin
     m    = merge --ff-only
     g    = grep
     f    = fetch
     reb  = rebase
-    folo = log --patch --stat --follow
     l    = log
+    lp   = log --patch --stat
     lo   = log --oneline
+    folo = log --patch --stat --follow
     ll   = log --date=short --pretty=format:' %C(bold blue)%cd %Creset %C(red)%h%Creset %C(auto)%d %Creset %C(normal)%s %Creset %C(bold blue)(%Creset %C(yellow)%an %Creset %C(bold blue)%cr)%Creset ' --color --graph --decorate
     tags = log --tags --simplify-by-decoration --pretty='format:%ai %d'
     recents = for-each-ref --sort=-committerdate refs/ --count=25 --format=' \n %(color:yellow)%(refname:short)%(color:reset) %(color:red)%(objectname:short)%(color:reset):  (%(color:green)%(committerdate:relative)%(color:reset), %(authorname)) \n\t %(contents:subject) '

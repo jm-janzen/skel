@@ -8,7 +8,7 @@ alias    la='\ls -pa'
 alias    l.='\ls -halpd .*'
 alias     j='jobs -l'
 alias     h='history'
-alias     t='\tree -Fn --dirsfirst -I node_modules --charset=ASCII --noreport'
+alias     t='\tree -Fn --dirsfirst -I node_modules -I __pycache__ --charset=ASCII --noreport'
 alias zshrf="source ${HOME}/.zshrc"
 alias  tmux="tmux -u"
 alias    py="python -Bu"
@@ -48,6 +48,7 @@ alias    mv='mv -vi'                      # verbose + prompts for safety
 alias    rm='rm -vI'                      # "
 alias    cp='cp -vi'                      # "
 alias    ln='ln -vi'                      # "
+alias crontab='crontab -i'                # Prompt before deleting user's crontab o_o;;
 
 ### scripts 
 alias  f='~/scripts/superfind.sh'   # Usage: f  <dir> <filename>
@@ -61,6 +62,7 @@ alias todo='~/scripts/todo.sh'      # Usage: todo
 alias crawl='~/scripts/crawl.sh'    # Usage: crawl [OPTIONS]... [FILE]
 
 ### git aliases
+alias vgl='vim -c":Git log"'
 alias   g='git'                     #
 alias  st='git status -s -b'        #shortform git status + branch info
 alias  gs='git status'              #
@@ -103,4 +105,6 @@ alias p='rh-psql-conn'
 alias hackerman='~/trees/hackerman/bin/hackerman'
 alias notes='~/trees/notes-cli/bin/notes'
 alias hack='~/trees/hackerman/bin/hackerman -s10 -q fbi'
+alias vacay="gcal -H '\e[0;5;1m:\e[0m:\e[32;1m:\e[0m' -q CA_ON -y $(date +'%Y')"
+alias asdf="echo 'Hang in there, bud :)'"
 

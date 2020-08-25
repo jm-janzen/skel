@@ -219,3 +219,32 @@ function snip() {
 
     grep -Pe "$1" $( echo "${flags}" ) | grep -Pe "$1|$" --colo=always | less -RFX
 }
+
+function vunmerged() {
+    vim $(git status -bs | awk '/^UU/ { print $2 }') -c'/<<<<<<<\|=======\|>>>>>>>'
+}
+
+function jq-csv() {
+    if (( $# < 1 )) {
+        echo 'Usage: jq-csv <CSV_FILE> [JQ_COMMAND] [JQ_OPTIONS]'
+        echo -e "\n\tExample: jq-csv <(echo -e \"foo,bar\\\n1,2\") '.[].foo'  # Prints \"1\""
+        return 1
+    }
+
+    CSV_FILE="${1}"
+    JQ_COMMAND="${2}"
+    JQ_OPTIONS="${3}"
+
+    if (( $# < 2 )) {
+        JQ_COMMAND=.  # Print all
+    }
+    if (( $# < 3 )) {
+        JQ_OPTIONS='-c'  # Compact output
+    }
+
+    ruby \
+        -e "require 'csv'; require 'json'; f = ARGV[0]" \
+        -e 'puts CSV.parse(File.open(f), {headers: true}).map(&:to_h).to_json rescue puts "Unable to parse or read #{f}"' \
+        "${CSV_FILE}" \
+        | jq $JQ_COMMAND $JQ_OPTIONS
+}

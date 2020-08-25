@@ -1,6 +1,10 @@
 " This scheme was created by CSApproxSnapshot
 " on Sun, 04 Sep 2016
 
+if ! exists('g:colors_name') || g:colors_name !=# 'bink-arvo'
+    colorscheme bink-arvo
+endif
+
 hi clear
 if exists("syntax_on")
     syntax reset
@@ -40,8 +44,8 @@ elseif has("gui_running") || &t_Co == 256
     CSAHi javaScriptValue          term=NONE cterm=NONE ctermbg=none ctermfg=33
     CSAHi Boolean                  term=NONE cterm=NONE ctermbg=none ctermfg=14
 
-    CSAHi IncSearch                term=NONE cterm=NONE ctermbg=236 ctermfg=255
-    CSAHi Search                   term=NONE cterm=NONE ctermbg=235 ctermfg=fg
+    CSAHi IncSearch                term=bold cterm=NONE ctermbg=255 ctermfg=0
+    CSAHi Search                   term=underline cterm=bold ctermbg=237 ctermfg=fg
 
     CSAHi StatusLine               term=NONE cterm=NONE ctermbg=244 ctermfg=232
     CSAHi StatusLineNC             term=NONE cterm=NONE ctermbg=none ctermfg=242
@@ -51,10 +55,17 @@ elseif has("gui_running") || &t_Co == 256
     CSAHi Error                    term=NONE cterm=NONE ctermbg=none ctermfg=fg
     CSAHi Todo                     term=NONE cterm=NONE ctermbg=none ctermfg=252
 
+    " For GitGutter
     CSAHi DiffAdd                  term=NONE cterm=NONE ctermbg=none ctermfg=10
     CSAHi DiffChange               term=NONE cterm=NONE ctermbg=none ctermfg=11
     CSAHi DiffDelete               term=NONE cterm=NONE ctermbg=none ctermfg=9
     CSAHi DiffText                 term=NONE cterm=NONE ctermbg=none ctermfg=fg
+
+    " For nvim diff filetype
+    CSAHi diffAdded                term=NONE cterm=NONE ctermbg=none ctermfg=10
+    CSAHi diffChanged              term=NONE cterm=NONE ctermbg=none ctermfg=11
+    CSAHi diffRemoved              term=NONE cterm=NONE ctermbg=none ctermfg=9
+    CSAHi diffFile                 term=bold cterm=bold ctermbg=none ctermfg=250
 
     CSAHi pythonAttribute          term=NONE cterm=NONE ctermbg=none ctermfg=fg
     CSAHi pythonSpaceError         term=NONE cterm=NONE ctermbg=none ctermfg=fg
@@ -80,10 +91,7 @@ elseif has("gui_running") || &t_Co == 256
 
     " NOTE Needs to be "underline" to work
     CSAHi SpellBad                 term=undercurl cterm=undercurl ctermbg=none ctermfg=Red
-    "CSAHi SpellCap                 term=undercurl cterm=undercurl ctermbg=none ctermfg=fg
-    "CSAHi SpellCap                 term=undercurl cterm=undercurl ctermbg=none ctermfg=Yellow
-    "CSAHi SpellCap                 term=undercurl cterm=undercurl ctermbg=234 ctermfg=fg
-    CSAHi SpellCap                 term=undercurl cterm=undercurl ctermbg=none ctermfg=fg
+    CSAHi SpellCap                 term=none cterm=none ctermbg=none ctermfg=none
 
     CSAHi SpellRare                term=undercurl cterm=undercurl ctermbg=none ctermfg=fg
     CSAHi SpellLocal               term=undercurl cterm=undercurl ctermbg=none ctermfg=fg
@@ -181,6 +189,8 @@ elseif has("gui_running") || &t_Co == 256
     CSAHi FoldColumn               term=NONE cterm=NONE ctermbg=none ctermfg=59
     CSAHi Conceal                  term=NONE cterm=NONE ctermbg=none ctermfg=244
 
+    CSAHi SignColumn               term=NONE cterm=NONE ctermbg=none ctermfg=232
+
     CSAHi GitGutterAddDefault      term=NONE cterm=NONE ctermbg=none ctermfg=28
     CSAHi GitGutterChangeDefault   term=NONE cterm=NONE ctermbg=none ctermfg=142
     CSAHi GitGutterDeleteDefault   term=NONE cterm=NONE ctermbg=none ctermfg=196
@@ -189,8 +199,27 @@ elseif has("gui_running") || &t_Co == 256
     CSAHi GitGutterAddInvisible    term=NONE cterm=NONE ctermbg=none ctermfg=232
     CSAHi GitGutterChangeInvisible term=NONE cterm=NONE ctermbg=none ctermfg=232
 
-    CSAHi CocHighlightText         term=bold cterm=bold ctermbg=none ctermfg=White
-    
+    CSAHi GitGutterAdd                term=NONE cterm=NONE ctermbg=none ctermfg=28
+    CSAHi GitGutterChange             term=NONE cterm=NONE ctermbg=none ctermfg=142
+    CSAHi GitGutterDelete             term=NONE cterm=NONE ctermbg=none ctermfg=196
+    CSAHi GitGutterChangeDelete       term=NONE cterm=NONE ctermbg=none ctermfg=196
+
+    CSAHi GitGutterAddLine            term=NONE cterm=NONE ctermbg=none ctermfg=28
+    CSAHi GitGutterAddIntraLine       term=NONE cterm=NONE ctermbg=none ctermfg=28
+    CSAHi GitGutterAddLineNr          term=NONE cterm=NONE ctermbg=none ctermfg=28
+    CSAHi GitGutterChangeLine         term=NONE cterm=NONE ctermbg=none ctermfg=142
+    CSAHi GitGutterChangeLineNr       term=NONE cterm=NONE ctermbg=none ctermfg=142
+    CSAHi GitGutterDeleteLine         term=NONE cterm=NONE ctermbg=none ctermfg=196
+    CSAHi GitGutterChangeDeleteLine   term=NONE cterm=NONE ctermbg=none ctermfg=196
+    CSAHi GitGutterDeleteLineNr       term=NONE cterm=NONE ctermbg=none ctermfg=196
+    CSAHi GitGutterChangeDeleteLineNr term=NONE cterm=NONE ctermbg=none ctermfg=196
+    CSAHi GitGutterDeleteIntraLine    term=NONE cterm=NONE ctermbg=none ctermfg=196
+
+
+    CSAHi ALEWarningSign term=NONE cterm=NONE ctermbg=none ctermfg=237
+
+    CSAHi CocHighlightText term=bold cterm=bold ctermbg=none ctermfg=white
+
 endif
 
 if 1

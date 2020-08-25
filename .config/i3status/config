@@ -56,4 +56,3 @@ battery all {
     hide_seconds = true
     last_full_capacity = true
 }
-
