@@ -87,11 +87,11 @@ class Bar():
 
         # Conditionally colour, build string
         if temp_cpu_num > 80:
-            built_str = Colo.red(f"{temp_cpu_num}".zfill(2) + '%')
+            built_str = Colo.red(f"{temp_cpu_num}".zfill(2) + '%%')
         elif temp_cpu_num > 50:
-            built_str = Colo.yellow(f"{temp_cpu_num}".zfill(2) + '%')
+            built_str = Colo.yellow(f"{temp_cpu_num}".zfill(2) + '%%')
         else:
-            built_str = Colo.green(f"{temp_cpu_num}".zfill(2) + '%')
+            built_str = Colo.green(f"{temp_cpu_num}".zfill(2) + '%%')
 
         # Return built string
         return f"{cpu_label}{built_str}"
@@ -118,11 +118,11 @@ class Bar():
 
         # Conditionally colour and build string
         if float(mem_percent_used) > 80:
-            built_str = Colo.red(f"{mem_percent_used}".zfill(2) + '%')
+            built_str = Colo.red(f"{mem_percent_used}".zfill(2) + '%%')
         if float(mem_percent_used) > 50:
-            built_str = Colo.yellow(f"{mem_percent_used}".zfill(2) + '%')
+            built_str = Colo.yellow(f"{mem_percent_used}".zfill(2) + '%%')
         else:
-            built_str = Colo.green(f"{mem_percent_used}".zfill(2) + '%')
+            built_str = Colo.green(f"{mem_percent_used}".zfill(2) + '%%')
 
         return f"{mem_label}{built_str}"
 
@@ -178,11 +178,11 @@ class Bar():
 
         # Conditionally colour and build string
         if percent_used > 50:
-            built_str = Colo.yellow("{:.0f}".format(percent_used) + '%')
+            built_str = Colo.yellow("{:.0f}".format(percent_used) + '%%')
         elif percent_used > 80:
-            built_str = Colo.red("{:.0f}".format(percent_used) + '%')
+            built_str = Colo.red("{:.0f}".format(percent_used) + '%%')
         else:
-            built_str = Colo.green("{:.0f}".format(percent_used) + '%')
+            built_str = Colo.green("{:.0f}".format(percent_used) + '%%')
 
         return f"{disk_label}{built_str}"
 
