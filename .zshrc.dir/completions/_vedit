@@ -1,0 +1,8 @@
+#compdef vedit
+
+A=( plugins colorschemes options functions mappings autocommands vimrc )
+
+_arguments \
+    - options \
+    ":arguments:($A)"
+

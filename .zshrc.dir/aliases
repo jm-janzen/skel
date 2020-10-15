@@ -1,11 +1,11 @@
 #!/bin/zsh
 
 ### convenience
-alias    ls='\ls -l -phF'
-alias    ll='\ls -halp -F'
-alias     l='\ls -p'
-alias    la='\ls -pa'
-alias    l.='\ls -halpd .*'
+alias    ls='\ls -l -phFrt --time-style="+%Y-%m-%dT%H:%M:%S"'
+alias    ll='\ls -halp -F --time-style="+%Y-%m-%dT%H:%M:%S"'
+alias     l='\ls -p --time-style="+%Y-%m-%dT%H:%M:%S"'
+alias    la='\ls -pa --time-style="+%Y-%m-%dT%H:%M:%S"'
+alias    l.='\ls -halpd .* --time-style="+%Y-%m-%dT%H:%M:%S"'
 alias     j='jobs -l'
 alias     h='history'
 alias     t='\tree -Fn --dirsfirst -I node_modules -I __pycache__ --charset=ASCII --noreport'
@@ -33,6 +33,7 @@ alias -g   grev='| grep --color -v'
 alias -g      L='| less -R'
 alias -g      H='| head'
 alias -g      T='| tail'
+alias -g      J="| jq '.'"  # Would be nicer if this was default without arg
 alias -g  quiet='2> /dev/null'
 alias -g silent='&> /dev/null'
 alias -g      C='| column -nts,'

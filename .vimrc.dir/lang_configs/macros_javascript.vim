@@ -10,7 +10,7 @@ autocmd FileType javascript set tabstop=2|set shiftwidth=2|set expandtab
 
 
 
-let b:ale_linters = {'javascript': ['eslint']}
+"let b:ale_linters = {'javascript': ['eslint']}
 
 let @l = "o/*XXX*/console.log('OINK',);hh"
 
