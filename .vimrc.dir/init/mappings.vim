@@ -72,7 +72,7 @@ nmap <Leader>z :wq<CR>
 " Weird
 "
 
-noremap <C-n> :20sp ~/.vim/notes.txt<CR>
+"noremap <C-n> :20sp ~/.vim/notes.txt<CR>
 
 " rm Windows line terminators, trailing whitespace (ew)
 " FIXME This breaks when run from mapping for some reaso

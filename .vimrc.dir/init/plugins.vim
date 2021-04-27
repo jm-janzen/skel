@@ -38,7 +38,9 @@ Plug 'isRuslan/vim-es6'     " Modern NodeJS autocompletion
 Plug 'tpope/vim-fugitive'   " Git builtin - good navigating
 Plug 'psliwka/vim-smoothie' " Smooth scrolling on <C-(u|d)> jump
 
-Plug 'kkoomen/vim-doge'
+" Auto documentation on <leader>d, other things probably
+" Might have to manually do `:call doge#install()' if doesn't work
+Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 " Resize splits on <C-w> navigation
 Plug 'camspiers/animate.vim'
@@ -57,17 +59,34 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Better brace indenting by default
 Plug 'Vimjas/vim-python-pep8-indent'
 
+" Preview colours in editor
+Plug 'norcalli/nvim-colorizer.lua'
+
+" Trying debugging again ...
+"Plug 'eliba2/vim-node-inspect'
+
+" colo code csv rows?
+Plug 'chrisbra/csv.vim'
+
+" Ranger fm with <leader>f
+Plug 'francoiscabrol/ranger.vim'
+
 if has('nvim')
   "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
   Plug 'metakirby5/codi.vim'  " Show script output in sidecar REPL
+  Plug 'rbgrouleff/bclose.vim' " Required by 'francoiscabrol/ranger.vim' in nvim
 else
   Plug 'roxma/vim-yarp'
   Plug 'roxma/vim-hug-neovim-rpc'
 endif
 
 call plug#end()
+
+" For nvim-colorizer
+let &termguicolors=1
+lua require'colorizer'.setup()
 
 "
 " XXX Example coc config

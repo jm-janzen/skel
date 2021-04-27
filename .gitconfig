@@ -41,6 +41,7 @@
     lp   = log --patch --stat
     lo   = log --oneline
     folo = log --patch --stat --follow
+    short= rev-parse --short
     ll   = log --date=short --pretty=format:' %C(bold blue)%cd %Creset %C(red)%h%Creset %C(auto)%d %Creset %C(normal)%s %Creset %C(bold blue)(%Creset %C(yellow)%an %Creset %C(bold blue)%cr)%Creset ' --color --graph --decorate
     tags = log --tags --simplify-by-decoration --pretty='format:%ai %d'
     recents = for-each-ref --sort=-committerdate refs/ --count=25 --format=' \n %(color:yellow)%(refname:short)%(color:reset) %(color:red)%(objectname:short)%(color:reset):  (%(color:green)%(committerdate:relative)%(color:reset), %(authorname)) \n\t %(contents:subject) '
@@ -49,6 +50,8 @@
     dangling = "!for h in $(git fsck --no-reflog | awk '/dangling commit/ {print $3}') ; do git show --color=always --stat --patch $h ; done | less -RX"
     sbum = "!git show-branch --colo=always $(git branch --no-merged=master) | less -RX"
     ipatch = "!f() { git apply $1 --reject ; git add -p; }; f"
+    ignored = "!git check-ignore -v * | column -nt"
+    prune-force = "!git fetch -p && for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done"
 
 [gpg]
     program = gpg2
@@ -69,3 +72,5 @@
     old = red bold
     new = green bold
     whitespace = red reverse
+[commit]
+	verbose = true

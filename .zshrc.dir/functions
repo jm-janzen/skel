@@ -221,7 +221,7 @@ function snip() {
 }
 
 function vunmerged() {
-    vim $(git status -bs | awk '/^UU/ { print $2 }') -c'/<<<<<<<\|=======\|>>>>>>>'
+    vim $(git status -bs | awk '/^(UU|AA)/ { print $2 }') -c'/<<<<<<<\|=======\|>>>>>>>'
 }
 
 function jq-csv() {

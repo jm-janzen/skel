@@ -59,9 +59,6 @@ bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 
-# For athame support
-unset zle_bracketed_paste
-
 # https://github.com/zsh-users/zsh-autosuggestions
 # Fish-like auto-suggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
