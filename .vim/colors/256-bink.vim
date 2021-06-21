@@ -24,10 +24,10 @@ if has("gui_running") || &t_Co == 256
     hi Normal       gui=NONE            guifg=#bcbcbc   guibg=NONE
     hi Keyword      gui=NONE            guifg=#eeeeee   guibg=NONE
     hi Constant     gui=bold            guifg=#d0d0d0   guibg=NONE
-    hi String       gui=NONE            guifg=#5050ff   guibg=NONE
+    hi String       gui=NONE            guifg=#6060ff   guibg=NONE
     hi Comment      gui=NONE            guifg=#585858   guibg=NONE
-    hi Number       gui=bold            guifg=#2020ff   guibg=NONE
-    hi Boolean      gui=bold            guifg=#2020ff   guibg=NONE
+    hi Number       gui=bold            guifg=#4040ff   guibg=NONE
+    hi Boolean      gui=bold            guifg=#4040ff   guibg=NONE
     hi Error        gui=NONE            guifg=#eeeeee   guibg=#870087
     hi ErrorMsg     gui=NONE            guifg=#eeeeee   guibg=#0000af
     hi Search       gui=NONE            guifg=#8a8a8a   guibg=#303030
@@ -78,17 +78,17 @@ if has("gui_running") || &t_Co == 256
     hi GitGutterDelete cterm=NONE ctermfg=Red ctermbg=NONE guifg=#ff0000 guibg=NONE
     hi GitGutterChangeDelete cterm=NONE ctermfg=11 ctermbg=NONE guifg=#ff2000  guibg=NONE
 
-    " Gee, I wonder
-
-    " I actually can't remember ..
-    hi CocHighlightText term=bold cterm=bold ctermbg=NONE ctermfg=white
+    " For neoclide/coc-highlight - highlight matching under cursor
+    hi CocHighlightText gui=bold guifg=White guibg=NONE
 
     " Change highlighting of cursor line when entering/leaving Insert Mode
     autocmd InsertEnter * highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=234 guifg=NONE guibg=NONE
     autocmd InsertLeave * highlight CursorLine cterm=NONE ctermfg=NONE ctermbg=233 guifg=NONE guibg=#121212
+    set termguicolors
 
     " Ruby specific
-    hi rubyRegexp cterm=NONE ctermfg=196 ctermbg=NONE gui=NONE guifg=Blue guibg=NONE
+    "hi rubyRegexp gui=NONE guifg=White guibg=#0000ff
+    hi! link rubyRegexp Number
     hi rubySymbol gui=NONE guifg=#afafff guibg=NONE
 
 else

@@ -12,7 +12,7 @@ autocmd FileType javascript set tabstop=2|set shiftwidth=2|set expandtab
 " Language agnostic basics
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-let NERDTreeIgnore = ['\.pyc$', '^__pycache__$']
+let NERDTreeIgnore = ['\.pyc$', '^__pycache__$', 'node_modules']
 
 Plug 'mbbill/undotree'
 Plug 'airblade/vim-gitgutter'

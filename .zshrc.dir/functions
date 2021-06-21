@@ -248,3 +248,17 @@ function jq-csv() {
         "${CSV_FILE}" \
         | jq $JQ_COMMAND $JQ_OPTIONS
 }
+
+function ls() {
+    if (( $(lolcat -v &>/dev/null; echo $?) != 0 )) {
+        command ls $@
+    }
+
+    odds=50
+    roll=$(shuf -i $odds-100 -n 1)
+    if (( $roll == 100 )) {
+        command ls $@ | lolcat
+    } else {
+        command ls $@
+    }
+}
