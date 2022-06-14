@@ -33,7 +33,6 @@ let g:gitgutter_diff_args = '-w'  " Ignore whitespace
 
 Plug 'davidhalter/jedi'     " Great completion for python class methods, etc
 Plug 'isRuslan/vim-es6'     " Modern NodeJS autocompletion
-" Plug 'w0rp/ale'             " Linting
 
 Plug 'tpope/vim-fugitive'   " Git builtin - good navigating
 Plug 'psliwka/vim-smoothie' " Smooth scrolling on <C-(u|d)> jump
@@ -50,43 +49,56 @@ let g:lens#disabled_filetypes = ['netrw', 'fzf', 'undotree', 'nerdtree']
 let g:lens#disabled_buftypes = ['terminal', 'nerdtree']
 
 
-" XXX Testing lang server
-" NOTE dump-ed '~/.vim/plugin/supertab.vim' to prevent confusion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
-"Plug 'ngmy/vim-rubocop'
 
 " Better brace indenting by default
 Plug 'Vimjas/vim-python-pep8-indent'
 
-" Preview colours in editor
-Plug 'norcalli/nvim-colorizer.lua'
-
-" Trying debugging again ...
-"Plug 'eliba2/vim-node-inspect'
-
-" colo code csv rows?
-Plug 'chrisbra/csv.vim'
-
-" Ranger fm with <leader>f
-Plug 'francoiscabrol/ranger.vim'
+Plug 'voldikss/vim-floaterm'
 
 if has('nvim')
+
+  Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+  let g:chadtree_settings = { 'theme.icon_glyph_set': 'ascii', 'view.width': 30, 'ignore': {'name_glob': ["*.log"], 'name_exact': ["__init__.py", "__pycache__", "node_modules"] }}
+
   "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-  Plug 'junegunn/fzf.vim'
-  Plug 'metakirby5/codi.vim'  " Show script output in sidecar REPL
+  "Plug 'junegunn/fzf.vim' " FIXME Remove if no longer nessa
   Plug 'rbgrouleff/bclose.vim' " Required by 'francoiscabrol/ranger.vim' in nvim
+  " Ranger fm with <leader>f
+  Plug 'francoiscabrol/ranger.vim'
+
+  "
+  " Perhaps a Coc replacement ... ?
+  "
+  Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+  " 9000+ Snippets
+  Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+
+  " lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
+  " Need to **configure separately**
+
+  " Preview colours in editor
+  " XXX Can't remember what this does...
+  Plug 'norcalli/nvim-colorizer.lua'
+
+  Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+  let g:coq_settings = { "keymap.recommended": v:false }
 else
-  Plug 'roxma/vim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
+  " FIXME Don't remember why I included these
+  "Plug 'roxma/vim-yarp'
+  "Plug 'roxma/vim-hug-neovim-rpc'
 endif
+
+" Colourscheme plugins:
+Plug 'kadekillary/skull-vim' " :colo skull
+
 
 call plug#end()
 
 " For nvim-colorizer
-let &termguicolors=1
-lua require'colorizer'.setup()
+"let &termguicolors=1
+"lua require'colorizer'.setup()
 
 "
 " XXX Example coc config
@@ -172,21 +184,6 @@ augroup mygroup
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
 
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap for do codeAction of current line
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Fix autofix problem of current line
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Create mappings for function text object, requires document symbols feature of languageserver.
-xmap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap if <Plug>(coc-funcobj-i)
-omap af <Plug>(coc-funcobj-a)
-
 " Use <TAB> for select selections ranges, needs server support, like: coc-tsserver, coc-python
 nmap <silent> <TAB> <Plug>(coc-range-select)
 xmap <silent> <TAB> <Plug>(coc-range-select)
@@ -201,6 +198,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 " Add status line support, for integration with other plugin, checkout `:h coc-status`
+" XXX This is most probably getting overriden elsewhere
 set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Using CocList
@@ -221,32 +219,5 @@ nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list
 nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
 
-" Calculator I'm trying out...
-vnoremap ;bc "ey:call CalcBC()<CR>
-function! CalcBC()
-  let has_equal = 0
-  " remove newlines and trailing spaces
-  let @e = substitute (@e, "\n", "", "g")
-  let @e = substitute (@e, '\s*$', "", "g")
-  " if we end with an equal, strip, and remember for output
-  if @e =~ "=$"
-    let @e = substitute (@e, '=$', "", "")
-    let has_equal = 1
-  endif
-  " sub common func names for bc equivalent
-  let @e = substitute (@e, '\csin\s*(', "s (", "")
-  let @e = substitute (@e, '\ccos\s*(', "c (", "")
-  let @e = substitute (@e, '\catan\s*(', "a (", "")
-  let @e = substitute (@e, "\cln\s*(", "l (", "")
-  " escape chars for shell
-  let @e = escape (@e, '*()')
-  " run bc, strip newline
-  let answer = substitute (system ("echo " . @e . " \| bc -l"), "\n", "", "")
-  " append answer or echo
-  if has_equal == 1
-    normal `>
-    exec "normal a" . answer
-  else
-    echo "answer = " . answer
-  endif
-endfunction
+nnoremap <nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-b>"
+nnoremap <nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-f>"

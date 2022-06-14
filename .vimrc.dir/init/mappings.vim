@@ -104,6 +104,11 @@ map <Leader>u :UndotreeToggle \| :UndotreeFocus<CR>
 
 " shortcut to toggle :NERDTree plugin
 "nmap <silent> <C-t> :25Lexplore<CR>
-nmap <silent> <C-t> :NERDTreeToggle<CR>
+"nmap <silent> <C-t> :NERDTreeToggle<CR>
+" NERDTree is dead long live CHADtree
+nmap <silent> <C-t> :CHADopen<CR>
 
 nmap <Leader>b :Buffers<CR>
+
+" 'voldikss/vim-floaterm'
+let g:floaterm_keymap_toggle = '<F12>'

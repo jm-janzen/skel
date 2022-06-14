@@ -262,3 +262,26 @@ function ls() {
         command ls $@
     }
 }
+
+function kexec() {
+    if [[ -z "/usr/bin/kubectl" ]]
+    then
+        echo "kubectl not installed"
+        return 1
+    fi
+
+    if [[ $# -lt 1 ]]
+    then
+        echo -e "Usage:\n\tkattach <pod> [command]"
+        return 1
+    fi
+
+    pod=$(kubectl get po | grep -w Running | grep "^$1" | cut -d' ' -f1 )
+
+    if [[ $# -gt 1 ]]
+    then
+        kubectl exec -it $pod -- ${@:2}
+    else
+        kubectl exec -it $pod -- bash
+    fi
+}

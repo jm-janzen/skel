@@ -103,6 +103,7 @@ alias skel='git --work-tree=$HOME --git-dir=$HOME/.skel/.git'
 
 # Ratehub
 alias p='rh-psql-conn'
+alias s='scrape'
 
 # Fun
 alias hackerman='~/trees/hackerman/bin/hackerman'

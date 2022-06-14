@@ -26,8 +26,10 @@ PATH="$HOME/bin:$HOME/.local/bin:$HOME/.gem/ruby/2.5.0/bin:$PATH"
 #feh --bg-scale --image-bg white ${HOME}/Pictures/march-snow.jpg
 #feh --bg-fill --force-aliasing ${HOME}/Pictures/motivation-cat.png
 #feh --bg-fill --force-aliasing ${HOME}/Pictures/nope.jpg
-feh --bg-scale --force-aliasing ${HOME}/Pictures/unix-magick.jpg
-feh --bg-center --image-bg white ~/Pictures/unix-magick.jpg
+#feh --bg-scale --force-aliasing ${HOME}/Pictures/unix-magick.jpg
+#feh --bg-center --image-bg white ${HOME}/Pictures/unix-magick.jpg
+#feh --image-bg black --bg-center ${HOME}/Pictures/arcanum-labelled.webp
+feh --image-bg black --bg-center ${HOME}/Pictures/arcanum-blank.jpg
 setxkbmap -option ctrl:nocaps
 
 export PATH="$HOME/.cargo/bin:$HOME/.screenlayout/:$PATH"

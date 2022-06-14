@@ -3,6 +3,7 @@
     email = jmjanzen@gmail.com
     editor = /usr/bin/nvim
     pager = diff-so-fancy | less --tabs=4 -RFX
+    hooksPath = /home/jm/.global-githooks
 [user]
     email = jmjanzen@gmail.com
     name = JM
@@ -58,6 +59,7 @@
     gru = !git reset @{u} --hard
 [log]
     date = iso
+    abbrevCommit = true
 [color]
     ui = true
 [color "diff-highlight"]
@@ -73,4 +75,4 @@
     new = green bold
     whitespace = red reverse
 [commit]
-	verbose = true
+    verbose = true

@@ -62,6 +62,8 @@ bindkey '^r' history-incremental-search-backward
 # https://github.com/zsh-users/zsh-autosuggestions
 # Fish-like auto-suggestions
 source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_STRATEGY=(history completion) # Try history, but fallback to completion if no matches
+bindkey '^ ' autosuggest-accept # C-space to accept
 
 zle-line-init() { zle -K viins }
 zle -N zle-line-init
