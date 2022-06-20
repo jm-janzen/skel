@@ -1,0 +1,85 @@
+#!/bin/bash
+
+# Redirect output to stderr.
+exec 1>&2
+
+# Allows us to read user input below, assigns stdin to keyboard
+exec < /dev/tty
+
+function prompt {
+    while true; do
+        read -p "$1 [y]es or [n]o " yn
+        case $yn in
+            [Yy]* ) return 0;;
+            [Nn]* ) return 1;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+}
+
+echo 'Checking source for issues ...'
+
+wip_code=$(git diff --staged --patch -U0 \
+    | awk '/^+[^\+]/ { print }' \
+    | grep -PC2 '(TODO|XXX|WIP|FIXME)')
+
+if [[ $? -ne 1 ]]
+then
+    echo -e "Found what looks like WIP code or comments:\n$wip_code"
+    prompt "Commit anyway?" || exit 1
+fi
+
+
+git diff --staged --patch -U0 \
+    | awk '/^+[^\+]/ { print }' \
+    | grep -qw 'debugger' \
+    && {
+        echo "Can't commit - debug code detected" ; exit 1
+    }
+
+#
+# TODO Figure out which tests to run and offer to run them
+#
+test_question=$(cat <<- MEOW
+Did you remember to run your tests...? ;D
+
+
+MEOW
+)
+prompt "$test_question" || exit 1
+#test_cmd='return 1'
+#repo_name=$(basename -s .git $(git config --get remote.origin.url))
+#if [[ "$repo_name" -eq faas ]]
+#then
+#    test_cmd='TODO'
+#fi
+#
+#test_question=$(cat <<- MEOW
+#Run the following test command before finishing this commit?
+#
+#    ${test_cmd}
+#
+#
+#MEOW
+#)
+#prompt "$test_question" || exit 1 # TODO exit 0, actuallly
+#
+#pwd
+#echo $? ; exit 1
+#npm t
+#
+#if [[ $? -ne 0 ]]
+#then
+#  cat <<- MEOW
+#
+#  Test(s) failed! Commit ignored!
+#
+#  Resolve this by:
+#    a) fixing the failing test(s) and submitting this commit again
+#    b) passing --no-verify with your commit
+#
+#	MEOW
+#  exit 1
+#fi
+
+exit 0
