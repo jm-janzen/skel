@@ -11,22 +11,16 @@ order += "volume master"
 order += "battery all"
 order += "disk /"
 order += "cpu_usage"
-order += "wireless wlp1s0"
-order += "ethernet enx106530085b27"
+order += "wireless wlp0s20f3"
 order += "tztime local"
 
-wireless wlp1s0 {
+wireless wlp0s20f3 {
     format_up = " W '%essid': %ip %bitrate%quality "
     format_down = " W --- "
 }
 
-ethernet enx106530085b27 {
-    format_up = " E %ip (%speed)"
-    format_down = " E --- "
-}
-
 tztime local {
-    format = " %Y-%m-%d %H:%M:%S %Z"
+    format = "%A %Y-%m-%d %H:%M:%S %Z"
 }
 
 cpu_usage {
@@ -52,7 +46,7 @@ battery all {
     status_unk = "? UNK"
     status_full = "☻ FULL"
     path = "/sys/class/power_supply/BAT%d/uevent"
-    low_threshold = 10
+    low_threshold = 30
     hide_seconds = true
     last_full_capacity = true
 }
