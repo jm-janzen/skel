@@ -61,32 +61,37 @@ bindkey '^r' history-incremental-search-backward
 
 # https://github.com/zsh-users/zsh-autosuggestions
 # Fish-like auto-suggestions
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+#source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.antigen/bundles/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_STRATEGY=(history completion) # Try history, but fallback to completion if no matches
 bindkey '^ ' autosuggest-accept # C-space to accept
 
 zle-line-init() { zle -K viins }
 zle -N zle-line-init
 
-# VIM_NORM="%{$fg[blue]%} -- NORMAL -- %{$reset_color%}"
-# VIM_INST="%{$bg[red]%} -- INSERT -- %{$reset_color%}"
-# 
-# function zle-line-init zle-keymap-select {
-#     RPS1="${${KEYMAP/vicmd/$VIM_NORM}/(main|viins)/$VIM_INST}"
-#     RPS2=$RPS1
-#     zle reset-prompt
-# }
-# 
-# function zle-line-finish {
-# }
-# zle -N zle-line-finish
-# zle -N zle-line-init
-# zle -N zle-keymap-select
-# export KEYTIMEOUT=1
-# 
-# setopt transient_rprompt
-# 
-# at_blink=%{$'\e[5m'%}
-# #PS1="%(1j.[%j]"$' '".)%{$fg[cyan]%}%~ ${at_blink}%{$fg_bold[cyan]%}>%{$reset_color%} "
-# RPROMPT="${VIM_INST}"
+#
+# vi mode indicator at right prompt
+#
+VIM_NORM="%{$fg[blue]%} -- NORMAL -- %{$reset_color%}"
+VIM_INST="%{$bg[red]%} -- INSERT -- %{$reset_color%}"
 
+function zle-line-init zle-keymap-select {
+    RPS1="${${KEYMAP/vicmd/$VIM_NORM}/(main|viins)/$VIM_INST}"
+    RPS2=$RPS1
+    zle reset-prompt
+}
+
+function zle-line-finish {
+}
+zle -N zle-line-finish
+zle -N zle-line-init
+zle -N zle-keymap-select
+export KEYTIMEOUT=1
+
+setopt transient_rprompt
+
+RPROMPT="${VIM_INST}"
+
+# Actual prompt <3
+at_blink=%{$'\e[5m'%}
+PS1="%(1j.[%j]"$' '".)%{$fg[cyan]%}%~ ${at_blink}%{$fg_bold[cyan]%}>%{$reset_color%} "
