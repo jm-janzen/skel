@@ -26,6 +26,10 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 unsetopt beep
 
+# Tempo specific tilde expansions
+hash -d rm=/home/jm/trees/roadmapping
+hash -d rmk=/home/jm/trees/roadmunk
+
 # Use modern completion system
 autoload -Uz compinit
 compinit
@@ -61,17 +65,13 @@ bindkey '^r' history-incremental-search-backward
 
 # https://github.com/zsh-users/zsh-autosuggestions
 # Fish-like auto-suggestions
-#source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.antigen/bundles/zsh-users/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 ZSH_AUTOSUGGEST_STRATEGY=(history completion) # Try history, but fallback to completion if no matches
 bindkey '^ ' autosuggest-accept # C-space to accept
 
 zle-line-init() { zle -K viins }
 zle -N zle-line-init
 
-#
-# vi mode indicator at right prompt
-#
 VIM_NORM="%{$fg[blue]%} -- NORMAL -- %{$reset_color%}"
 VIM_INST="%{$bg[red]%} -- INSERT -- %{$reset_color%}"
 
@@ -90,8 +90,7 @@ export KEYTIMEOUT=1
 
 setopt transient_rprompt
 
-RPROMPT="${VIM_INST}"
-
-# Actual prompt <3
 at_blink=%{$'\e[5m'%}
-PS1="%(1j.[%j]"$' '".)%{$fg[cyan]%}%~ ${at_blink}%{$fg_bold[cyan]%}>%{$reset_color%} "
+timestamp="%(?.%{$bg[white]%}%{$fg[black]%}.%{$bg[red]%}%{$fg[black]%}) %D{%T} %{$reset_color%}"
+PS1="%(1j.[%j]"$' '".)$timestamp %{$fg[cyan]%}%~ ${at_blink}%{$fg_bold[cyan]%}>%{$reset_color%} "
+RPROMPT="${VIM_INST}"

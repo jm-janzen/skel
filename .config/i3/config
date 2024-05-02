@@ -38,9 +38,14 @@ exec --no-startup-id nm-applet
 exec --no-startup-id drata-agent
 # Volume applet
 #exec --no-startup-id pasystray
-#exec --no-startup-id activity-watch
+exec --no-startup-id aw-qt # activity-watch
 # TODO route to script that checks if plugged in or whatevs
 exec --no-startup-id ~/.screenlayout/laptop-closed.sh
+
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
 
 # Nice lock screen
 bindsym $mod+Shift+x exec i3lock-fancy -p
@@ -197,7 +202,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
 	tray_output Primary # Show applets on primary monitor
-        status_command i3status -c ~/skel/.config/i3status/config
+    status_command i3status -c ~/skel/.config/i3status/config
 }
 
 # class                 border  backgr. text    indicator child_border

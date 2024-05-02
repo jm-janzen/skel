@@ -6,7 +6,6 @@ alias    ll='\ls -halp -F --time-style="+%Y-%m-%dT%H:%M:%S"'
 alias     l='\ls -p --time-style="+%Y-%m-%dT%H:%M:%S"'
 alias    la='\ls -pa --time-style="+%Y-%m-%dT%H:%M:%S"'
 alias    l.='\ls -halpd .* --time-style="+%Y-%m-%dT%H:%M:%S"'
-alias    le='less -R'
 alias     j='jobs -l'
 alias     h='history'
 alias     t='\tree -Fn --dirsfirst -I __pycache__\|node_modules --charset=ASCII --noreport'
@@ -28,6 +27,7 @@ alias   cpu="watch 'ps ax -o %cpu=--CPU--,user=---USER---,pid=---PID--,cmd | gre
 alias ginit='tmux new-session -s$( echo $PWD | rev | cut -d/ -f1 | rev ) \; rename-window -t0 git \; new-window -nsrc \; new-window -nrun \; next-window \; send-keys "clear;git status -bs" Enter'
 alias npm-ls="cat package.json|jq -r '.scripts |to_entries|map(\"\(.key)___\(.value)\")|.[]' | column -nts'___'"
 alias  vbuff='vim "+normal G" <(tmux capture-pane \; show-buffer | cat -s -)'  # Pipe tmux buffer to vim, squeezing lines, and placing cursor at EOL
+alias   time='/usr/bin/time -f%E'
 
 # TODO slice -N : show top and bottom of output plus N lines context below and above
 
@@ -40,7 +40,7 @@ alias -g      T='| tail'
 alias -g      J="| jq '.'"  # Would be nicer if this was default without arg
 alias -g  quiet='2> /dev/null'
 alias -g silent='&> /dev/null'
-alias -g      C='| column -nts,'
+alias -g      C='| column -ts,'
 
 ### info aliases
 alias ports='sudo netstat -uplant'        # list all TCP/UDP ports on the server
@@ -100,7 +100,7 @@ alias  gw='watch -d --color git diff --color' # watch for changes, pass colours
 
 # Used to synch/repro configurations between systems
 # NOTE You're gonna want this: `echo '*' > ~/.gitignore`
-alias skel='git --work-tree=$HOME --git-dir=$HOME/.skel/.git'
+alias skel='git --work-tree=$HOME --git-dir=$HOME/skel/.git'
 
 # Ratehub
 alias p='rh-psql-conn'
@@ -111,5 +111,6 @@ alias hackerman='~/trees/hackerman/bin/hackerman'
 alias notes='~/trees/notes-cli/bin/notes'
 alias hack='~/trees/hackerman/bin/hackerman -s10 -q fbi'
 alias vacay="gcal -H '\e[0;5;1m:\e[0m:\e[32;1m:\e[0m' -q CA_ON -y $(date +'%Y')"
+alias asdf="echo 'Hang in there, bud :)'"
 alias meow="for i in {0..$(tput lines)}; do MEOW=MEOW NUM=$(tput cols) node -e 'const{MEOW}=process.env;console.log(MEOW.repeat(process.env.NUM / MEOW.length))'; done"
 
