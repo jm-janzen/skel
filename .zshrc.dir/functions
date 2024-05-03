@@ -363,5 +363,12 @@ local function prompt() {
             [Nn]* ) return 1;;
             * ) echo "Please answer yes or no.";;
         esac
+function wait() {
+    seconds=${1:-1}
+    char=${2:-''}
+    for i in $(seq $seconds -1 1)
+    do
+        echo -n "$char"
+        sleep 1
     done
 }

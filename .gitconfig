@@ -4,12 +4,14 @@
     editor = /usr/bin/nvim
     pager = diff-so-fancy | less --tabs=4 -RFX
     hooksPath = /home/jm/.global-githooks
-	safecrlf = false
+    safecrlf = false
 [user]
     email = jmjanzen@gmail.com
     name = JM
 [push]
     default = simple
+[interactive]
+    diffFilter = diff-so-fancy --patch
 [alias]
     conf = "!vim ~/.gitconfig"
     h    = help
@@ -57,7 +59,7 @@
     ipatch = "!f() { git apply $1 --reject ; git add -p; }; f"
     ignored = "!git check-ignore -v * | column -nt"
     prune-force = "!git fetch -p && for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done"
-	conflicts = diff --name-only --diff-filter=U
+    conflicts = diff --name-only --diff-filter=U
 
 [gpg]
     program = gpg2
@@ -82,10 +84,10 @@
 [commit]
     verbose = true
 [column]
-	ui = auto
+    ui = auto
 [branch]
-	sort = -committerdate
+    sort = -committerdate
 [rerere]
-	enabled = true
+    enabled = true
 [maintenance]
-	repo = /home/jm/trees/fim-tools/roadmapping
+    repo = /home/jm/trees/fim-tools/roadmapping
