@@ -26,9 +26,13 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 unsetopt beep
 
+# General tilde expansions
+hash -d t=/home/jm/trees
+
 # Tempo specific tilde expansions
 hash -d rm=/home/jm/trees/roadmapping
 hash -d rmk=/home/jm/trees/roadmunk
+
 
 # Use modern completion system
 autoload -Uz compinit
@@ -62,6 +66,8 @@ bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
+# ctrl+backspace and kill word before cursor
+bindkey '^H' backward-kill-word
 
 # https://github.com/zsh-users/zsh-autosuggestions
 # Fish-like auto-suggestions

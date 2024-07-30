@@ -11,6 +11,7 @@ done
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ] && source /usr/share/doc/fzf/examples/key-bindings.zsh
 [ -f ~/powerlevel10k/powerlevel10k.zsh-theme ] && source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
