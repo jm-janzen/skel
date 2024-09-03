@@ -252,6 +252,7 @@ function jq-csv() {
 function ls() {
     if (( $(lolcat -v &>/dev/null; echo $?) != 0 )) {
         command ls $@
+        return 0
     }
 
     odds=50
@@ -343,6 +344,9 @@ local function prompt() {
             [Nn]* ) return 1;;
             * ) echo "Please answer yes or no.";;
         esac
+	done
+}
+
 function wait() {
     seconds=${1:-10}
     char=${2:-''}
