@@ -16,27 +16,15 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# set PATH so it includes user's private bin directories
-PATH="$HOME/bin:$HOME/.local/bin:$HOME/.gem/ruby/2.5.0/bin:$PATH"
-
-# Just some niceties
-#feh --bg-scale ${HOME}/Pictures/boom.png
-#feh --bg-scale ${HOME}/Pictures/wiz.png
-#feh --bg-scale --image-bg white ${HOME}/Pictures/starkness-mono.jpg
-#feh --bg-scale --image-bg white ${HOME}/Pictures/march-snow.jpg
-#feh --bg-fill --force-aliasing ${HOME}/Pictures/motivation-cat.png
-#feh --bg-fill --force-aliasing ${HOME}/Pictures/nope.jpg
-#feh --bg-scale --force-aliasing ${HOME}/Pictures/unix-magick.jpg
-#feh --bg-center --image-bg white ${HOME}/Pictures/unix-magick.jpg
-#feh --image-bg black --bg-center ${HOME}/Pictures/arcanum-labelled.webp
-feh --image-bg black --bg-center ${HOME}/Pictures/arcanum-blank.jpg
-setxkbmap -option ctrl:nocaps
-
-export PATH="$HOME/.cargo/bin:$HOME/.screenlayout/:$PATH"
-
-# Krew - Kubectl plugin mgr. For kubectl ctx (ultimately)
-PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
 EDITOR=nvim
 VISUAL=nvim
-source "$HOME/.cargo/env"
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
+

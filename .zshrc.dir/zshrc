@@ -26,6 +26,9 @@ setopt HIST_VERIFY               # Don't execute immediately upon history expans
 setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 unsetopt beep
 
+# General tilde expansions
+hash -d t=/home/jm/trees
+
 # Use modern completion system
 autoload -Uz compinit
 compinit
@@ -58,6 +61,8 @@ bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
+# ctrl+backspace and kill word before cursor
+bindkey '^H' backward-kill-word
 
 # https://github.com/zsh-users/zsh-autosuggestions
 # Fish-like auto-suggestions
@@ -68,25 +73,25 @@ bindkey '^ ' autosuggest-accept # C-space to accept
 zle-line-init() { zle -K viins }
 zle -N zle-line-init
 
-# VIM_NORM="%{$fg[blue]%} -- NORMAL -- %{$reset_color%}"
-# VIM_INST="%{$bg[red]%} -- INSERT -- %{$reset_color%}"
-# 
-# function zle-line-init zle-keymap-select {
-#     RPS1="${${KEYMAP/vicmd/$VIM_NORM}/(main|viins)/$VIM_INST}"
-#     RPS2=$RPS1
-#     zle reset-prompt
-# }
-# 
-# function zle-line-finish {
-# }
-# zle -N zle-line-finish
-# zle -N zle-line-init
-# zle -N zle-keymap-select
-# export KEYTIMEOUT=1
-# 
-# setopt transient_rprompt
-# 
-# at_blink=%{$'\e[5m'%}
-# #PS1="%(1j.[%j]"$' '".)%{$fg[cyan]%}%~ ${at_blink}%{$fg_bold[cyan]%}>%{$reset_color%} "
-# RPROMPT="${VIM_INST}"
+VIM_NORM="%{$fg[blue]%} -- NORMAL -- %{$reset_color%}"
+VIM_INST="%{$bg[red]%} -- INSERT -- %{$reset_color%}"
 
+function zle-line-init zle-keymap-select {
+    RPS1="${${KEYMAP/vicmd/$VIM_NORM}/(main|viins)/$VIM_INST}"
+    RPS2=$RPS1
+    zle reset-prompt
+}
+
+function zle-line-finish {
+}
+zle -N zle-line-finish
+zle -N zle-line-init
+zle -N zle-keymap-select
+export KEYTIMEOUT=1
+
+setopt transient_rprompt
+
+at_blink=%{$'\e[5m'%}
+timestamp="%(?.%{$bg[white]%}%{$fg[black]%}.%{$bg[red]%}%{$fg[black]%}) %D{%T} %{$reset_color%}"
+PS1="%(1j.[%j]"$' '".)$timestamp %{$fg[cyan]%}%~ ${at_blink}%{$fg_bold[cyan]%}>%{$reset_color%} "
+RPROMPT="${VIM_INST}"

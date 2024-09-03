@@ -285,3 +285,70 @@ function kexec() {
         kubectl exec -it $pod -- bash
     fi
 }
+
+function cat() {
+	if [[ $# -eq 1 && "$1" = *\.(md|mkd|markdown) ]]
+	then
+		# TODO Prompt
+		mdcat "$1"
+	else
+		command cat $@
+	fi
+}
+
+function cd() {
+	# If dir specified and not exists and no flags
+	if [[ $# -gt 0 && ! -d $1 && $1 != -* ]]
+	then
+		prompt "The directory '${1}' does not exist - create it?" && mkdir -p $1
+	fi
+
+	# If more than one args and no flags
+	if [[ $# -gt 1 && $1 != -* ]]
+	then
+		cd_command $@
+		return $?
+	fi
+
+	chdir $@
+}
+
+function car() {
+	echo "Vroom! Vrooom! I'm a car! I don't know how to read '$@'! Vroom sputter stall!! :("
+	return 1
+}
+
+local function cd_command() {
+
+	dir="${@:1:1}"
+	cmd="${@:2:1}"
+	opt="${@:3}"
+
+	chdir "${dir}"
+
+	command $cmd $opt
+
+	exit_code=$?
+
+	chdir - &>/dev/null
+
+	return $exit_code
+}
+
+local function prompt() {
+    while true; do
+        read yn\?"$1 [y]es or [n]o "
+        case $yn in
+            [Yy]* ) return 0;;
+            [Nn]* ) return 1;;
+            * ) echo "Please answer yes or no.";;
+        esac
+function wait() {
+    seconds=${1:-10}
+    char=${2:-''}
+    for i in $(seq $seconds -1 1)
+    do
+        echo -n "$char"
+        sleep 1
+    done
+}
