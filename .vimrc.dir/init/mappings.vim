@@ -98,7 +98,7 @@ inoremap # X#
 noremap <C-Up> :GitGutterPrevHunk<CR>
 noremap <C-Down> :GitGutterNextHunk<CR>
 noremap <C-Left> :GitGutterUndoHunk<CR>
-noremap <C-Right> :Git add --patch %<CR>
+noremap <C-Right> :GitGutterStage<CR>
 
 map <Leader>u :UndotreeToggle \| :UndotreeFocus<CR>
 

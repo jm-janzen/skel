@@ -34,7 +34,6 @@ let g:gitgutter_diff_args = '-w'  " Ignore whitespace
 Plug 'davidhalter/jedi'     " Great completion for python class methods, etc
 Plug 'isRuslan/vim-es6'     " Modern NodeJS autocompletion
 
-Plug 'tpope/vim-fugitive'   " Git builtin - good navigating
 Plug 'psliwka/vim-smoothie' " Smooth scrolling on <C-(u|d)> jump
 
 " Auto documentation on <leader>d, other things probably
