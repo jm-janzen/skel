@@ -16,11 +16,6 @@ noremap <C-l> <C-w>l
 "
 " Editing
 "
-noremap <Left>    :echo 'TODO: Left'<CR>
-noremap <Right>   :echo 'TODO: Right'<CR>
-"XXX Prevents scrolling
-"noremap <Up>      :echo 'TODO: Up'<CR>
-"noremap <Down>    :echo 'TODO: Down'<CR>
 
 " Move visually select lines
 vnoremap J :m '>+1<CR>gv=gv
@@ -29,6 +24,11 @@ vnoremap K :m '<-2<CR>gv=gv
 " autocomplete closing curly
 imap {<Enter> {<Enter>}<Esc>O
 "imap ({<Enter> ({<Enter>})<Esc>O
+
+" Map Ctrl-Backspace to delete the previous word in insert mode.
+" https://askubuntu.com/a/1331395
+noremap! <C-BS> <C-w>
+noremap! <C-h> <C-w>
 
 "
 " Util/Meta
@@ -62,6 +62,9 @@ nmap <ScrollWheelUp> echo 'foo'<CR>
 " Leader,Return to save all buffers
 nmap <CR> :w<CR>
 nmap <Leader><CR> :wa<CR>
+" Workaround to preserve behaviour of enter on cmdwin (q:)
+autocmd CmdwinEnter * map <buffer> <CR> <CR>
+
 
 " Leader,q to quit current buffer
 " Leader,z to write out of current buffer
@@ -72,7 +75,7 @@ nmap <Leader>z :wq<CR>
 " Weird
 "
 
-"noremap <C-n> :20sp ~/.vim/notes.txt<CR>
+noremap <C-n> :20sp ~/.vim/notes.txt<CR>
 
 " rm Windows line terminators, trailing whitespace (ew)
 " FIXME This breaks when run from mapping for some reaso
@@ -104,11 +107,6 @@ map <Leader>u :UndotreeToggle \| :UndotreeFocus<CR>
 
 " shortcut to toggle :NERDTree plugin
 "nmap <silent> <C-t> :25Lexplore<CR>
-"nmap <silent> <C-t> :NERDTreeToggle<CR>
-" NERDTree is dead long live CHADtree
-nmap <silent> <C-t> :CHADopen<CR>
+nmap <silent> <C-t> :NERDTreeToggle<CR>
 
 nmap <Leader>b :Buffers<CR>
-
-" 'voldikss/vim-floaterm'
-let g:floaterm_keymap_toggle = '<F12>'

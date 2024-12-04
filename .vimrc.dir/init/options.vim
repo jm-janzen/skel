@@ -17,6 +17,9 @@ let mapleader = " "
 "here is a basic .vimrc that you can choose to use if you like.  use all/part/none of it up to you.
 " Ty
 
+" break lines on words
+set linebreak
+
 " ignore case during search
 set ignorecase
 
@@ -80,14 +83,6 @@ endif
 
 " try really hard to allow 256 colos
 set t_Co=256
-if exists('+termguicolors')
-  let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
-  let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
-  set termguicolors
-endif
-
-" default colorscheme
-colorscheme 256-bink
 
 autocmd FileType netrw set nolist
 
@@ -95,3 +90,19 @@ autocmd FileType netrw set nolist
 let g:netrw_liststyle=3
 let g:netrw_browse_split = 4
 let g:netrw_altv = 1
+
+" Activate with `vim --cmd 'let writing_mode=1'`
+if exists('writing_mode')
+    set textwidth=100
+    set showbreak=>\ 
+    set lcs=
+    set laststatus=0
+    set nocursorline
+    syntax off
+    " This colourscheme plays nicely with limelight
+    colorscheme bink-arvo
+else
+    " Good ol' dependable
+    colorscheme 256-bink
+endif
+
