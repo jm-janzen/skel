@@ -35,13 +35,9 @@ exec --no-startup-id nm-applet
 # My stuff
 #
 
-# Corp spyware
-exec --no-startup-id drata-agent
 #
 # Volume applet (guess this is not necessary? Where is defined??)
 #exec --no-startup-id pasystray
-
-exec --no-startup-id ~/.screenlayout/laptop-closed.sh
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -49,7 +45,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # Nice lock screen
-bindsym $mod+Shift+x exec i3lock-fancy -p
+bindsym $mod+Shift+x exec /bin/zsh -c 'scrot - | convert -scale 10% -scale 1000% - RGB:- | i3lock --raw 3840x1714:rgb --image /dev/stdin'
 
 # The middle button over a titlebar kills the window
 bindsym --release button2 kill
