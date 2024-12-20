@@ -28,6 +28,7 @@ unsetopt beep
 
 # General tilde expansions
 hash -d t=/home/jm/trees
+hash -d s=/home/jm/sandbox
 
 # Use modern completion system
 autoload -Uz compinit
