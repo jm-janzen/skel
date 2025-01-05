@@ -12,8 +12,6 @@ fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-setxkbmap -option ctrl:nocaps
-
 #
 # Load zsh plugins
 #
