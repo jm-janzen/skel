@@ -61,6 +61,8 @@ let g:gitgutter_diff_args = '-w'  " Ignore whitespace
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 let g:coc_disable_startup_warning = 1 " XXX Temp
 
+" Navigating between kitty and vim splits
+Plug 'knubie/vim-kitty-navigator'
 "
 " coc config
 "
