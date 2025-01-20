@@ -1,11 +1,9 @@
 if stridx(getcwd(), '/writing') > -1
-    let resp = input(
-                \"It looks like you're trying to do some writing - 
-                \activate writing_mode? [yN] ")
-    if resp == 'y'
+    let resp = confirm('activate writing_mode?', "&No (default)\n&Yes\n&Quit", 1)
+    if resp == 3
+        exit 0
+    elseif resp == 2
         let g:writing_mode=1
-
-        echon "\nOK, you're in writing_mode now."
     endif
 endif
 

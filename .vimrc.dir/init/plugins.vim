@@ -25,18 +25,20 @@ if exists('writing_mode')
 
     Plug 'junegunn/goyo.vim'
     nnoremap <Leader>g :Goyo<CR>
-    let g:goyo_width = 100
-    " Toggle Limelight with Goyo
+    let g:goyo_width = 120
+    " Toggle Limelight & Pencil with Goyo
     function! s:goyo_enter()
         :Limelight
+        :Pencil
     endfunction
     function! s:goyo_leave()
         :Limelight!
+        :NoPencil
     endfunction
     autocmd! User GoyoEnter nested call <SID>goyo_enter()
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
     " Launch Goyo immediately
-    " (maybe put this behind additional prompt)
     au VimEnter * Goyo
 
 else

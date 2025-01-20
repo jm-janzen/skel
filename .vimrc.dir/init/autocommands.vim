@@ -43,12 +43,3 @@ autocmd BufNewFile,BufRead,FileType *.yml call Yaml_conf()
 " syntax highlighting like HTML for EJS files
 au BufNewFile,BufRead *.ejs set filetype=html
 
-" iMacros syntax
-"au Filetype iim setfiletype iMacros
-"au BufNewFile,BufRead *.iim set syntax=iim filetype=iMacros
-
-" set explicit tab character for .at files
-"au BufNewFile,BufRead *.a[tm], set noic cin noexpandtab list filetype=autotest
-"au Filetype autotest setlocal noexpandtab list
-
-

@@ -1,5 +1,4 @@
 set list lcs=trail:-,tab:>· " show training whitespace as `-', and tabs as `>---'
-set list
 set incsearch   " highlight search results as they are being typed
 set hlsearch    " highlight search results
 set shiftround  " shift to set columns rather than relative
@@ -78,7 +77,7 @@ set foldlevelstart=99 " open all folds on file open
 if has ("persistent_undo")
     silent !mkdir -pv ~/.vim/undo
     set undofile
-    set undodir=$HOME/.vim/undo  " where to save (REQ: `mkdir ~/.vim/undo`!)
+    set undodir=$HOME/.vim/undo
 endif
 
 " try really hard to allow 256 colos

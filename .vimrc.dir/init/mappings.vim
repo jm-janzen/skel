@@ -51,13 +51,6 @@ lmap <C-l> <Esc>
 tmap <C-l> <Esc>
 cmap <C-l> <Esc>
 
-" prevent mouse single/double-click from moving cursor
-"nmap <LeftMouse> <nop>
-"imap <LeftMouse> <nop>
-"vmap <LeftMouse> <nop>
-"nmap <2-LeftMouse> <nop>
-nmap <ScrollWheelUp> echo 'foo'<CR>
-
 "        Return to save current buffer,
 " Leader,Return to save all buffers
 nmap <CR> :w<CR>
@@ -67,9 +60,10 @@ autocmd CmdwinEnter * map <buffer> <CR> <CR>
 
 
 " Leader,q to quit current buffer
-" Leader,z to write out of current buffer
 nmap <Leader>q :q<CR>
-nmap <Leader>z :wq<CR>
+
+" Go to last misspelled word and auto fix
+nmap <Leader>z [s1z=
 
 "
 " Weird
