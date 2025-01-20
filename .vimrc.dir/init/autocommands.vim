@@ -39,6 +39,11 @@ autocmd BufNewFile,BufRead,FileType *.yml call Yaml_conf()
         set syn=yaml
         source ${HOME}/.vimrc.dir/lang_configs/yaml/settings_yaml.vim
     endfunction
+autocmd BufNewFile,BufRead,FileType kitty_scrollback call Kitty_conf()
+    function! Kitty_conf()
+        set syn=shell
+        source ${HOME}/.vimrc.dir/ftplugin/kitty_scrollback.vim
+    endfunction
 
 " syntax highlighting like HTML for EJS files
 au BufNewFile,BufRead *.ejs set filetype=html
