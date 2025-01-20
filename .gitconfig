@@ -85,7 +85,7 @@
 [commit]
     verbose = true
 [column]
-    ui = auto
+    status = dense
 [branch]
     sort = -committerdate
 [rerere]
