@@ -5,6 +5,7 @@
     pager = diff-so-fancy | less --tabs=4 -RFX
     hooksPath = /home/jm/.global-githooks
     safecrlf = false
+    excludesfile = /home/jm/.gitignore
 [user]
     email = jmjanzen@gmail.com
     name = JM
@@ -89,3 +90,5 @@
     sort = -committerdate
 [rerere]
     enabled = true
+[init]
+    defaultBranch = main
