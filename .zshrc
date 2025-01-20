@@ -24,5 +24,6 @@ export NVM_LAZY_LOAD=true
 antigen bundle lukechilds/zsh-nvm
 
 antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle kutsan/zsh-system-clipboard
 
 antigen apply

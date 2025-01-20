@@ -112,5 +112,6 @@ alias notes='~/trees/notes-cli/bin/notes'
 alias hack='~/trees/hackerman/bin/hackerman -s10 -q fbi'
 alias vacay="gcal -H '\e[0;5;1m:\e[0m:\e[32;1m:\e[0m' -q CA_ON -y $(date +'%Y')"
 alias asdf="echo 'Hang in there, bud :)'"
-alias meow="for i in {0..$(tput lines)}; do MEOW=MEOW NUM=$(tput cols) node -e 'const{MEOW}=process.env;console.log(MEOW.repeat(process.env.NUM / MEOW.length))'; done"
+# FIXME Put this for..in in node too (perf)
+alias meow="for i in {0..$(tput lines)}; do MEOW=MEOW NUM=$(tput cols) node -e 'const{MEOW,NUM}=process.env;console.log(MEOW.repeat(NUM / MEOW.length))'; done"
 

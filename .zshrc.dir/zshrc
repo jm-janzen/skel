@@ -4,8 +4,6 @@ autoload -Uz promptinit; promptinit
 
 # Enable bash-like comments on the CLI
 setopt interactivecomments
-
-# Keep 10000000 lines of history within the shell and save it to ~/.zsh_history:
 setopt histignorealldups sharehistory
 
 HISTSIZE=10000000
@@ -27,12 +25,16 @@ setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 unsetopt beep
 
 # General tilde expansions
-hash -d t=/home/jm/trees
-hash -d s=/home/jm/sandbox
+hash -d t=$HOME/trees
+hash -d s=$HOME/sandbox
+hash -d c=$HOME/.config
+hash -d D=$HOME/Downloads
 
 # Use modern completion system
-autoload -Uz compinit
-compinit
+for dump in ~/.zcompdump(N.mh+24); do
+  compinit
+done
+compinit -C
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
@@ -73,8 +75,8 @@ bindkey '^ ' autosuggest-accept # C-space to accept
 zle-line-init() { zle -K viins }
 zle -N zle-line-init
 
-VIM_NORM="%{$fg[blue]%} -- NORMAL -- %{$reset_color%}"
-VIM_INST="%{$bg[red]%} -- INSERT -- %{$reset_color%}"
+VIM_NORM="%{$fg[blue]%} NRM %{$reset_color%}"
+VIM_INST="%{$fg[black]%}%{$bg[blue]%} INS %{$reset_color%}"
 
 function zle-line-init zle-keymap-select {
     RPS1="${${KEYMAP/vicmd/$VIM_NORM}/(main|viins)/$VIM_INST}"
@@ -94,4 +96,10 @@ setopt transient_rprompt
 at_blink=%{$'\e[5m'%}
 timestamp="%(?.%{$bg[white]%}%{$fg[black]%}.%{$bg[red]%}%{$fg[black]%}) %D{%T} %{$reset_color%}"
 PS1="%(1j.[%j]"$' '".)$timestamp %{$fg[cyan]%}%~ ${at_blink}%{$fg_bold[cyan]%}>%{$reset_color%} "
-RPROMPT="${VIM_INST}"
+RPROMPT="${VIM_INST}" # Just to show on shell init
+
+# C-v or e to edit cli (I haven't made up my mind yet)
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd '^v' edit-command-line
+bindkey -M vicmd '^e' edit-command-line
