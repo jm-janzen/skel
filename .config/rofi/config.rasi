@@ -1,12 +1,8 @@
 
 configuration {
     modi: "window,run,drun";
-    location: 0;
-    yoffset: -200;
-    xoffset: 0;
-    fixed-num-lines: false;
     show-icons: true;
-    dpi: 150;
+    dpi: 180;
     timeout {
         action: "kb-cancel";
         delay:  0;
