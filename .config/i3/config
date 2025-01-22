@@ -3,6 +3,8 @@ set $mod Mod4
 
 font pango:monospace 10
 
+exec --no-startup-id feh --bg-scale ~/Pictures/bg
+
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
@@ -11,11 +13,13 @@ exec --no-startup-id dex --autostart --environment i3
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c111111 -f --nofork
 
-exec --no-startup-id feh --bg-scale ~/Pictures/bg
-
 # Move to and from scratch space
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
+
+# Scrot prompt and crop
+bindsym --release Print exec gnome-screenshot -i
+bindsym --release $mod+Print exec gnome-screenshot -a
 
 # Nice lock screen
 bindsym $mod+Shift+x exec /bin/zsh -c 'scrot --quality 1 --compression 0 --format jpg - | convert -scale 10% -scale 1000% -quality 100 - RGB:- | i3lock --image /dev/stdin --raw 3840x1820:rgb --nofork'

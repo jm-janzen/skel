@@ -290,11 +290,14 @@ function kexec() {
 function cat() {
     if [[ $# -eq 1 && "$1" = *\.(md|mkd|markdown) ]]
     then
-        # TODO Prompt
-        mdcat "$1"
-    else
-        command cat $@
+        if which mdcat &>/dev/null
+        then
+            mdcat "$1" | less -RF
+            return 0
+        fi
     fi
+
+    command cat $@
 }
 
 function cd() {
