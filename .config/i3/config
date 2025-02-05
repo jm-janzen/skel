@@ -13,6 +13,9 @@ exec --no-startup-id dex --autostart --environment i3
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c111111 -f --nofork
 
+# Firewall
+exec --no-startup-id opensnitch-ui
+
 # Move to and from scratch space
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
@@ -33,9 +36,6 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
 
 # start a terminal
 bindsym $mod+Return exec kitty --single-instance
@@ -68,7 +68,7 @@ bindsym $mod+Shift+l move right 100
 bindsym $mod+Shift+Left move left 100
 bindsym $mod+Shift+Down move down 100
 bindsym $mod+Shift+Up move up 100
-bindsym $mod+Shift+Right move rig 100ht
+bindsym $mod+Shift+Right move right 100
 
 # split in horizontal or vertical orientation
 bindsym $mod+y split h
@@ -79,6 +79,12 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
+
+# Make floating windows start smaller
+for_window [floating] resize set 900 800
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -185,6 +191,14 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+# Open certain application in specific, named workspaces
+# Discover the "class" of an applicationwith:
+#
+#   xprop | grep WM_CLASS | awk '{ print $4 }'
+#
+assign [class="thunderbird"] number 10 mail
+assign [class="QuiteRss"]    number 11 rss
 
 # Use polybar for... bar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
