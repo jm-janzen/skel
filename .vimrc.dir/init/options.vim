@@ -100,6 +100,10 @@ if exists('writing_mode')
     syntax off
     " This colourscheme plays nicely with limelight
     colorscheme bink-arvo
+
+    " n and m dashes
+    iabbrev <buffer> -- –
+    iabbrev <buffer> --- —
 else
     " Good ol' dependable
     colorscheme 256-bink

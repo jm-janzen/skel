@@ -81,9 +81,6 @@ inoremap <C-Space> <C-x><C-o>
 " Execute current file
 nnoremap <silent> <F5> :!./%<CR>
 
-" \,s to open config dir for editing, placing cursor at start
-nmap <Leader>s :tabe ~/.vimrc.dir/init<CR>:5<CR>
-
 " insert mode key maps
 " don't auto-indent `#' comments to beginning of line
 inoremap # X#
@@ -104,3 +101,7 @@ map <Leader>u :UndotreeToggle \| :UndotreeFocus<CR>
 nmap <silent> <C-t> :NERDTreeToggle<CR>
 
 nmap <Leader>b :Buffers<CR>
+
+if exists('writing_mode')
+    nmap <Leader>s :set spell!<CR>
+endif
