@@ -322,6 +322,10 @@ function car() {
     return 1
 }
 
+function urlencode() {
+    echo -n "$@" | jq -sRr @uri
+}
+
 local function cd_command() {
 
     dir="${@:1:1}"
