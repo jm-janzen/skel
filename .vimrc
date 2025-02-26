@@ -1,4 +1,4 @@
-if stridx(getcwd(), '/writing') > -1
+if !exists('writing_mode') && stridx(getcwd(), '/writing') > -1
     let resp = confirm('activate writing_mode?', "&No (default)\n&Yes\n&Quit", 1)
     if resp == 3
         exit 0
