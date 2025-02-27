@@ -1,11 +1,12 @@
 #!/bin/zsh
 
 ### convenience
-alias    ls='\ls -l -phFrt --time-style="+%Y-%m-%dT%H:%M:%S"'
-alias    ll='\ls -halp -F --time-style="+%Y-%m-%dT%H:%M:%S"'
-alias     l='\ls -p --time-style="+%Y-%m-%dT%H:%M:%S"'
-alias    la='\ls -pa --time-style="+%Y-%m-%dT%H:%M:%S"'
-alias    l.='\ls -halpd .* --time-style="+%Y-%m-%dT%H:%M:%S"'
+#alias    ls='\ls --group-directories-first -l -phFrt --time-style="+%Y-%m-%dT%H:%M:%S"'
+alias    ls='eza --time-style="+%Y-%m-%dT%H:%M:%S" --total-size --group-directories-first --no-permissions --hyperlink --colour=never -olF always --icons --git'
+alias    ll='\ls --group-directories-first -halp -F --time-style="+%Y-%m-%dT%H:%M:%S"'
+alias     l='\ls --group-directories-first -p --time-style="+%Y-%m-%dT%H:%M:%S"'
+alias    la='\ls --group-directories-first -pa --time-style="+%Y-%m-%dT%H:%M:%S"'
+alias    l.='\ls --group-directories-first -halpd .* --time-style="+%Y-%m-%dT%H:%M:%S"'
 alias     j='jobs -l'
 alias     h='history'
 alias     t='\tree -Fn --dirsfirst -I __pycache__\|node_modules --charset=ASCII --noreport'

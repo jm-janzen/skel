@@ -43,6 +43,9 @@ if exists('writing_mode')
 
 else
 
+" Experimenting with web/html plugins
+Plug 'mattn/emmet-vim'
+
 " Resize splits on <C-w> navigation
 "Plug 'camspiers/animate.vim' XXX This is messing with nerdtree
 Plug 'camspiers/lens.vim'

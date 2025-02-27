@@ -12,11 +12,12 @@
 [push]
     default = simple
 [interactive]
-    diffFilter = diff-so-fancy --patch
+    diffFilter = less
 [alias]
     conf = "!vim ~/.gitconfig"
     h    = help
     st   = status -bs
+    ss   = status -b --column=dense
     a    = add
     ap   = add --patch
     cp   = cherry-pick
