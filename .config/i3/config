@@ -202,6 +202,8 @@ bindsym $mod+r mode "resize"
 #
 assign [class="thunderbird"] number 10 mail
 assign [class="QuiteRss"]    number 11 rss
+assign [class="Signal"]      number 12 chat
+assign [class="discord"]     number 12 chat
 
 # Use polybar for... bar
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
