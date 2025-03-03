@@ -11,7 +11,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock -c111111 -f --nofork
+exec --no-startup-id xss-lock --transfer-sleep-lock -- ~/.config/i3/lock-screen --nofork
 
 # Firewall
 exec --no-startup-id opensnitch-ui
@@ -25,7 +25,7 @@ bindsym --release Print exec gnome-screenshot -i
 bindsym --release $mod+Print exec gnome-screenshot -a
 
 # Nice lock screen
-bindsym $mod+Shift+x exec /bin/zsh -c 'scrot --quality 1 --compression 0 --format jpg - | convert -scale 10% -scale 1000% -quality 100 - RGB:- | i3lock --image /dev/stdin --raw 3840x1820:rgb --nofork'
+bindsym $mod+Shift+x exec ~/.config/i3/lock-screen --nofork
 
 # The middle button over a titlebar kills the window
 bindsym --release button2 kill
