@@ -2,7 +2,7 @@
 
 ### convenience
 #alias    ls='\ls --group-directories-first -l -phFrt --time-style="+%Y-%m-%dT%H:%M:%S"'
-alias    ls='eza --time-style="+%Y-%m-%dT%H:%M:%S" --total-size --group-directories-first --no-permissions --hyperlink --colour=never -olF always --icons --git'
+alias    ls='eza --time-style="+%Y-%m-%dT%H:%M:%S" --group-directories-first --no-permissions --hyperlink --colour=never -holF always --icons --git'
 alias    ll='\ls --group-directories-first -halp -F --time-style="+%Y-%m-%dT%H:%M:%S"'
 alias     l='\ls --group-directories-first -p --time-style="+%Y-%m-%dT%H:%M:%S"'
 alias    la='\ls --group-directories-first -pa --time-style="+%Y-%m-%dT%H:%M:%S"'

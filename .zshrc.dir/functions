@@ -304,7 +304,7 @@ function cd() {
     # If dir specified and not exists and no flags
     if [[ $# -gt 0 && ! -d $1 && $1 != -* ]]
     then
-        prompt "The directory '${1}' does not exist - create it?" && mkdir -p $1
+        ask "The directory '${1}' does not exist - create it?" && mkdir -p $1
     fi
 
     # If more than one args and no flags
@@ -343,7 +343,7 @@ local function cd_command() {
     return $exit_code
 }
 
-local function prompt() {
+local function ask() {
     while true; do
         read yn\?"$1 [y]es or [n]o "
         case $yn in
