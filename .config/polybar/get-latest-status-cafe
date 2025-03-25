@@ -2,7 +2,9 @@
 
 if [[ -f "$(dirname "$0")/get-latest-status-cafe.ok" ]]
 then
-    curl https://status.cafe/users/$(curl https://status.cafe -o - |htmlq 'article > div'|& head -1|sed -nE 's/<div class="status-username"><a href="\/users\/(.*)".*/\1/p')/status.json|jq .content -r
+    username=$(curl https://status.cafe -o - |htmlq 'article > div'|& head -1|sed -nE 's/<div class="status-username"><a href="\/users\/(.*)".*/\1/p')
+    content=$(curl "https://status.cafe/users/${username}/status.json"|jq .content -r)
+    echo "${username}: ${content}"
 else
     echo ---
 fi
