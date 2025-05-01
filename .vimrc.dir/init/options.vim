@@ -68,6 +68,10 @@ set laststatus=2
 "   %l      line
 "   %c      column
 set statusline=\ %y\ %F%m%r%h\ %w\ pos:\(l:%l,c:%c,b:%n)
+function! WC()
+    return len(split(join(getline(1,'$'), ' '), '\s\+'))
+endfunction
+set statusline+=\ w:%{WC()}
 
 " code folding
 set foldmethod=syntax
@@ -92,8 +96,8 @@ let g:netrw_altv = 1
 
 " Activate with `vim --cmd 'let writing_mode=1'`
 if exists('writing_mode')
-    set textwidth=100
-    set showbreak=>\ 
+    "set textwidth=100
+    set showbreak=
     set lcs=
     set laststatus=0
     set nocursorline

@@ -326,6 +326,23 @@ function urlencode() {
     echo -n "$@" | jq -sRr @uri
 }
 
+# Create and edit a timestamp file
+# <= vimdate .foo.txt --bar --baz
+# => vim 2025-03-25.foo.txt --bar --baz
+function vimdate() {
+    opts="${@:2}"
+    vim "$(date -I)${1}" "${opts}"
+}
+
+function vimdaily() {
+    vim -S ~w/page.vim --cmd 'let writing_mode=1' ~w/daily-pages/$(date -I).page.md
+}
+
+# Click window to find out what program is running it
+function whatruns() {
+    xprop | grep WM_CLASS | awk '{ print $4 }'
+}
+
 local function cd_command() {
 
     dir="${@:1:1}"

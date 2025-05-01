@@ -1,13 +1,13 @@
 [core]
     name = JM
-    email = jmjanzen@gmail.com
+    email = hello@jmjanzen.com
     editor = /usr/bin/nvim
     pager = diff-so-fancy | less --tabs=4 -RFX
     hooksPath = /home/jm/.global-githooks
     safecrlf = false
     excludesfile = /home/jm/.gitignore
 [user]
-    email = jmjanzen@gmail.com
+    email = hello@jmjanzen.com
     name = JM
 [push]
     default = simple

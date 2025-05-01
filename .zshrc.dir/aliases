@@ -1,11 +1,10 @@
 #!/bin/zsh
 
 ### convenience
-#alias    ls='\ls --group-directories-first -l -phFrt --time-style="+%Y-%m-%dT%H:%M:%S"'
-alias    ls='eza --time-style="+%Y-%m-%dT%H:%M:%S" --group-directories-first --no-permissions --hyperlink --colour=never -holF always --icons --git'
-alias    ll='\ls --group-directories-first -halp -F --time-style="+%Y-%m-%dT%H:%M:%S"'
-alias     l='\ls --group-directories-first -p --time-style="+%Y-%m-%dT%H:%M:%S"'
-alias    la='\ls --group-directories-first -pa --time-style="+%Y-%m-%dT%H:%M:%S"'
+alias    ls='eza --time-style="+%Y-%m-%d" --group-directories-first --hyperlink --colour=never -hlF always --icons --git'
+alias    ll='eza --time-style="long-iso" --group-directories-first --no-permissions --hyperlink --colour=never -hoalF always --icons --git'
+alias     l='eza --time-style=relative --group-directories-first --hyperlink --colour=auto -hlF=always --icons --no-permissions --no-user'
+alias    la='\ls --group-directories-first -pa'
 alias    l.='\ls --group-directories-first -halpd .* --time-style="+%Y-%m-%dT%H:%M:%S"'
 alias     j='jobs -l'
 alias     h='history'
@@ -110,4 +109,6 @@ alias hack='~/trees/hackerman/bin/hackerman -s10 -q fbi'
 alias vacay="gcal -H '\e[0;5;1m:\e[0m:\e[32;1m:\e[0m' -q CA_ON -y $(date +'%Y')"
 alias asdf="echo 'Hang in there, bud :)'"
 alias meow="MEOW=MEOW LINES=$(tput lines) NUM=$(tput cols) node -e 'const{LINES,NUM,MEOW}=process.env;for(let i=0;i<LINES;i++)console.log(MEOW.repeat(NUM / MEOW.length))'"
+
+alias write_daily_page="vim -S ~w/page.vim --cmd 'let writing_mode=1' ~w/daily-pages/$(date -I).page.md"
 

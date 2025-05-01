@@ -81,7 +81,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # Make floating windows start smaller
-for_window [floating] resize set 900 800
+for_window [floating] resize set 800 600
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

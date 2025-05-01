@@ -102,6 +102,4 @@ nmap <silent> <C-t> :NERDTreeToggle<CR>
 
 nmap <Leader>b :Buffers<CR>
 
-if exists('writing_mode')
-    nmap <Leader>s :set spell!<CR>
-endif
+nmap <Leader>s :set spell!<CR>

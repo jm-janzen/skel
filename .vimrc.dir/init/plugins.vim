@@ -29,11 +29,11 @@ if exists('writing_mode')
     " Toggle Limelight & Pencil with Goyo
     function! s:goyo_enter()
         :Limelight
-        :Pencil
+        ":Pencil
     endfunction
     function! s:goyo_leave()
         :Limelight!
-        :NoPencil
+        ":NoPencil
     endfunction
     autocmd! User GoyoEnter nested call <SID>goyo_enter()
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
@@ -42,6 +42,9 @@ if exists('writing_mode')
     au VimEnter * Goyo
 
 else
+
+" Go ace templating highlighting
+Plug 'yosssi/vim-ace'
 
 " Experimenting with web/html plugins
 Plug 'mattn/emmet-vim'

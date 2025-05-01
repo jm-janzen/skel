@@ -29,7 +29,8 @@ hash -d t=$HOME/trees
 hash -d s=$HOME/sandbox
 hash -d c=$HOME/.config
 hash -d D=$HOME/Downloads
-hash -d w=$HOME/sandbox/writing-club/writing
+hash -d w=$HOME/sandbox/writing
+hash -d usb=/media/jm
 
 # Use modern completion system
 for dump in ~/.zcompdump(N.mh+24); do

@@ -11,6 +11,10 @@ done
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f /usr/local/bin/kubectl ] && source <(kubectl completion zsh)
+
+# For rbenv completions, obvi
+FPATH=~/.rbenv/completions:"$FPATH"
 
 #
 # Load zsh plugins
@@ -27,3 +31,6 @@ antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle kutsan/zsh-system-clipboard
 
 antigen apply
+
+eval "$(zoxide init zsh)"
+eval "$(~/.local/bin/mise activate)"
