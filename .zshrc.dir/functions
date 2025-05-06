@@ -39,6 +39,10 @@ function vedit () {
     esac
 }
 
+function vitch () {
+    vim +noswapfile +set\ buftype=nofile +set\ bufhidden=hide
+}
+
 
 function md() {
     if [[ ! -z "/usr/local/bin/mdless" ]]; then
