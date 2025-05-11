@@ -16,6 +16,8 @@ fi
 # For rbenv completions, obvi
 FPATH=~/.rbenv/completions:"$FPATH"
 
+setxkbmap -option ctrl:nocaps
+
 #
 # Load zsh plugins
 #
