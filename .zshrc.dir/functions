@@ -304,18 +304,23 @@ function cat() {
     command cat $@
 }
 
+#
+# TODO Maybe prompt if we're going to navigate to a found dir
+# OOOH Or maybe like
+#
+#   [G]o to /abs/path/found/
+#   [m]akedir ./path
+#   [c]hdir ./path
+#
+# [G][m][c]:_______
+#
+# Probably chdir as default without asking, though.
+#
 function cd() {
     # If dir specified and not exists and no flags
     if [[ $# -gt 0 && ! -d $1 && $1 != -* ]]
     then
         ask "The directory '${1}' does not exist - create it?" && mkdir -p $1
-    fi
-
-    # If more than one args and no flags
-    if [[ $# -gt 1 && $1 != -* ]]
-    then
-        cd_command $@
-        return $?
     fi
 
     chdir $@
@@ -345,6 +350,21 @@ function vimdaily() {
 # Click window to find out what program is running it
 function whatruns() {
     xprop | grep WM_CLASS | awk '{ print $4 }'
+}
+
+# https://www.linuxquestions.org/questions/linux-newbie-8/time-difference-calculation-4175459414/#post4937901
+# Usage ddiff 13:00 14:00  #=> 01:00:00
+# Usage ddiff 13:00 2:00PM #=> 01:00:00
+function tdiff() {
+    TIME1=$1
+    TIME2=$2
+
+    SEC1=`date +%s -d ${TIME1}`
+    SEC2=`date +%s -d ${TIME2}`
+
+    DIFFSEC=`expr ${SEC2} - ${SEC1}`
+
+    date +%H:%M:%S -ud @${DIFFSEC}
 }
 
 local function cd_command() {
