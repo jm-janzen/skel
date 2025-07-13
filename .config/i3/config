@@ -3,7 +3,8 @@ set $mod Mod4
 
 font pango:monospace 10
 
-exec --no-startup-id feh --bg-scale ~/Pictures/bg
+# _always, to run of refresh (for randr changes)
+exec_always --no-startup-id feh --bg-scale ~/Pictures/bg
 
 # Start XDG autostart .desktop files using dex. See also
 # https://wiki.archlinux.org/index.php/XDG_Autostart
@@ -81,7 +82,8 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # Make floating windows start smaller
-for_window [floating] resize set 800 600
+# FIXME Makes some modals actuall bigger by contstraining size
+#for_window [floating] resize set 800 600
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -110,6 +112,12 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "0"
+
+set $monitor_left "eDP-1"
+set $monitor_right "HDMI-1"
+
+# Zero feels right for left workspace
+workspace $ws10 output $monitor_left
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -159,6 +167,9 @@ bindsym $mod+Shift+Mod2+KP_Home     move container to workspace number $ws7
 bindsym $mod+Shift+Mod2+KP_Up       move container to workspace number $ws8
 bindsym $mod+Shift+Mod2+KP_Prior    move container to workspace number $ws9
 bindsym $mod+Shift+Mod2+KP_Insert   move container to workspace number $ws10
+
+bindsym $mod+Shift+greater move container to output right
+bindsym $mod+Shift+less move container to output left
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
