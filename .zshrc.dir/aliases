@@ -2,7 +2,7 @@
 
 ### convenience
 alias    ls='eza --time-style="+%Y-%m-%d" --group-directories-first --hyperlink --colour=never -hlF always --icons --git'
-alias    ll='eza --time-style="long-iso" --group-directories-first --no-permissions --hyperlink --colour=never -hoalF always --icons --git'
+alias    ll='eza -a --time-style="long-iso" --group-directories-first --no-permissions --hyperlink --colour=never -hoalF always --icons --git'
 alias     l='eza --time-style=relative --group-directories-first --hyperlink --colour=auto -hlF=always --icons --no-permissions --no-user'
 alias    la='\ls --group-directories-first -pa'
 alias    l.='\ls --group-directories-first -halpd .* --time-style="+%Y-%m-%dT%H:%M:%S"'
@@ -12,7 +12,7 @@ alias     t='\tree -Fn --dirsfirst -I __pycache__\|node_modules --charset=ASCII 
 alias zshrf="source ${HOME}/.zshrc"
 alias  tmux="tmux -u"
 alias    py="python -Bu"
-alias    dc="docker-compose"
+alias    dc="docker compose"
 alias   vim='nvim'
 alias    vi='nvim'
 alias     v='nvim'
@@ -20,6 +20,9 @@ alias    vt='nvim -c":NERDTree"'
 alias    tm='tmux'
 alias     r="EDITOR=nvim VISUAL=nvim ranger"
 alias     k='kubectl'
+alias     d='docker'
+alias     g='git'
+alias    tf='terraform'
 
 ### convenience (more specific)
 alias   mem='ps ax -o %mem=--MEM--,user=---USER---,pid=---PID--,cmd | grep -v root | sort -Vr'
@@ -54,49 +57,6 @@ alias    rm='rm -vI'                      # "
 alias    cp='cp -vi'                      # "
 alias    ln='ln -vi'                      # "
 alias crontab='crontab -i'                # Prompt before deleting user's crontab o_o;;
-
-### scripts 
-alias  f='~/scripts/superfind.sh'   # Usage: f  <dir> <filename>
-alias  d='~/scripts/difffiles.sh'   # Usage: d  <dir1> <dir2>
-alias  c='~/scripts/ipinfo.sh'      # Usage: c  <ip>
-alias  e='~/scripts/penv.sh'        # Usage: e
-alias gm='~/scripts/gd-sum.sh'      # Usage: gm
-alias todo='~/scripts/todo.sh'      # Usage: todo
-
-alias crawl='~/scripts/crawl.sh'    # Usage: crawl [OPTIONS]... [FILE]
-
-### git aliases
-alias vgl='vim -c":Git log"'
-alias   g='git'                     #
-alias  st='git status -s -b'        #shortform git status + branch info
-alias  gs='git status'              #
-alias  gd='git diff'                #
-alias gdd="git diff --color-words='[^[:space:]]|([[:alnum:]]|UTF_8_GUARD)+'" #show character substitutions on the same line (and avert wordsalad)
-alias gds='git diff --shortstat'    # just the stats, ma'am
-alias gdc='git diff --cached'       # what did I just add ...?
-alias gsl='git stash list --date=local' #
-alias  gt='git log --graph --oneline --decorate --all' #
-alias  "g?"='git remote -v update'    #fetch updates from all branches no set to skipDefaultUpdate (show ahead or behind)
-alias  gf='git log -p --follow --oneline --' #
-alias gfp='git log -p --follow --'  #
-function gg() { git grep "$*"; }  # simpler git-grep (concatenates params)
-
-alias gp='git pull \
-    --recurse-submodules'         # update submodules
-alias gpu='git push'              #
-alias  ga='git add'               #
-alias  gc='git checkout'          # shortcuts
-alias gcm='git commit'            #
-#alias  gl='git log --name-status' # show file action summaries
-alias  gl='git log --stat'        # show file insertions, deletions
-alias glp='git log \
-    --patch-with-stat'            # show sum insert/deletes
-alias  gb='git branch'
-alias gbr='git show-branch'       # show common commits between branches
-alias gcf='git commit -F- <<EOF'  # use heredocs for commit message
-alias gap='git add --patch'       # commit individual hunks
-alias gtr='git ls-tree -r HEAD --name-only --full-name | xargs file | egrep ".*:\s" --color' # list all tracked files in current branch + file information (files highlighted)
-alias  gw='watch -d --color git diff --color' # watch for changes, pass colours
 
 # Used to synch/repro configurations between systems
 # NOTE You're gonna want this: `echo '*' > ~/.gitignore`
