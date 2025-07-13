@@ -1,4 +1,4 @@
-set list lcs=trail:-,tab:>· " show training whitespace as `-', and tabs as `>---'
+set lcs=trail:-,tab:>· " show training whitespace as `-', and tabs as `>---'
 set incsearch   " highlight search results as they are being typed
 set hlsearch    " highlight search results
 set shiftround  " shift to set columns rather than relative

@@ -89,6 +89,8 @@ inoremap # X#
 " Plugin-specific
 "
 
+map <Leader>d :CocDisable<CR>
+
 noremap <C-Up> :GitGutterPrevHunk<CR>
 noremap <C-Down> :GitGutterNextHunk<CR>
 noremap <C-Left> :GitGutterUndoHunk<CR>

@@ -47,6 +47,7 @@ else
 Plug 'yosssi/vim-ace'
 
 " Experimenting with web/html plugins
+" "C-y," to complete elems -- super cool
 Plug 'mattn/emmet-vim'
 
 " Resize splits on <C-w> navigation
