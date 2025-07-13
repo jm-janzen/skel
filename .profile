@@ -18,6 +18,7 @@ fi
 
 EDITOR=nvim
 VISUAL=nvim
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -28,4 +29,10 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-PATH="$HOME/.screenlayout:$PATH"
+if [ -d "$HOME/.screenlayout" ] ; then
+    PATH="$HOME/.screenlayout:$PATH"
+fi
+
+if [ -d "$HOME/go/bin" ] ; then
+    PATH="$HOME/go/bin:$PATH"
+fi
