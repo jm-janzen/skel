@@ -26,7 +26,7 @@ if has("gui_running") || &t_Co == 256
     " TODO mk red
     hi Constant cterm=NONE ctermfg=252 ctermbg=16 gui=NONE guifg=#d0d0d0 guibg=NONE
     hi String cterm=NONE ctermfg=245 ctermbg=16 gui=NONE guifg=#ff5050 guibg=NONE
-    hi Comment cterm=NONE ctermfg=240 ctermbg=16 gui=NONE guifg=#585858 guibg=NONE
+    hi Comment cterm=NONE ctermfg=240 ctermbg=16 gui=NONE guifg=#ff4040 guibg=NONE
     hi Number cterm=NONE ctermfg=196 ctermbg=16 gui=NONE guifg=#ff0000 guibg=NONE
     hi Boolean cterm=NONE ctermfg=196 ctermbg=16 gui=bold guifg=#ff0000 guibg=NONE
     hi Error cterm=NONE ctermfg=255 ctermbg=88 gui=NONE guifg=#eeeeee guibg=#870000
@@ -85,7 +85,7 @@ else
     hi Keyword cterm=NONE ctermfg=White ctermbg=Black
     hi Constant cterm=NONE ctermfg=Gray ctermbg=Black
     hi String cterm=NONE ctermfg=Red ctermbg=Black
-    hi Comment cterm=NONE ctermfg=DarkGray ctermbg=Black
+    hi Comment cterm=NONE ctermfg=Red ctermbg=Black
     hi Number cterm=NONE ctermfg=Red ctermbg=Black
     hi Error cterm=NONE ctermfg=White ctermbg=DarkRed
     hi ErrorMsg cterm=NONE ctermfg=White ctermbg=Red

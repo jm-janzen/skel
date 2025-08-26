@@ -25,7 +25,9 @@ if has("gui_running") || &t_Co == 256
     hi Keyword      gui=NONE            guifg=#eeeeee   guibg=NONE
     hi Constant     gui=bold            guifg=#d0d0d0   guibg=NONE
     hi String       gui=NONE            guifg=#6060ff   guibg=NONE
-    hi Comment      gui=NONE            guifg=#585858   guibg=NONE
+    "hi Comment      gui=NONE            guifg=#585858   guibg=NONE
+    hi Comment      gui=NONE            guifg=#e060e0   guibg=NONE
+    hi Todo         gui=bold            guifg=#e00099   guibg=NONE
     hi Number       gui=bold            guifg=#4040ff   guibg=NONE
     hi Boolean      gui=bold            guifg=#4040ff   guibg=NONE
     hi Error        gui=NONE            guifg=#eeeeee   guibg=#870087
@@ -138,7 +140,7 @@ highlight! link Function Keyword
 highlight! link Include Keyword
 highlight! link Type Keyword
 highlight! link Typedef Keyword
-highlight! link Todo Keyword
+"highlight! link Todo Keyword
 highlight! link Label Keyword
 highlight! link Define Keyword
 "highlight! link DiffAdd Keyword
