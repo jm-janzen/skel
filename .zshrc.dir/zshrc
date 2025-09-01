@@ -95,9 +95,12 @@ export KEYTIMEOUT=1
 
 setopt transient_rprompt
 
-at_blink=%{$'\e[5m'%}
+jobs="%(1j.[%j]"$' '".)"
 timestamp="%(?.%{$bg[white]%}%{$fg[black]%}.%{$bg[red]%}%{$fg[black]%}) %D{%T} %{$reset_color%}"
-PS1="%(1j.[%j]"$' '".)$timestamp %{$fg[cyan]%}%~ ${at_blink}%{$fg_bold[cyan]%}>%{$reset_color%} "
+cwd="%{$fg[cyan]%}%~"
+caret="%{$fg_bold[cyan]%}>%{$reset_color%}"
+PROMPT="${jobs}${timestamp} ${cwd} ${caret} "
+
 RPROMPT="${VIM_INST}" # Just to show on shell init
 
 # C-v or e to edit cli (I haven't made up my mind yet)
