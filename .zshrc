@@ -34,5 +34,5 @@ antigen bundle kutsan/zsh-system-clipboard
 
 antigen apply
 
-eval "$(zoxide init zsh)"
-eval "$(~/.local/bin/mise activate)"
+#eval "$(zoxide init zsh)"
+#eval "$(~/.local/bin/mise activate)"

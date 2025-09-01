@@ -35,6 +35,7 @@
     d    = diff
     ds   = diff --stat
     dc   = diff --cached
+    dcs  = diff --stat --cached
     s    = show
     sb   = show-branch
     p    = pull --ff-only

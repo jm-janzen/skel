@@ -22,8 +22,7 @@ vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
 " autocomplete closing curly
-imap {<Enter> {<Enter>}<Esc>O
-"imap ({<Enter> ({<Enter>})<Esc>O
+"imap {<Enter> {<Enter>}<Esc>O
 
 " Map Ctrl-Backspace to delete the previous word in insert mode.
 " https://askubuntu.com/a/1331395
@@ -61,6 +60,7 @@ autocmd CmdwinEnter * map <buffer> <CR> <CR>
 
 " Leader,q to quit current buffer
 nmap <Leader>q :q<CR>
+nmap <Leader><S-q> :qa<CR>
 
 " Go to last misspelled word and auto fix
 nmap <Leader>z [s1z=

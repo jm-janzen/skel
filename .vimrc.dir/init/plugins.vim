@@ -9,6 +9,8 @@ Plug 'psliwka/vim-smoothie' " Smooth scrolling on <C-(u|d)> jump
 if has('nvim')
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
   Plug 'junegunn/fzf.vim'
+  " To edit text input using nvim in Firefox
+  Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
 endif
 
 " Activate with `vim --cmd 'let writing_mode=1'`

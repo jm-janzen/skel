@@ -344,7 +344,7 @@ function vimdate() {
 }
 
 function vimdaily() {
-    vim -S ~w/page.vim --cmd 'let writing_mode=1' ~w/daily-pages/$(date -I).page.md
+    vim -S ~w/page.vim --cmd 'let writing_mode=1' ~w/micro/$(date -I).page.md
 }
 
 # Click window to find out what program is running it
