@@ -44,6 +44,10 @@ autocmd BufNewFile,BufRead,FileType kitty_scrollback call Kitty_conf()
         set syn=shell
         source ${HOME}/.vimrc.dir/ftplugin/kitty_scrollback.vim
     endfunction
+au BufNewFile,BufRead,FileType *.html* call Html_conf()
+    function! Html_conf()
+        source ${HOME}/.vimrc.dir/lang_configs/macros_html.vim
+    endfunction
 
 " syntax highlighting like HTML for EJS files
 au BufNewFile,BufRead *.ejs set filetype=html
