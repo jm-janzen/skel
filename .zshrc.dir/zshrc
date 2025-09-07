@@ -1,6 +1,5 @@
 . $HOME/.profile
 export TERM=xterm-256color # setenv TERM 256color
-autoload -Uz promptinit; promptinit
 
 # Enable bash-like comments on the CLI
 setopt interactivecomments
@@ -33,6 +32,7 @@ hash -d w=$HOME/sandbox/writing
 hash -d usb=/media/jm
 
 # Use modern completion system
+autoload -Uz compinit
 for dump in ~/.zcompdump(N.mh+24); do
   compinit
 done

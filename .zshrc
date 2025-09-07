@@ -10,11 +10,7 @@ if [ -d $file ]; then
 done
 fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f /usr/local/bin/kubectl ] && source <(kubectl completion zsh)
 
-# For rbenv completions, obvi
-FPATH=~/.rbenv/completions:"$FPATH"
 
 setxkbmap -option ctrl:nocaps
 
