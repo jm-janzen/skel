@@ -10,8 +10,8 @@ fpath+="`dirname $0`/completions"
 function zedit () {
     file=$1
     case "$file" in
-        aliases|functions|main|completions)
-            vim ${zshdir}/${file}
+        aliases|functions|main|completions|options|bindkeys|prompt)
+            vim ${zshdir}/_${file}
             ;;
         *)
             echo "No argument given"
