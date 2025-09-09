@@ -10,7 +10,7 @@ fpath+="`dirname $0`/completions"
 function zedit () {
     file=$1
     case "$file" in
-        aliases|functions|zshrc|completions)
+        aliases|functions|main|completions)
             vim ${zshdir}/${file}
             ;;
         *)

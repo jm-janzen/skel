@@ -1,6 +1,8 @@
 . $HOME/.profile
 export TERM=xterm-256color # setenv TERM 256color
 
+# TODO Move opts to their own file
+
 # Enable bash-like comments on the CLI
 setopt interactivecomments
 setopt histignorealldups sharehistory
@@ -56,6 +58,8 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+# TODO Move bindkeys to their own file
+
 bindkey -v # vim mode settings
 
 autoload -U colors && colors
@@ -73,6 +77,8 @@ bindkey '^H' backward-kill-word
 # Fish-like auto-suggestions
 ZSH_AUTOSUGGEST_STRATEGY=(history completion) # Try history, but fallback to completion if no matches
 bindkey '^ ' autosuggest-accept # C-space to accept
+
+# TODO Move prompt to its own file
 
 zle-line-init() { zle -K viins }
 zle -N zle-line-init
