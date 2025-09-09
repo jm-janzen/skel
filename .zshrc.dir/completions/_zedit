@@ -1,6 +1,6 @@
 #compdef zedit
 
-A=( aliases functions main completions )
+A=( aliases functions main completions options )
 
 _arguments \
     - options \
