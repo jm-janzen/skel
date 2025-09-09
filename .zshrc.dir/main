@@ -1,4 +1,3 @@
-. $HOME/.profile
 export TERM=xterm-256color # setenv TERM 256color
 
 # General tilde expansions
