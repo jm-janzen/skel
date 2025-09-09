@@ -18,6 +18,7 @@
     h    = help
     st   = status -bs
     ss   = status -b --column=dense
+    stu  = status -bsuno
     a    = add
     ap   = add --patch
     cp   = cherry-pick
