@@ -1,0 +1,48 @@
+# To use this ignore file to track configurations from your home dir,
+# then add the following in your ~/skel/.git/config
+#
+#   [core]
+#       excludesfile = /home/YOUR_USERNAME/skel/.gitignore
+#
+
+# Default dirs
+Desktop
+Documents
+Downloads
+Games
+Music
+Pictures
+
+# My usual home dirs (version these independently)
+trees
+notes
+snap
+bups
+doom
+sandbox
+skel
+go
+
+# Rude programs who care nothing for the sanctity of $HOME
+node_modules
+antigen.zsh
+
+*.png
+*.json
+
+# Since programs feel welcome to use .config/ however they like, we ignore the
+# entire directory and allow only specific subdirectories
+.config/*
+!.config/nvim
+!.config/kitty
+!.config/monitors.xml
+!.config/pavucontrol.ini
+!.config/polybar
+!.config/rofi
+
+# Runcoms and dotfiles to track
+.*
+!.global-githooks
+!.screenlayout
+!.vim*
+!.zsh*
