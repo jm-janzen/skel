@@ -34,25 +34,7 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-# TODO Move bindkeys to their own file
-
-bindkey -v # vim mode settings
-
 autoload -U colors && colors
-
-bindkey '^P' up-history
-bindkey '^N' down-history
-bindkey '^?' backward-delete-char
-bindkey '^h' backward-delete-char
-bindkey '^w' backward-kill-word
-bindkey '^r' history-incremental-search-backward
-# ctrl+backspace and kill word before cursor
-bindkey '^H' backward-kill-word
-
-# https://github.com/zsh-users/zsh-autosuggestions
-# Fish-like auto-suggestions
-ZSH_AUTOSUGGEST_STRATEGY=(history completion) # Try history, but fallback to completion if no matches
-bindkey '^ ' autosuggest-accept # C-space to accept
 
 # TODO Move prompt to its own file
 
@@ -75,8 +57,6 @@ zle -N zle-line-init
 zle -N zle-keymap-select
 export KEYTIMEOUT=1
 
-setopt transient_rprompt
-
 jobs="%(1j.[%j]"$' '".)"
 timestamp="%(?.%{$bg[white]%}%{$fg[black]%}.%{$bg[red]%}%{$fg[black]%}) %D{%T} %{$reset_color%}"
 cwd="%{$fg[cyan]%}%~"
@@ -84,16 +64,3 @@ caret="%{$fg_bold[cyan]%}>%{$reset_color%}"
 PROMPT="${jobs}${timestamp} ${cwd} ${caret} "
 
 RPROMPT="${VIM_INST}" # Just to show on shell init
-
-# C-v or e to edit cli (I haven't made up my mind yet)
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey -M vicmd '^v' edit-command-line
-bindkey -M vicmd '^e' edit-command-line
-
-# for zsh-users/zsh-autosuggestions
-# C-right (accepts one word)
-bindkey '[1;5C' forward-word
-# C-left (same as C-h -- backspace word)
-bindkey '[1;5D' backward-kill-word
-

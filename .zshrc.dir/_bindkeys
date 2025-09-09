@@ -1,0 +1,27 @@
+bindkey -v # vim mode settings
+
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
+# ctrl+backspace and kill word before cursor
+bindkey '^H' backward-kill-word
+
+# https://github.com/zsh-users/zsh-autosuggestions
+# Fish-like auto-suggestions
+ZSH_AUTOSUGGEST_STRATEGY=(history completion) # Try history, but fallback to completion if no matches
+bindkey '^ ' autosuggest-accept # C-space to accept
+
+# C-v or e to edit cli (I haven't made up my mind yet)
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey -M vicmd '^v' edit-command-line
+bindkey -M vicmd '^e' edit-command-line
+
+# for zsh-users/zsh-autosuggestions
+# C-right (accepts one word)
+bindkey '[1;5C' forward-word
+# C-left (same as C-h -- backspace word)
+bindkey '[1;5D' backward-kill-word
