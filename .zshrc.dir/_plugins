@@ -1,0 +1,12 @@
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/antigen.zsh ] && source ~/antigen.zsh
+
+export NVM_DIR="$HOME/.nvm"
+export NVM_COMPLETION=true
+export NVM_LAZY_LOAD=true
+antigen bundle lukechilds/zsh-nvm
+
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle kutsan/zsh-system-clipboard
+
+antigen apply
