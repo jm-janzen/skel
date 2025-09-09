@@ -72,3 +72,10 @@ alias meow="MEOW=MEOW LINES=$(tput lines) NUM=$(tput cols) node -e 'const{LINES,
 
 alias write_daily_page="vim -S ~w/page.vim --cmd 'let writing_mode=1' ~w/daily-pages/$(date -I).page.md"
 
+# General tilde expansions
+hash -d t=$HOME/trees
+hash -d s=$HOME/sandbox
+hash -d c=$HOME/.config
+hash -d D=$HOME/Downloads
+hash -d w=$HOME/sandbox/writing
+hash -d usb=/media/jm
