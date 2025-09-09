@@ -21,6 +21,7 @@ zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
+
 eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
@@ -33,34 +34,3 @@ zstyle ':completion:*' verbose true
 
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
-
-autoload -U colors && colors
-
-# TODO Move prompt to its own file
-
-zle-line-init() { zle -K viins }
-zle -N zle-line-init
-
-VIM_NORM="%{$fg[blue]%} NRM %{$reset_color%}"
-VIM_INST="%{$fg[black]%}%{$bg[blue]%} INS %{$reset_color%}"
-
-function zle-line-init zle-keymap-select {
-    RPS1="${${KEYMAP/vicmd/$VIM_NORM}/(main|viins)/$VIM_INST}"
-    RPS2=$RPS1
-    zle reset-prompt
-}
-
-function zle-line-finish {
-}
-zle -N zle-line-finish
-zle -N zle-line-init
-zle -N zle-keymap-select
-export KEYTIMEOUT=1
-
-jobs="%(1j.[%j]"$' '".)"
-timestamp="%(?.%{$bg[white]%}%{$fg[black]%}.%{$bg[red]%}%{$fg[black]%}) %D{%T} %{$reset_color%}"
-cwd="%{$fg[cyan]%}%~"
-caret="%{$fg_bold[cyan]%}>%{$reset_color%}"
-PROMPT="${jobs}${timestamp} ${cwd} ${caret} "
-
-RPROMPT="${VIM_INST}" # Just to show on shell init
