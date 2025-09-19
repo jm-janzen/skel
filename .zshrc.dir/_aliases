@@ -54,10 +54,6 @@ alias    cp='cp -vi'                      # "
 alias    ln='ln -vi'                      # "
 alias crontab='crontab -i'                # Prompt before deleting user's crontab o_o;;
 
-# Used to synch/repro configurations between systems
-# NOTE See skel/README.md for instructions on using this
-alias skel='git --work-tree=$HOME --git-dir=$HOME/skel/.git'
-
 # Fun
 alias vacay="gcal -H '\e[7m:\e[0m:\e[32;1m:\e[0m' -q CA_ON -y $(date +'%Y')"
 alias asdf="echo 'Hang in there, bud :)'"
