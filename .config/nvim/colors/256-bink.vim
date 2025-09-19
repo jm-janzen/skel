@@ -42,6 +42,7 @@ if has("gui_running") || &t_Co == 256
     hi SpellRare    gui=NONE            guifg=#0000af   guibg=NONE
     hi SpecialKey   gui=bold            guifg=#eeeeee   guibg=#8080ff
     hi MatchParen   gui=bold            guifg=#afafff   guibg=#000050
+    hi Whitespace   gui=NONE            guifg=#232323   guibg=NONE
 
     hi WildMenu     gui=NONE            guifg=#585858   guibg=#eeeeee
     hi Pmenu        gui=NONE            guifg=#eeeeff   guibg=#0101af

@@ -1,16 +1,6 @@
-
 configuration {
     modi: "window,run,drun";
     show-icons: true;
-    dpi: 180;
-    timeout {
-        action: "kb-cancel";
-        delay:  0;
-    }
-    filebrowser {
-        directories-first: true;
-        sorting-method:    "name";
-    }
 }
 
-@theme "c64"
+@theme "arthur"
