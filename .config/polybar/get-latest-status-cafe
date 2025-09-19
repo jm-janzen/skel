@@ -3,7 +3,7 @@
 if [[ -f "$(dirname "$0")/get-latest-status-cafe.ok" ]]
 then
     username=$(curl https://status.cafe -o - |htmlq 'article > div'|& head -1|sed -nE 's/<div class="status-username"><a href="\/users\/(.*)".*/\1/p')
-    content=$(curl "https://status.cafe/users/${username}/status.json"|jq .content -r)
+    content=$(curl "https://status.cafe/users/${username}/status.json"|jq .content -r| w3m -dump -T text/html)
     echo "${username}: ${content}"
 else
     echo ---
