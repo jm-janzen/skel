@@ -18,7 +18,7 @@ if version > 580
         syntax reset
     endif
 endif
-let g:colors_name = "256_noir"
+let g:colors_name = "256-bink"
 
 if has("gui_running") || &t_Co == 256
     hi Normal       gui=NONE            guifg=#bcbcbc   guibg=NONE
@@ -39,7 +39,7 @@ if has("gui_running") || &t_Co == 256
     hi SignColumn   gui=NONE            guifg=#0000af   guibg=#585858
     hi SpellBad     gui=undercurl       guifg=#eeeeee   guibg=#870087
     hi SpellCap     gui=NONE            guifg=#eeeeee   guibg=#0000af
-    hi SpellRare    gui=NONE            guifg=#0000af   guibg=NONE
+    hi SpellRare    gui=NONE            guifg=#6456ef   guibg=NONE
     hi SpecialKey   gui=bold            guifg=#eeeeee   guibg=#8080ff
     hi MatchParen   gui=bold            guifg=#afafff   guibg=#000050
     hi Whitespace   gui=NONE            guifg=#232323   guibg=NONE
