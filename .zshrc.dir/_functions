@@ -370,6 +370,20 @@ function tdiff() {
     date +%H:%M:%S -ud @${DIFFSEC}
 }
 
+function tea_time() {
+    WAKE_SOUND='/usr/share/sounds/sound-icons/prompt'
+
+    SLEEP_TIME=${1:-5m}
+    WAKE_MESSAGE=${2:-tea time\!}
+
+    # XXX Hmm this blocks exiting when not in local script form...
+    ( (
+        sleep $SLEEP_TIME
+        aplay $WAKE_SOUND
+        notify-send --wait "$WAKE_MESSAGE"
+    ) 1>&- 2>&- & )
+}
+
 local function cd_command() {
 
     dir="${@:1:1}"
