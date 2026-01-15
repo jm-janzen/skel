@@ -54,6 +54,8 @@
     folo = log --patch --stat --follow
     short= rev-parse --short
     ll   = log --date=short --pretty=format:' %C(bold blue)%cd %Creset %C(red)%h%Creset %C(auto)%d %Creset %C(normal)%s %Creset %C(bold blue)(%Creset %C(yellow)%an %Creset %C(bold blue)%cr)%Creset ' --color --graph --decorate
+    lll  = "!f(){ git log --format=format:%h\\|%an\\|%aI\\|%s $@ |column -ts\\|; }; f "
+    hi = "!f(){ echo hi; }; f"
     tags = log --tags --simplify-by-decoration --pretty='format:%ai %d'
     recents = for-each-ref --sort=-committerdate refs/ --count=25 --format=' \n %(color:yellow)%(refname:short)%(color:reset) %(color:red)%(objectname:short)%(color:reset):  (%(color:green)%(committerdate:relative)%(color:reset), %(authorname)) \n\t %(contents:subject) '
     recent = "!git for-each-ref --count=25 --sort=-committerdate refs/remotes --format='%(HEAD)%(color:yellow)%(refname:short)|%(color:bold green)%(committerdate:relative)|%(color:blue)%(subject)|%(color:magenta)%(authorname)%(color:reset)'|column -nts'|'"
