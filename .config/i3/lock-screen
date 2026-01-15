@@ -2,4 +2,4 @@
 resolution=$(xdpyinfo|sed -En 's/\s+dimensions:\s+([0-9x]+)\spixels.*/\1/p')
 scrot --quality 1 --compression 0 --format jpg - \
     | convert -scale 10% -scale 1000% -quality 100 - RGB:- \
-    | i3lock --image /dev/stdin --raw "${resolution}:rgb"
+    | swaylock -c 111111 --image /dev/stdin #--raw "${resolution}:rgb"

@@ -173,7 +173,8 @@ bindsym $mod+Shift+less move container to output left
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# aestart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+# mod+shift+c for sway
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
@@ -217,7 +218,16 @@ assign [class="Signal"]      number 12 chat
 assign [class="discord"]     number 12 chat
 
 # Use polybar for... bar
-exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+#exec_always --no-startup-id $HOME/.config/waybar/launch.sh
+# Trying out nwg-panel
+exec_always --no-startup-id nwg-panel
+
+
+# This is for sway(land)
+input "11311:40:SNSL0028:00_2C2F:0028_Touchpad" {
+    dwt enabled
+    tap enabled
+}
 
 # class                 border  backgr. text    indicator child_border
 client.focused          #9cff00 #436d00 #dbffa3 #2e9ef4   #1a3300
