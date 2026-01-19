@@ -26,6 +26,7 @@
     co   = checkout
     cop  = checkout --patch
     cob  = checkout -b
+      r  = reset
     sl   = stash list
     cm   = commit
     cmm  = commit -m
