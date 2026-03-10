@@ -4,7 +4,10 @@
 file=${HOME}/.${${(%):-%1N}#.}.dir
 if [ -d $file ]; then
     for f in $file/*; do
-        case $f in *~) continue;; esac
+        case $f in
+            *~) continue;;
+            *zwc) continue;;
+        esac
         source $f
 done
 fi
