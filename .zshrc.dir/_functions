@@ -183,7 +183,7 @@ function look-busy() {
 }
 
 function calc() {
-    echo "$@" | bc
+    echo "$@" | bc -l
 }
 
 function grade() {
