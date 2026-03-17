@@ -1,0 +1,16 @@
+set $monitor_laptop "eDP-1"
+set $monitor_main "HDMI-A-1"
+set $monitor_secondary "DP-1"
+
+# Office
+#output $monitor_laptop     mode 2880x1800@60Hz     pos 4000 1660
+#output $monitor_main       mode 2560x1440@59.951Hz pos 1440 1120
+#output $monitor_secondary  mode 2560x1440@59.951Hz pos 0 0
+#output HDMI-A-1 transform 90
+
+# Home
+
+output $monitor_laptop      mode 1440x900@60Hz     pos 228 1080
+output $monitor_secondary   mode 1920x1080@59.89Hz pos 1920 0
+output $monitor_main        mode 1920x1080@59.89Hz pos 0 0
+
