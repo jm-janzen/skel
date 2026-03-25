@@ -3,8 +3,8 @@ set $monitor_main "HDMI-A-1"
 set $monitor_secondary "DP-1"
 
 # Office
-#output $monitor_laptop      mode 1440x900  pos 4720 2940
-#output $monitor_main        mode 2160x3840 pos 0 0
+#output $monitor_laptop      mode 1440x900 pos  4720 2940
+#output $monitor_main        mode 1440x2560 pos 0 0
 #output $monitor_secondary   mode 2560x1440 pos 2160 2400
 #output $monitor_main transform 90
 
