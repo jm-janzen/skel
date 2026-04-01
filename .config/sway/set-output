@@ -10,7 +10,7 @@ set $monitor_secondary "DP-3"
 
 # Home
 
-output $monitor_laptop      mode 1440x900@60Hz     pos 228 1080
-output $monitor_secondary   mode 1920x1080@59.89Hz pos 1920 0
-output $monitor_main        mode 1920x1080@59.89Hz pos 0 0
+#output $monitor_laptop      mode 1440x900@60Hz     pos 228 1080
+#output $monitor_main        mode 1920x1080@59.89Hz pos 1920 0
+#output $monitor_secondary   mode 1920x1080@59.89Hz pos 0 0
 
