@@ -1,3 +1,6 @@
+# super / meta
+set $mod Mod4
+
 # Move to and from scratch space
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show

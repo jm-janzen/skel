@@ -4,9 +4,6 @@ include /etc/sway/config-vars.d/*
 include ~/.config/sway/bindings
 include ~/.config/sway/set-output
 
-# super / meta
-set $mod Mod4
-
 font pango:monospace 10
 
 # exec_always, to run of refresh (for randr changes)
