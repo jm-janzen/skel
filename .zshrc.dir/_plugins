@@ -1,12 +1,12 @@
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f ~/antigen.zsh ] && source ~/antigen.zsh
+[ -f ~/.antidote/antidote.zsh ] && source ~/.antidote/antidote.zsh
+[ -f ~/.antidote/antidote.zsh ] && source <(antidote init)
+
 
 export NVM_DIR="$HOME/.nvm"
 export NVM_COMPLETION=true
 export NVM_LAZY_LOAD=true
-antigen bundle lukechilds/zsh-nvm
+antidote bundle lukechilds/zsh-nvm
 
-antigen bundle zsh-users/zsh-autosuggestions
-antigen bundle kutsan/zsh-system-clipboard
-
-antigen apply
+antidote bundle zsh-users/zsh-autosuggestions
+antidote bundle kutsan/zsh-system-clipboard
