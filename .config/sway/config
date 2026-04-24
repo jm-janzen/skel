@@ -6,8 +6,16 @@ include ~/.config/sway/set-output
 
 font pango:monospace 10
 
+# Fixes issue with cursor disappearing over images in Firefox
+exec_always swaymsg 'seat * xcursor_theme Adwaita 24'
+
 # exec_always, to run of refresh (for randr changes)
+# Kill swaybg before exec to prevent duplicates (really slows down after a while!)
+exec_always killall swaybg
 exec_always --no-startup-id swaybg --mode tile --image ~/Pictures/bg
+
+# Lock after 3 minutes of inactivity
+exec swayidle -w timeout 180 'swaylock -f -c 000000'
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -31,7 +39,6 @@ bar {
     swaybar_command waybar
 }
 
-# This is for sway(land)
 input "11311:40:SNSL0028:00_2C2F:0028_Touchpad" {
     dwt enabled
     tap enabled
