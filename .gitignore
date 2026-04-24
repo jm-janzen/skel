@@ -1,0 +1,11 @@
+*.sw[a-p]
+*.zwc
+
+.vim/*
+!.vim/init.vim
+
+.config/vifm/*
+!.config/vifm/vifmrc
+
+.config/nvim/spell
+
