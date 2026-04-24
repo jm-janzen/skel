@@ -13,3 +13,5 @@ done
 fi
 
 setxkbmap -option ctrl:nocaps
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
