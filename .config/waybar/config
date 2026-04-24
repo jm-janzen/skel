@@ -5,26 +5,10 @@
     // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad", "custom/media"],
+    "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
     "modules-center": ["sway/window"],
-    "modules-right": ["mpd", "idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "battery", "clock#est", "clock#egy", "tray"],
-    // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "warp-on-scroll": false,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
+    "modules-right": ["idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "battery", "clock#est", "clock#egy", "tray"],
+    //"modules-right": ["clock#est"],
     "keyboard-state": {
         "numlock": true,
         "capslock": true,
@@ -44,64 +28,49 @@
         "tooltip": true,
         "tooltip-format": "{app}: {title}"
     },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 2,
-        "consume-icons": {
-            "on": " "
+    "sway/window": {
+        "format": "{title}",
+        "rewrite": {
+            "(.*) — Mozilla Firefox": " $1",
         },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
-    },
-    "idle_inhibitor": {
-        "format": "{icon}",
-        "format-icons": {
-            "activated": "",
-            "deactivated": ""
-        }
     },
     "tray": {
-        // "icon-size": 21,
         "spacing": 10
     },
     "clock#est": {
-        "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format": "{:%Y-%m-%d %H:%M:%S}"
+        "interval": 1,
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "format": "<span foreground=\"#a0a0a0\">{:%a %Y-%m-%d <span font_weight=\"bold\" font_size=\"larger\" foreground=\"#ffffff\">%H:%M:%S</span> %Z}</span>",
+        "calendar": {
+            "mode": "year",
+            "iso8601": true,
+            "mode-mon-col": 3,
+            "on-scroll": 1,
+            "weeks-pos": "left",
+            "format": {
+                "today": "<span color=\"orange\"><b>{}</b></span>",
+                "weeks": "<span color=\"grey\">W{}</span>",
+            },
+        },
     },
     "clock#egy": {
         "timezone": "Africa/Cairo",
+        "format": "<span foreground=\"#b0b0b0\">{:%H:%M} EGY</span>"
     },
     "cpu": {
-        "format": "{usage}% ",
+        "format": "P {usage}%",
         "tooltip": false
     },
     "memory": {
-        "format": "{}% "
+        "format": "M {}%"
     },
     "temperature": {
         // "thermal-zone": 2,
         // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
         "critical-threshold": 80,
-        // "format-critical": "{temperatureC}°C {icon}",
-        "format": "{temperatureC}°C {icon}",
-        "format-icons": ["", "", ""]
+        "format-critical": "////// {temperatureC}°C {icon} //////",
+        "format": "{temperatureC}°C",
+        "format-icons": ["", "", ""]
     },
     "backlight": {
         // "device": "acpi_video1",
@@ -109,34 +78,44 @@
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "battery": {
+        "bat": "BAT0",
         "states": {
             "good": 95,
             "warning": 30,
-            "critical": 15
+            "critical": 15,
         },
         "format": "{capacity}% {icon}",
-        "format-charging": "{capacity}% ",
-        "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
-        "format-good": "", // An empty format will hide the module
-        "format-full": "",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "",
+        "format-warning": "////// {capacity}% //////",
+        "format-critical": "////// {capacity}% //////",
         "format-icons": ["", "", "", "", ""]
+    },
+    "idle_inhibitor": {
+        "format": "{icon}",
+        "format-icons": {
+            "activated": "<span font_size=\"larger\" color=\"pink\">UNLOCKED</span>",
+            "deactivated": ""
+        }
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
+        "interval": 30,
         "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "format-linked": "{ifname} (No IP) ",
+        "format-ethernet": "{ipaddr}/{cidr} ({bandwidthDownBytes} ↑ {bandwidthUpBytes} ↓)",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "format-linked": "{ifname} (No IP)",
         "format-disconnected": "Disconnected ⚠",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}"
+        "format-disabled": "Not enabled ⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
+        "min-length": 45,
     },
     "pulseaudio": {
         // "scroll-step": 1, // %, can be a float
-        "format": "{volume:6}% {icon}",
+        "format": "{volume}% {icon}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
         "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
+        "format-muted": "mute ",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {
@@ -148,8 +127,10 @@
             "car": "",
             "default": ["", "", ""]
         },
-        // XXX Not installed?
-        "on-click": "pavucontrol"
+        "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right": "pavucontrol",
+        "min-length": 8,
+        "align": 0.5,
     },
     "custom/media": {
         "format": "{icon} {}",

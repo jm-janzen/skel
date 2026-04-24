@@ -1,13 +1,10 @@
 * {
-    /* `otf-font-awesome` is required to be installed for icons */
-    font-family: FontAwesome, Roboto, Helvetica, Arial, sans-serif;
-    font-size: 13px;
+    font-family: "Font Awesome", "Noto Mono", font-awesome;
 }
 
 window#waybar {
     background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-    color: #ffffff;
+    color: #f0f0f0;
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -51,16 +48,18 @@ button:hover {
 #workspaces button {
     padding: 0 5px;
     background-color: transparent;
-    color: #ffffff;
+    color: #a0a0a0;
 }
 
 #workspaces button:hover {
+    color: #ffffff;
     background: rgba(0, 0, 0, 0.2);
 }
 
 #workspaces button.focused {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
+    background-color: #436d00;
+    color: #dbffa3;
+    box-shadow: inset 0 -3px #9cff00;
 }
 
 #workspaces button.urgent {
@@ -91,7 +90,7 @@ button:hover {
     color: #ffffff;
 }
 #pulseaudio {
-    min-width: 60px;
+    padding: 0;
 }
 
 #window,
@@ -110,7 +109,7 @@ button:hover {
 }
 
 #clock {
-    background-color: #64727D;
+    background-color: #404040;
 }
 
 #battery {
@@ -119,8 +118,15 @@ button:hover {
 }
 
 #battery.charging, #battery.plugged {
-    color: #ffffff;
-    background-color: #26A65B;
+    color: #000000;
+    background-color: #b0b0b0;
+}
+
+#battery.warning:not(.plugged) {
+    animation: blink-warn 80ms alternate infinite;
+}
+#battery.critical:not(.plugged)  {
+    animation: blink-crit 100ms alternate infinite;
 }
 
 @keyframes blink {
@@ -129,28 +135,39 @@ button:hover {
         color: #000000;
     }
 }
-
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    color: #ffffff;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+/* FIXME Got to be a better way */
+@keyframes blink-warn {
+    0% {
+        background-color: #ffff00;
+        color: #ff0000;
+    }
+    100% {
+        background-color: #ffbb00;
+        color: #ff0000;
+    }
 }
+@keyframes blink-crit {
+    0% {
+        background-color: #000000;
+        color: #ff0000;
+    }
+    100% {
+        background-color: #ff0000;
+        color: #000000;
+    }
+}
+
 
 label:focus {
     background-color: #000000;
 }
 
 #cpu {
-    background-color: #2ecc71;
-    color: #000000;
+    background-color: #565656;
 }
 
 #memory {
-    background-color: #9b59b6;
+    background-color: #565656;
 }
 
 #disk {
@@ -162,7 +179,7 @@ label:focus {
 }
 
 #network {
-    background-color: #2980b9;
+    background-color: #565656;
 }
 
 #network.disconnected {
@@ -170,13 +187,13 @@ label:focus {
 }
 
 #pulseaudio {
-    background-color: #f1c40f;
+    background-color: #ababab;
     color: #000000;
 }
 
 #pulseaudio.muted {
-    background-color: #90b1b1;
-    color: #2a5c45;
+    background-color: #565656;
+    color: #a0a0a0;
 }
 
 #wireplumber {
@@ -203,15 +220,15 @@ label:focus {
 }
 
 #temperature {
-    background-color: #f0932b;
+    background-color: #565656;
 }
 
 #temperature.critical {
-    background-color: #eb4d4b;
+    background-color: #ff3333;
 }
 
 #tray {
-    background-color: #2980b9;
+    background-color: #121212;
 }
 
 #tray > .passive {
@@ -224,12 +241,17 @@ label:focus {
 }
 
 #idle_inhibitor {
-    background-color: #2d3436;
+    background-color: #b0b0b0;
+    color: #565656;
 }
 
 #idle_inhibitor.activated {
-    background-color: #ecf0f1;
-    color: #2d3436;
+    transition: all .5s ease;
+    transition-property: width, background;
+
+    font-weight: bold;
+    background-color: red;
+    color: #ffffff;
 }
 
 #mpd {
