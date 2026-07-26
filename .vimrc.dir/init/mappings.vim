@@ -89,7 +89,18 @@ inoremap # X#
 " Plugin-specific
 "
 
-map <Leader>d :CocDisable<CR>
+map <Leader>d :call CocToggle()<CR>
+let g:iscocactive = 1
+function! CocToggle()
+    if g:iscocactive == 1
+        :CocDisable
+        let g:iscocactive=0
+    else
+        :CocEnable
+        let g:iscocactive=1
+    endif
+endfunction
+
 
 noremap <C-Up> :GitGutterPrevHunk<CR>
 noremap <C-Down> :GitGutterNextHunk<CR>
