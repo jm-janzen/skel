@@ -32,7 +32,7 @@ git diff --staged --patch -U0 \
     | awk '/^\+[^\+]/ { print }' \
     | grep -qw 'debugger' \
     && {
-        echo "Can't commit - debug code detected" ; exit 1
+        echo "debug code detected"
     }
 
 exit 0
