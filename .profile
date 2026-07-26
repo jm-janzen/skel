@@ -44,5 +44,6 @@ if [ -d "$HOME/.local/kitty.app/bin" ] ; then
 fi
 
 export DOOMWADDIR=$HOME/doom
+
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/bin
