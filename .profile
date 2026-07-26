@@ -35,5 +35,6 @@ if [ -d "$HOME/go/bin" ] ; then
     PATH="$HOME/go/bin:$PATH"
 fi
 
+export DOOMWADDIR=$HOME/doom
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:$HOME/bin

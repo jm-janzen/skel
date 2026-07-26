@@ -64,3 +64,11 @@ hash -d c=$HOME/.config
 hash -d D=$HOME/Downloads
 hash -d w=$HOME/sandbox/writing
 hash -d usb=/media/jm
+
+# Doom
+hash -d d=$HOME/doom
+hash -d dm=$HOME/doom/MWADS
+hash -d dp=$HOME/doom/PWADS
+hash -d dw=$HOME/doom/WIP
+hash -d doom1=$HOME/doom/DOOM.WAD
+hash -d doom2=$HOME/doom/DOOM2.WAD
