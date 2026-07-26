@@ -1,4 +1,4 @@
-set lcs=space:·,tab:>·
+set lcs=tab:>·
 set list
 set incsearch   " highlight search results as they are being typed
 set hlsearch    " highlight search results
@@ -104,7 +104,6 @@ if exists('writing_mode')
     set nocursorline
     syntax off
     " This colourscheme plays nicely with limelight
-    colorscheme bink-arvo
 
     " n and m dashes
     iabbrev <buffer> -- –
