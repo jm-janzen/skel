@@ -1,3 +1,5 @@
+[[ -d /home/linuxbrew/.linuxbrew && $- == *i* ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f ~/.antidote/antidote.zsh ] && source ~/.antidote/antidote.zsh
 [ -f ~/.antidote/antidote.zsh ] && source <(antidote init)

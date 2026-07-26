@@ -9,4 +9,6 @@ if [ -d $file ]; then
 done
 fi
 
-setxkbmap -option ctrl:nocaps
+setxkbmap -option ctrl:nocaps 2>/dev/null
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
