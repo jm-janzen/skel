@@ -1,4 +1,4 @@
-set lcs=tab:>·
+set lcs=space:·,tab:>·
 set list
 set incsearch   " highlight search results as they are being typed
 set hlsearch    " highlight search results

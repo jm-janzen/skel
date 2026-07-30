@@ -21,6 +21,8 @@ zle -N zle-keymap-select
 export KEYTIMEOUT=1
 
 jobs="%(1j.[%j]"$' '".)"
+# TODO Different colours depending on number of non-zero return?
+#   eg. 130 (Ctrl+c) is just off-white instead of errored-red (errorred, lol)
 timestamp="%(?.%{$bg[white]%}%{$fg[black]%}.%{$bg[red]%}%{$fg[black]%}) %D{%T} %{$reset_color%}"
 cwd="%{$fg[cyan]%}%~"
 caret="%{$fg_bold[cyan]%}>%{$reset_color%}"

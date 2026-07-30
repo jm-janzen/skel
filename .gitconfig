@@ -26,6 +26,7 @@
     co   = checkout
     cop  = checkout --patch
     cob  = checkout -b
+    cod  = checkout HEAD
       r  = reset
     sl   = stash list
     cm   = commit
@@ -43,6 +44,7 @@
     sb   = show-branch
     p    = pull --ff-only
     pu   = push
+# FIXME See if we can fetch 'origin' programatically (current remote)
     puu  = push -u origin
     pub  = "!git push -u origin $(git rev-parse --abbrev-ref HEAD)"
     poof = push --force-with-lease
