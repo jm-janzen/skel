@@ -25,7 +25,6 @@ if has("gui_running") || &t_Co == 256
     hi Keyword      gui=NONE            guifg=#eeeeee   guibg=NONE
     hi Constant     gui=bold            guifg=#d0d0d0   guibg=NONE
     hi String       gui=NONE            guifg=#6060ff   guibg=NONE
-    "hi Comment      gui=NONE            guifg=#585858   guibg=NONE
     hi Comment      gui=NONE            guifg=#e060e0   guibg=NONE
     hi Todo         gui=bold            guifg=#e00099   guibg=NONE
     hi Number       gui=bold            guifg=#4040ff   guibg=NONE

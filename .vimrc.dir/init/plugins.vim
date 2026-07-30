@@ -11,6 +11,8 @@ if has('nvim')
   Plug 'junegunn/fzf.vim'
   " To edit text input using nvim in Firefox
   Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
+  "Plug 'yaegassy/coc-ruff', {'do': 'yarn install --frozen-lockfile'}
 endif
 
 " Activate with `vim --cmd 'let writing_mode=1'`
@@ -168,5 +170,10 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
 
 endif
+
+"
+" coc extensions
+"
+
 
 call plug#end()

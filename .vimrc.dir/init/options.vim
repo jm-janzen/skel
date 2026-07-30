@@ -1,5 +1,5 @@
 set lcs=space:·,tab:>·
-set list
+set nolist
 set incsearch   " highlight search results as they are being typed
 set hlsearch    " highlight search results
 set shiftround  " shift to set columns rather than relative

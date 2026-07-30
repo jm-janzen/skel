@@ -2,6 +2,8 @@ include /etc/sway/config.d/*
 include /etc/sway/config-vars.d/*
 
 include ~/.config/sway/bindings
+# TODO Make a script to switch between ({office,home}-docked, and undocked)
+# TODO Try out autorandr (can't believe I forgot about that tool...)
 include ~/.config/sway/set-output
 
 font pango:monospace 10
@@ -14,8 +16,15 @@ exec_always swaymsg 'seat * xcursor_theme Adwaita 24'
 exec_always killall swaybg
 exec_always --no-startup-id swaybg --mode tile --image ~/Pictures/bg
 
-# Lock after 3 minutes of inactivity
-exec swayidle -w timeout 180 'swaylock -f -c 000000'
+# Lock after 5 minutes of inactivity
+# FIXME Turn off monitor after 3, or screensaver, first
+exec swayidle -w timeout 300 'swaylock -f -c 000000'
+
+# Sway Notification Center
+#   https://github.com/ErikReider/SwayNotificationCenter
+## Notification Daemon + Toggle control center binding
+exec swaync
+bindsym $mod+Shift+n exec swaync-client -t -sw
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod

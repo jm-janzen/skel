@@ -16,8 +16,12 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
+# FIXME Make these conditional
 EDITOR=nvim
 VISUAL=nvim
+
+# For thunderbird ISO-8601 datetime 𝍊
+LC_TIME=en_GB.UTF-8
 
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
@@ -34,3 +38,8 @@ fi
 if [ -d "$HOME/go/bin" ] ; then
     PATH="$HOME/go/bin:$PATH"
 fi
+
+if [ -d "$HOME/.local/kitty.app/bin" ] ; then
+    PATH="$HOME/.local/kitty.app/bin:$PATH"
+fi
+

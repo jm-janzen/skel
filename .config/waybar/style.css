@@ -113,8 +113,7 @@ button:hover {
 }
 
 #battery {
-    background-color: #ffffff;
-    color: #000000;
+    background-color: #565656;
 }
 
 #battery.charging, #battery.plugged {
@@ -241,8 +240,10 @@ label:focus {
 }
 
 #idle_inhibitor {
-    background-color: #b0b0b0;
-    color: #565656;
+    /* These are my old i3wm colours :) */
+    background-color: #436d00;
+    color: #dbffa3;
+    border: 1px solid #9cff00;
 }
 
 #idle_inhibitor.activated {
@@ -252,6 +253,7 @@ label:focus {
     font-weight: bold;
     background-color: red;
     color: #ffffff;
+    border: 2px solid darkred;
 }
 
 #mpd {
