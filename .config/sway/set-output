@@ -1,15 +1,22 @@
-set $monitor_laptop "eDP-1"
-set $monitor_main "HDMI-A-1"
-set $monitor_secondary "DP-1"
+#!/usr/bin/env bash
 
-# Office
-output $monitor_laptop      mode 2880x1800 pos 0 2940
-output $monitor_main        mode 2560x1440 pos 1440 2400
-output $monitor_secondary   mode 3840x2160 pos 4000 0
-output $monitor_secondary transform 90
+monitor_laptop="eDP-1"
+monitor_main="HDMI-A-1"
+monitor_secondary="DP-1"
 
-# Home
-#output $monitor_laptop      mode 1440x900@60Hz     pos 228 1080
-#output $monitor_secondary   mode 1920x1080@59.89Hz pos 1920 0
-#output $monitor_main        mode 1920x1080@59.89Hz pos 0 0
+# FIXME Auto-detect this somehow (USB hub?)
+WORK_LOCATION=$(tail -1 /tmp/WORK_LOCATION)
+WORK_LOCATION=${WORK_LOCATION:-office}
 
+if [[ $WORK_LOCATION == office ]]
+then
+    swaymsg "output $monitor_laptop      mode 2880x1800 pos 0 2940"
+    swaymsg "output $monitor_main        mode 2560x1440 pos 1440 2400"
+    swaymsg "output $monitor_secondary   mode 3840x2160 pos 4000 0"
+    swaymsg "output $monitor_secondary transform 90"
+elif [[ $WORK_LOCATION == home ]]
+then
+    swaymsg "output $monitor_laptop      mode 1440x900@60Hz     pos 228 1080"
+    swaymsg "output $monitor_main        mode 1920x1080@59.89Hz pos 1920 0"
+    swaymsg "output $monitor_secondary   mode 1920x1080@59.89Hz pos 0 0"
+fi

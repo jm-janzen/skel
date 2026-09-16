@@ -3,8 +3,7 @@ include /etc/sway/config-vars.d/*
 
 include ~/.config/sway/bindings
 # TODO Make a script to switch between ({office,home}-docked, and undocked)
-# TODO Try out autorandr (can't believe I forgot about that tool...)
-include ~/.config/sway/set-output
+exec_always ~/.config/sway/set-output
 
 font pango:monospace 10
 
