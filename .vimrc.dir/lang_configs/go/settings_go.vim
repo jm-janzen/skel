@@ -15,9 +15,9 @@ set noexpandtab
 
 set lcs=space:·,tab:>·
 
-hi Whitespace guifg=#232323
-hi custom_spaces guifg=#606060
-hi custom_tabs guifg=#232323
+hi Whitespace guifg=#ff0000
+hi custom_spaces guifg=#ff0000
+hi custom_tabs guifg=#ff0000
 
 " See :h 2match (ordered matching rules)
 match custom_spaces /    \+/

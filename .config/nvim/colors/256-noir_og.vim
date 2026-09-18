@@ -80,6 +80,12 @@ if has("gui_running") || &t_Co == 256
     " Ruby specific
     hi rubyRegexp cterm=NONE ctermfg=196 ctermbg=NONE gui=NONE guifg=Red guibg=NONE
 
+    hi Whitespace   gui=NONE            guifg=#454545   guibg=NONE
+    " Tab bar
+    hi TabLine gui=NONE guifg=#808080 guibg=NONE
+    hi TabLineSel gui=NONE guifg=#bc0000 guibg=NONE
+    hi TabLineFill gui=NONE guifg=#000000 guibg=NONE
+
 else
     hi Normal cterm=NONE ctermfg=Gray ctermbg=Black
     hi Keyword cterm=NONE ctermfg=White ctermbg=Black

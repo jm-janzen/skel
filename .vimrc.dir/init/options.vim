@@ -110,6 +110,6 @@ if exists('writing_mode')
     iabbrev <buffer> --- —
 else
     " Good ol' dependable
-    colorscheme 256-bink
+    colorscheme 256-noir_og
 endif
 
