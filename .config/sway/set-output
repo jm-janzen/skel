@@ -1,11 +1,23 @@
 #!/usr/bin/env bash
 
+# FIXME Can I just get these from 0 1 2 of order plugged in...?
 monitor_laptop="eDP-1"
 monitor_main="HDMI-A-1"
 monitor_secondary="DP-1"
 
-# FIXME Auto-detect this somehow (USB hub?)
-WORK_LOCATION=$(tail -1 /tmp/WORK_LOCATION)
+# Auto-detect work location
+function detect_location() {
+    OFFICE_SIGN='BRIO Ultra HD Webcam'
+    HOME_SIGN='G502 SE HERO Gaming Mouse'
+    if [[ $(lsusb | grep "$OFFICE_SIGN") ]]
+    then
+        echo "office"
+    elif [[ $(lsusb | grep "$HOME_SIGN") ]]
+    then
+        echo "home"
+    fi
+}
+WORK_LOCATION=$(detect_location)
 WORK_LOCATION=${WORK_LOCATION:-office}
 
 if [[ $WORK_LOCATION == office ]]
@@ -20,6 +32,7 @@ then
     swaymsg "output $monitor_laptop      mode 2880x1800         pos 0 1440"
     swaymsg "output $monitor_main        mode 3840x2160         pos 2560 0"
     swaymsg "output $monitor_secondary   mode 3840x2160         pos 0 0"
+    # Yeah yeah, I need new glasses
     swaymsg "output $monitor_laptop      scale 1.5"
     swaymsg "output $monitor_main        scale 1.5"
     swaymsg "output $monitor_secondary   scale 1.5"
