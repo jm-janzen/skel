@@ -1,0 +1,17 @@
+#!/bin/bash
+
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$2 # empty?
+SHA1=$3 # empty?
+
+old_subject_line=$(head -1 $COMMIT_MSG_FILE)
+
+# Not a revert
+if [[ ! "$old_subject_line" =~ ^Revert\ \" ]]
+then
+    exit 0
+fi
+
+new_subject_line=$(echo $old_subject_line|sed 's/^Revert/revert:/')
+
+sed -i "1s/.*/$new_subject_line/" $COMMIT_MSG_FILE
