@@ -12,6 +12,7 @@ if [ -d $file ]; then
 done
 fi
 
+# Wayland complains if left in
 setxkbmap -option ctrl:nocaps 2>/dev/null
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

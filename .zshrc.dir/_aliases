@@ -63,6 +63,7 @@ hash -d s=$HOME/sandbox
 hash -d c=$HOME/.config
 hash -d D=$HOME/Downloads
 hash -d w=$HOME/sandbox/writing
+hash -d todo=$HOME/sandbox/todos
 hash -d usb=/media/jm
 
 # Doom
