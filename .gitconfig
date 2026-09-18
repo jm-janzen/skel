@@ -3,9 +3,9 @@
     email = hello@jmjanzen.com
     editor = nvim
     pager = diff-so-fancy | less --tabs=4 -RFX
-    hooksPath = /home/jm/.global-githooks
+    hooksPath = ~/.global-githooks
     safecrlf = false
-    excludesfile = /home/jm/.gitignore
+    excludesfile = ~/.gitignore
 [user]
     email = hello@jmjanzen.com
     name = JM
@@ -36,6 +36,7 @@
     coma = "!echo You\\'re thinking of \\'git camo\\' but you should probably call it a day"
     cf   = commit -F- <<EOF
     b    = branch
+    ba   = branch -a
     d    = diff
     ds   = diff --stat
     dc   = diff --cached
@@ -102,3 +103,9 @@
     enabled = true
 [init]
     defaultBranch = main
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
