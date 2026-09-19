@@ -12,7 +12,7 @@
 [push]
     default = simple
 [interactive]
-    diffFilter = less
+    diffFilter = diff-so-fancy --patch
 [alias]
     conf = "!nvim ~/.gitconfig"
     h    = help
@@ -97,6 +97,7 @@
     verbose = true
 [column]
     status = dense
+    ui = auto
 [branch]
     sort = -committerdate
 [rerere]

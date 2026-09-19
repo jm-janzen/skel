@@ -1,0 +1,102 @@
+. $HOME/.profile
+export TERM=xterm-256color # setenv TERM 256color
+autoload -Uz promptinit; promptinit
+
+# Enable bash-like comments on the CLI
+setopt interactivecomments
+
+# Keep 10000000 lines of history within the shell and save it to ~/.zsh_history:
+setopt histignorealldups sharehistory
+
+HISTSIZE=10000000
+SAVEHIST=10000000
+HISTFILE=~/.histfile
+setopt BANG_HIST                 # Treat the '!' character specially during expansion.
+setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_EXPIRE_DUPS_FIRST    # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS         # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+setopt HIST_REDUCE_BLANKS        # Remove superfluous blanks before recording entry.
+setopt HIST_VERIFY               # Don't execute immediately upon history expansion.
+setopt HIST_BEEP                 # Beep when accessing nonexistent history.
+unsetopt beep
+
+# General tilde expansions
+hash -d t=/home/jm/trees
+
+# Tempo specific tilde expansions
+hash -d rm=/home/jm/trees/roadmapping
+hash -d rmk=/home/jm/trees/roadmunk
+
+
+# Use modern completion system
+autoload -Uz compinit
+compinit
+
+zstyle ':completion:*' auto-description 'specify: %d'
+zstyle ':completion:*' completer _expand _complete _correct _approximate
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' menu select=2
+eval "$(dircolors -b)"
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
+zstyle ':completion:*' menu select=long
+zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+zstyle ':completion:*' use-compctl false
+zstyle ':completion:*' verbose true
+
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
+zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
+
+bindkey -v # vim mode settings
+
+autoload -U colors && colors
+
+bindkey '^P' up-history
+bindkey '^N' down-history
+bindkey '^?' backward-delete-char
+bindkey '^h' backward-delete-char
+bindkey '^w' backward-kill-word
+bindkey '^r' history-incremental-search-backward
+# ctrl+backspace and kill word before cursor
+bindkey '^H' backward-kill-word
+
+# https://github.com/zsh-users/zsh-autosuggestions
+# Fish-like auto-suggestions
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+ZSH_AUTOSUGGEST_STRATEGY=(history completion) # Try history, but fallback to completion if no matches
+bindkey '^ ' autosuggest-accept # C-space to accept
+
+zle-line-init() { zle -K viins }
+zle -N zle-line-init
+
+VIM_NORM="%{$fg[blue]%} -- NORMAL -- %{$reset_color%}"
+VIM_INST="%{$bg[red]%} -- INSERT -- %{$reset_color%}"
+
+function zle-line-init zle-keymap-select {
+    RPS1="${${KEYMAP/vicmd/$VIM_NORM}/(main|viins)/$VIM_INST}"
+    RPS2=$RPS1
+    zle reset-prompt
+}
+
+function zle-line-finish {
+}
+zle -N zle-line-finish
+zle -N zle-line-init
+zle -N zle-keymap-select
+export KEYTIMEOUT=1
+
+setopt transient_rprompt
+
+at_blink=%{$'\e[5m'%}
+timestamp="%(?.%{$bg[white]%}%{$fg[black]%}.%{$bg[red]%}%{$fg[black]%}) %D{%T} %{$reset_color%}"
+PS1="%(1j.[%j]"$' '".)$timestamp %{$fg[cyan]%}%~ ${at_blink}%{$fg_bold[cyan]%}>%{$reset_color%} "
+RPROMPT="${VIM_INST}"
