@@ -1,9 +1,12 @@
 #!/usr/bin/env bash
 
-# FIXME Can I just get these from 0 1 2 of order plugged in...?
-monitor_laptop="eDP-1"
-monitor_main="HDMI-A-1"
-monitor_secondary="DP-1"
+function set_monitors() {
+    raw=$(swaymsg -t get\_outputs | jq '.[].name')
+    monitor_laptop=$(echo "$raw" | grep -Po 'eDP-\d') # Laptop
+    monitor_main=$(echo "$raw" | grep -Po 'HDMI-A-\d') # Though HDMI port on laptop
+    monitor_secondary=$(echo "$raw" | grep -Po '\bDP-\d') # Through HDMI port on dock
+}
+set_monitors
 
 # Auto-detect work location
 function detect_location() {
