@@ -13,7 +13,7 @@ exec_always swaymsg 'seat * xcursor_theme Adwaita 24'
 # exec_always, to run of refresh (for randr changes)
 # Kill swaybg before exec to prevent duplicates (really slows down after a while!)
 exec_always killall swaybg
-exec_always --no-startup-id swaybg --mode tile --image ~/Pictures/bg
+exec_always --no-startup-id swaybg --mode fill --image ~/Pictures/bg
 
 # Lock after 5 minutes of inactivity
 # FIXME Turn off monitor after 3, or screensaver, first
