@@ -31,12 +31,11 @@ then
     swaymsg "output $monitor_secondary transform 90"
 elif [[ $WORK_LOCATION == home ]]
 then
+    swaymsg "output $monitor_laptop disable"
 
-    swaymsg "output $monitor_laptop      mode 2880x1800         pos 0 1440"
     swaymsg "output $monitor_main        mode 3840x2160         pos 2560 0"
     swaymsg "output $monitor_secondary   mode 3840x2160         pos 0 0"
     # Yeah yeah, I need new glasses
-    swaymsg "output $monitor_laptop      scale 1.5"
     swaymsg "output $monitor_main        scale 1.5"
     swaymsg "output $monitor_secondary   scale 1.5"
 fi
