@@ -1,6 +1,7 @@
 [[ -d /home/linuxbrew/.linuxbrew && $- == *i* ]] && eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# git clone --depth=1 https://github.com/mattmc3/antidote.git ${ZDOTDIR:-$HOME}/.antidote
 [ -f ~/.antidote/antidote.zsh ] && source ~/.antidote/antidote.zsh
 [ -f ~/.antidote/antidote.zsh ] && source <(antidote init)
 

@@ -413,11 +413,12 @@ local function ask() {
 }
 
 function wait() {
-    seconds=${1:-10}
+    steps=${1:-10}
     char=${2:-''}
-    for i in $(seq $seconds -1 1)
+    unit=${3:-1s}
+    for i in $(seq $steps -1 1)
     do
         echo -n "$char"
-        sleep 1
+        sleep $unit
     done
 }
