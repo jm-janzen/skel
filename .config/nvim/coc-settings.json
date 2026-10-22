@@ -1,0 +1,12 @@
+{
+    "json.schemaDownload.trustedDomains": {
+        "https://www.schemastore.org": true,
+        "https://json.schemastore.org": true
+    },
+    "markdownlint.config": {
+        "MD007": {
+            "indent": 4
+        }
+    }
+}
+
