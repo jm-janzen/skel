@@ -11,6 +11,8 @@
     name = JM
 [push]
     default = simple
+[fetch]
+    prune = true
 [interactive]
     diffFilter = less
 [alias]
@@ -36,7 +38,7 @@
     coma = "!echo You\\'re thinking of \\'git camo\\' but you should probably call it a day"
     cf   = commit -F- <<EOF
     b    = branch
-    ba   = branch -a
+    ba   = branch -vav
     d    = diff
     ds   = diff --stat
     dc   = diff --cached
