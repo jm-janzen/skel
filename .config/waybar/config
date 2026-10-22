@@ -1,23 +1,9 @@
 {
-    // "layer": "top", // Waybar at top layer
-    // "position": "bottom", // Waybar position (top|bottom|left|right)
     "height": 30, // Waybar height (to be removed for auto height)
-    // "width": 1280, // Waybar width
     "spacing": 4, // Gaps between modules (4px)
-    // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
-    "modules-center": ["sway/window"],
+    "modules-center": ["cava","sway/window"],
     "modules-right": ["idle_inhibitor", "pulseaudio", "network", "cpu", "memory", "temperature", "battery", "clock#est", "clock#egy", "tray"],
-    //"modules-right": ["clock#est"],
-    "keyboard-state": {
-        "numlock": true,
-        "capslock": true,
-        "format": "{name} {icon}",
-        "format-icons": {
-            "locked": "",
-            "unlocked": ""
-        }
-    },
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
@@ -146,13 +132,7 @@
         "escape": true,
         "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null" // Script in resources folder
     },
-    // WIP: Experimenting...
-    // https://github.com/Alexays/Waybar/wiki/Module:-Cava
-    // XXX waybar needs to be built from source to use this:
-    // https://github.com/Alexays/Waybar/issues/2781
-    // TODO Actually, I can do this now :o
     "cava": {
-        "cava_config": "~/.config/cava/config",
         "framerate": 30,
         "autosens": 1,
         "sensitivity": 100,
@@ -160,7 +140,7 @@
         "lower_cutoff_freq": 50,
         "higher_cutoff_freq": 10000,
         "hide_on_silence": false,
-        // "format_silent": "quiet",
+        "format_silent": "quiet",
         "method": "pulse",
         "source": "auto",
         "stereo": true,
