@@ -25,10 +25,13 @@ WORK_LOCATION=${WORK_LOCATION:-office}
 
 if [[ $WORK_LOCATION == office ]]
 then
-    swaymsg "output $monitor_laptop      mode 2880x1800 pos 0 2940"
-    swaymsg "output $monitor_main        mode 2560x1440 pos 1440 2400"
-    swaymsg "output $monitor_secondary   mode 3840x2160 pos 4000 0"
+    swaymsg "output $monitor_laptop      mode 2880x1800 pos 0 2640"
+    swaymsg "output $monitor_main        mode 2560x1440 pos 1920 2400"
+    swaymsg "output $monitor_secondary   mode 3840x2160 pos 4480 0"
     swaymsg "output $monitor_secondary transform 90"
+    swaymsg "output $monitor_main        scale 1"
+    swaymsg "output $monitor_secondary   scale 1"
+    swaymsg "output $monitor_laptop      scale 1.5"
 elif [[ $WORK_LOCATION == home ]]
 then
     swaymsg "output $monitor_laptop disable"
