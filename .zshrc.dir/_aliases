@@ -16,7 +16,7 @@ alias   vim='nvim'
 alias    vi='nvim'
 alias     v='nvim'
 alias    vt='nvim -c":NERDTree"'
-alias     r="EDITOR=nvim VISUAL=nvim ranger"
+alias     r="EDITOR=nvim VISUAL=nvim TERM=kitty ranger"
 alias     k='kubectl'
 alias     d='docker'
 alias     g='git'
