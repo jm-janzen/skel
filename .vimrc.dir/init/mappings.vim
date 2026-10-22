@@ -1,5 +1,11 @@
 
 " Space key in Normal - do nothing (use this as my Leader)
+" XXX This is overriding
+"   map <Leader>t
+" until do
+"   so $MYVIMRC
+"
+" I actually wonder if it isn't responsible for <Leader> lag on some keys
 nmap <Space> <Nop>
 
 "
