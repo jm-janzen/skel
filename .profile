@@ -16,10 +16,6 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-# FIXME Make these conditional
-EDITOR=nvim
-VISUAL=nvim
-
 # For thunderbird ISO-8601 datetime 𝍊
 LC_TIME=en_GB.UTF-8
 
