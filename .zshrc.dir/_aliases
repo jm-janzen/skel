@@ -12,10 +12,6 @@ alias     t='\tree -Fn --dirsfirst -I __pycache__\|node_modules --charset=ASCII 
 alias zshrf="source ${HOME}/.zshrc"
 alias    py="python -Bu"
 alias    dc="docker compose"
-alias   vim='nvim'
-alias    vi='nvim'
-alias     v='nvim'
-alias    vt='nvim -c":NERDTree"'
 alias     r="EDITOR=nvim VISUAL=nvim TERM=kitty ranger"
 alias     k='kubectl'
 alias     d='docker'
@@ -31,19 +27,12 @@ alias   time='/usr/bin/time -f%E'
 # TODO slice -N : show top and bottom of output plus N lines context below and above
 
 ### convenience pipes (global)
-alias -g      G='| grep --color'
-alias -g   grev='| grep --color -v'
-alias -g      L='| less -R'
-alias -g      H='| head'
-alias -g      T='| tail'
-alias -g      J="| jq '.'"  # Would be nicer if this was default without arg
 alias -g      C='| column -ts,'
 
 ### info aliases
 alias ports='sudo netstat -uplant'        # list all TCP/UDP ports on the server
 alias    df='df -H'                       # report file system disk space usage
 alias    du='du -ch --summarize'          # print estimated disk usage
-alias uptime='uptime --pretty'            # show uptime output in 'pretty' time format
 
 ### safety aliases
 alias    mv='mv -vi'                      # verbose + prompts for safety
