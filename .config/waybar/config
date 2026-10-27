@@ -91,13 +91,12 @@
         // TODO Try colour-coding based on speed (warning colour if high)
         "interval": 30,
         "format-wifi": " {essid} ({signalStrength}%, {bandwidthDownBytes} ↑ {bandwidthUpBytes} ↓)",
-        "format-ethernet": "E {ipaddr}/{cidr} ({bandwidthDownBytes} ↑ {bandwidthUpBytes} ↓)",
+        "format-ethernet": "E ({bandwidthDownBytes} ↑ {bandwidthUpBytes} ↓)",
         "tooltip-format": "{ifname} via {gwaddr}",
         "format-linked": "{ifname} (No IP)",
         "format-disconnected": "Disconnected ⚠",
         "format-disabled": "Not enabled ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "min-length": 45,
     },
     "pulseaudio": {
         "scroll-step": 8,
