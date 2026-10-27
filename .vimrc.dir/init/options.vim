@@ -87,6 +87,9 @@ endif
 
 " try really hard to allow 256 colos
 set t_Co=256
+if exists('+termguicolors')
+  set termguicolors
+endif
 
 autocmd FileType netrw set nolist
 

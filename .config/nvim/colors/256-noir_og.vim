@@ -11,13 +11,6 @@
 
 highlight clear
 set background=dark
-if version > 580
-    " no guarantees for version 5.8 and below, but this makes it stop
-    " complaining
-    if exists("syntax_on")
-        syntax reset
-    endif
-endif
 let g:colors_name = "256_noir"
 
 if has("gui_running") || &t_Co == 256
@@ -85,36 +78,8 @@ if has("gui_running") || &t_Co == 256
     hi TabLine gui=NONE guifg=#808080 guibg=NONE
     hi TabLineSel gui=NONE guifg=#bc0000 guibg=NONE
     hi TabLineFill gui=NONE guifg=#000000 guibg=NONE
-
-else
-    hi Normal cterm=NONE ctermfg=Gray ctermbg=Black
-    hi Keyword cterm=NONE ctermfg=White ctermbg=Black
-    hi Constant cterm=NONE ctermfg=Gray ctermbg=Black
-    hi String cterm=NONE ctermfg=Red ctermbg=Black
-    hi Comment cterm=NONE ctermfg=Red ctermbg=Black
-    hi Number cterm=NONE ctermfg=Red ctermbg=Black
-    hi Error cterm=NONE ctermfg=White ctermbg=DarkRed
-    hi ErrorMsg cterm=NONE ctermfg=White ctermbg=Red
-    hi Search cterm=NONE ctermfg=Gray ctermbg=DarkGray
-    hi IncSearch cterm=reverse ctermfg=White ctermbg=Gray
-    hi DiffChange cterm=NONE ctermfg=Red ctermbg=White
-    hi DiffText cterm=bold ctermfg=Gray ctermbg=Red
-    hi SignColumn cterm=NONE ctermfg=Red ctermbg=DarkGray
-    hi SpellBad cterm=undercurl ctermfg=White ctermbg=DarkRed
-    hi SpellCap cterm=NONE ctermfg=White ctermbg=Red
-    hi SpellRare cterm=NONE ctermfg=Red ctermbg=Black
-    hi WildMenu cterm=NONE ctermfg=DarkGray ctermbg=White
-    hi Pmenu cterm=NONE ctermfg=White ctermbg=DarkGray
-    hi PmenuThumb cterm=NONE ctermfg=Black ctermbg=DarkGray
-    hi SpecialKey cterm=NONE ctermfg=Black ctermbg=White
-    hi MatchParen cterm=NONE ctermfg=Black ctermbg=DarkGray
-    hi CursorLine cterm=NONE ctermfg=NONE ctermbg=Black
-    hi StatusLine cterm=bold,reverse ctermfg=Gray ctermbg=Black
-    hi StatusLineNC cterm=reverse ctermfg=DarkGray ctermbg=Black
-    hi Visual cterm=reverse ctermfg=Gray ctermbg=Black
-    hi TermCursor cterm=reverse ctermfg=NONE ctermbg=NONE
 endif
-"highlight! link Boolean Normal
+
 highlight! link Delimiter Normal
 highlight! link Identifier Normal
 highlight! link Title Normal
@@ -136,9 +101,6 @@ highlight! link Typedef Keyword
 highlight! link Todo Keyword
 highlight! link Label Keyword
 highlight! link Define Keyword
-"highlight! link DiffAdd Keyword
-"highlight! link diffAdded Keyword
-"highlight! link diffCommon Keyword
 highlight! link Directory Keyword
 highlight! link PreCondit Keyword
 highlight! link PreProc Keyword
@@ -157,8 +119,6 @@ highlight! link iCursor SpecialKey
 highlight! link SpellLocal SpellCap
 highlight! link LineNr Comment
 highlight! link NonText Comment
-"highlight! link DiffDelete Comment
-"highlight! link diffRemoved Comment
 highlight! link PmenuSbar Visual
 highlight! link PmenuSel Visual
 highlight! link VisualNOS Visual
@@ -166,4 +126,3 @@ highlight! link VertSplit Visual
 highlight! link Cursor StatusLine
 highlight! link Underlined SpellRare
 highlight! link rstEmphasis SpellRare
-"highlight! link diffChanged DiffChange
